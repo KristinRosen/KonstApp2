@@ -48,7 +48,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rz8-YH-Pqo" userLabel="konstnar Container View">
-                                <rect key="frame" x="16" y="327" width="343" height="270"/>
+                                <rect key="frame" x="16" y="131" width="343" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="BPr-MB-OJ6" kind="embed" id="o6q-O6-jyk"/>
