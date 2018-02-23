@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: Properties
     @IBOutlet weak var verkText: UIView!
     @IBOutlet weak var konstnarText: UIView!
+    @IBOutlet weak var startText: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +35,14 @@ class ViewController: UIViewController {
     @IBAction func showVerkText(_ sender: UIButton) {
         verkText.isHidden = false
         konstnarText.isHidden = true
+        startText.isHidden = true
     }
     
      //show konstnarText if "Om konstnären" button is pressed, and hide other text fields
     @IBAction func showKonstnarText(_ sender: UIButton) {
         konstnarText.isHidden = false
         verkText.isHidden = true
+        startText.isHidden = true
     }
     
 }
