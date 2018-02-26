@@ -13,6 +13,17 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz" userLabel="swipe left">
+                    <connections>
+                        <action selector="nextText:" destination="BYZ-38-t0r" id="Kv8-Am-ycx"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="v85-Is-Hef" userLabel="swipe right">
+                    <connections>
+                        <action selector="previousText:" destination="BYZ-38-t0r" id="yZo-Sw-diz"/>
+                    </connections>
+                </swipeGestureRecognizer>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KonstApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -31,18 +42,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="HP1-UE-ZCz" appends="YES" id="Li3-XE-pLG"/>
+                            <outletCollection property="gestureRecognizers" destination="v85-Is-Hef" appends="YES" id="dlU-be-KWR"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="textView" destination="AOD-ML-666" id="XnV-hk-Za4"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz">
-                    <connections>
-                        <action selector="showVerkText:" destination="BYZ-38-t0r" id="yJZ-pu-jTU"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="133.5832083958021"/>
         </scene>

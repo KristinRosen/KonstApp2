@@ -31,7 +31,7 @@ class ViewController: UIViewController{
     }
 
     //MARK: Actions
-    @IBAction func showVerkText(_ sender: UISwipeGestureRecognizer) {
+    @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == nil {
         displayString = infoTexts[0]
         textView.text = displayString
@@ -46,6 +46,23 @@ class ViewController: UIViewController{
             textView.text = displayString
         }
     }
+    
+    @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
+        if displayString == nil {
+            displayString = infoTexts[2]
+            textView.text = displayString
+        } else if displayString == infoTexts[2] {
+            displayString = infoTexts[1]
+            textView.text = displayString
+        } else if displayString == infoTexts[1] {
+            displayString = infoTexts[0]
+            textView.text = displayString
+        } else {
+            displayString = nil
+            textView.text = displayString
+        }
+    }
+    
 }
 
 
