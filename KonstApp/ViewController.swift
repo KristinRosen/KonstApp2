@@ -15,7 +15,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var textView: UITextView!
     
     var displayString: String?
-    var infoTexts = ["Konstverk", "Konstnär"]
+    var infoTexts = ["Konstverk", "Konstnär", "Koppling till IBM"]
     
     
     override func viewDidLoad() {
@@ -32,9 +32,22 @@ class ViewController: UIViewController{
 
     //MARK: Actions
     @IBAction func showVerkText(_ sender: UISwipeGestureRecognizer) {
+        if displayString == nil {
         displayString = infoTexts[0]
         textView.text = displayString
+        } else if displayString == infoTexts[0] {
+            displayString = infoTexts[1]
+            textView.text = displayString
+        } else if displayString == infoTexts[1] {
+            displayString = infoTexts[2]
+            textView.text = displayString
+        } else {
+            displayString = nil
+            textView.text = displayString
+        }
     }
 }
+
+
 
 
