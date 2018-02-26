@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
+    
     
     //MARK: Properties
     @IBOutlet weak var verkText: UIView!
     @IBOutlet weak var konstnarText: UIView!
     @IBOutlet weak var startText: UIView!
+    @IBOutlet weak var StackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
