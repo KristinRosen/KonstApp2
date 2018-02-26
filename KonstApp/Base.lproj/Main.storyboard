@@ -40,7 +40,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz">
                     <connections>
-                        <action selector="showKonstnarText:" destination="BYZ-38-t0r" id="SfB-8l-apU"/>
+                        <action selector="showVerkText:" destination="BYZ-38-t0r" id="yJZ-pu-jTU"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
