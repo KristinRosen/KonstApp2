@@ -12,18 +12,17 @@ class ViewController: UIViewController{
     
     
     //MARK: Properties
-    @IBOutlet weak var verkText: UIView!
-    @IBOutlet weak var konstnarText: UIView!
-    @IBOutlet weak var startText: UIView!
-    @IBOutlet weak var StackView: UIStackView!
+    @IBOutlet weak var textView: UITextView!
+    
+    var displayString: String?
+    var infoTexts = ["Konstverk", "Konstnär"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //Hide the textfields
-        verkText.isHidden = true
-        konstnarText.isHidden = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,20 +31,10 @@ class ViewController: UIViewController{
     }
 
     //MARK: Actions
-    
-    //show verkText if "Om verket" button is pressed, and hide other text fields
-    @IBAction func showVerkText(_ sender: UIButton) {
-        verkText.isHidden = false
-        konstnarText.isHidden = true
-        startText.isHidden = true
+    @IBAction func showVerkText(_ sender: UISwipeGestureRecognizer) {
+        displayString = infoTexts[0]
+        textView.text = displayString
     }
-    
-     //show konstnarText if "Om konstnären" button is pressed, and hide other text fields
-    @IBAction func showKonstnarText(_ sender: UIButton) {
-        konstnarText.isHidden = false
-        verkText.isHidden = true
-        startText.isHidden = true
-    }
-    
 }
+
 

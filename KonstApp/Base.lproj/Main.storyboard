@@ -18,143 +18,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tiC-bx-sEh">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuS-Tv-S5O">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="243"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flE-4r-CD9">
-                                        <rect key="frame" x="0.0" y="243" width="375" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.49262764084507044" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Om verket">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showVerkText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jBM-UB-KTi"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oA-bQ-lDy">
-                                        <rect key="frame" x="0.0" y="273" width="375" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.49262764079999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Om konstnären">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showKonstnarText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0yc-3g-8RE"/>
-                                        </connections>
-                                    </button>
-                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfp-f1-XVj" userLabel="verk Container View">
-                                        <rect key="frame" x="0.0" y="303" width="375" height="105"/>
-                                        <connections>
-                                            <segue destination="YwY-ti-DOP" kind="embed" id="nxH-en-8JH"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vZ-kd-2sQ">
-                                        <rect key="frame" x="0.0" y="408" width="375" height="50"/>
-                                        <connections>
-                                            <segue destination="HDt-iQ-KMd" kind="embed" id="cxR-gF-7Lc"/>
-                                        </connections>
-                                    </containerView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rz8-YH-Pqo" userLabel="konstnar Container View">
-                                        <rect key="frame" x="0.0" y="458" width="375" height="189"/>
-                                        <connections>
-                                            <segue destination="BPr-MB-OJ6" kind="embed" id="o6q-O6-jyk"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOD-ML-666">
+                                <rect key="frame" x="67" y="214" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="tiC-bx-sEh" secondAttribute="bottom" id="Dkf-vJ-Rgx"/>
-                            <constraint firstAttribute="trailing" secondItem="tiC-bx-sEh" secondAttribute="trailing" id="LpA-ue-zzv"/>
-                            <constraint firstItem="tiC-bx-sEh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Z8M-zm-Ftv"/>
-                            <constraint firstItem="tiC-bx-sEh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="b6Z-Zu-VxL"/>
-                            <constraint firstAttribute="bottom" secondItem="tiC-bx-sEh" secondAttribute="bottom" id="bMD-1D-hG7"/>
-                            <constraint firstItem="tiC-bx-sEh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="f01-j2-Y1h"/>
-                            <constraint firstItem="tiC-bx-sEh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lAN-Y9-Ytw"/>
-                        </constraints>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="HP1-UE-ZCz" appends="YES" id="Li3-XE-pLG"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="StackView" destination="tiC-bx-sEh" id="HSJ-fj-ToR"/>
-                        <outlet property="konstnarText" destination="rz8-YH-Pqo" id="c0S-qc-Kcx"/>
-                        <outlet property="startText" destination="6vZ-kd-2sQ" id="w4e-co-Y4p"/>
-                        <outlet property="verkText" destination="dfp-f1-XVj" id="oXb-7q-TXH"/>
+                        <outlet property="textView" destination="AOD-ML-666" id="XnV-hk-Za4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz">
+                    <connections>
+                        <action selector="showKonstnarText:" destination="BYZ-38-t0r" id="SfB-8l-apU"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="7GG-hu-oEb">
-            <objects>
-                <viewController id="YwY-ti-DOP" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yOp-SI-7Q8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBf-2q-Ows">
-                                <rect key="frame" x="16" y="0.0" width="343" height="270"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">KONSTVERKLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Nhm-lA-Aoj"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="byx-ML-xNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="636" y="132.68365817091455"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="qzp-RX-sPS">
-            <objects>
-                <viewController id="BPr-MB-OJ6" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="osE-yu-EFy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="189"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejq-AT-uxJ">
-                                <rect key="frame" x="16" y="0.0" width="343" height="270"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">KONSTNÄRLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="wIK-T5-tRt"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SHA-mY-OQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-728.79999999999995" y="526.23688155922048"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Er3-Dh-Bmx">
-            <objects>
-                <viewController id="HDt-iQ-KMd" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="k8s-Yp-Tvm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="UKC-nG-gJ6"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B6p-EI-XfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-929" y="-109"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="defaultPhoto" width="320" height="320"/>
-    </resources>
 </document>
