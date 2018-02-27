@@ -13,17 +13,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz" userLabel="swipe left">
-                    <connections>
-                        <action selector="nextText:" destination="BYZ-38-t0r" id="Kv8-Am-ycx"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="v85-Is-Hef" userLabel="swipe right">
-                    <connections>
-                        <action selector="previousText:" destination="BYZ-38-t0r" id="yZo-Sw-diz"/>
-                    </connections>
-                </swipeGestureRecognizer>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KonstApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -36,9 +25,50 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
+                                <rect key="frame" x="0.0" y="168" width="375" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-Oh-lOA">
+                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showText1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yg0-Yc-Ruh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
+                                        <rect key="frame" x="94" y="0.0" width="93.5" height="30"/>
+                                        <state key="normal" title="Konstverk"/>
+                                        <connections>
+                                            <action selector="showText2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bgu-CQ-Ny0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
+                                        <rect key="frame" x="187.5" y="0.0" width="94" height="30"/>
+                                        <state key="normal" title="Konstnär"/>
+                                        <connections>
+                                            <action selector="showText3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBs-xb-fC6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
+                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="30"/>
+                                        <state key="normal" title="IBM"/>
+                                        <connections>
+                                            <action selector="showText4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="73I-Bh-4rD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NHm-wA-ghX" secondAttribute="trailing" id="jX5-p3-ELa"/>
+                            <constraint firstItem="NHm-wA-ghX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vZm-tw-0Rx"/>
+                            <constraint firstItem="NHm-wA-ghX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="148" id="xSf-uM-QMU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="HP1-UE-ZCz" appends="YES" id="Li3-XE-pLG"/>
@@ -46,9 +76,24 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="AOD-ML-666" id="XnV-hk-Za4"/>
+                        <outlet property="button1" destination="eEs-Oh-lOA" id="FqU-67-Jkm"/>
+                        <outlet property="button2" destination="2Tn-I7-eD1" id="r7D-kA-ja3"/>
+                        <outlet property="button3" destination="pWU-8Q-RnA" id="0NK-F4-K6B"/>
+                        <outlet property="button4" destination="kok-WT-GDX" id="FOI-hd-D5w"/>
+                        <outlet property="textView" destination="AOD-ML-666" id="eGH-kP-ygy"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="HP1-UE-ZCz" userLabel="swipe left">
+                    <connections>
+                        <action selector="nextText:" destination="BYZ-38-t0r" id="Kv8-Am-ycx"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="v85-Is-Hef" userLabel="swipe right">
+                    <connections>
+                        <action selector="previousText:" destination="BYZ-38-t0r" id="yZo-Sw-diz"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="133.5832083958021"/>
         </scene>

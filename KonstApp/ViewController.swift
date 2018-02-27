@@ -12,6 +12,14 @@ class ViewController: UIViewController{
     
     
     //MARK: Properties
+ 
+    //Buttons
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var button4: UIButton!
+    
+    //Texts
     @IBOutlet weak var textView: UITextView!
     
     var displayString: String?
@@ -21,7 +29,7 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        button1.isSelected = true
         
     }
 
@@ -31,23 +39,83 @@ class ViewController: UIViewController{
     }
 
     //MARK: Actions
+    
+    //Change text + select corresponding buttons when tapping buttons
+    
+    /* LÄGG TILL SWIPEANIMATION NÄR VI VET HUR MÅNGA KNAPPAR */
+    
+    @IBAction func showText1(_ sender: UIButton) {
+        displayString = nil
+        textView.text = displayString
+        button1.isSelected = true
+        button2.isSelected = false
+        button3.isSelected = false
+        button4.isSelected = false
+        
+    }
+    @IBAction func showText2(_ sender: UIButton) {
+        displayString = infoTexts[0]
+        textView.text = displayString
+        button1.isSelected = false
+        button2.isSelected = true
+        button3.isSelected = false
+         button4.isSelected = false
+    }
+    @IBAction func showText3(_ sender: UIButton) {
+        displayString = infoTexts[1]
+        textView.text = displayString
+        button1.isSelected = false
+        button2.isSelected = false
+        button3.isSelected = true
+         button4.isSelected = false
+    }
+    @IBAction func showText4(_ sender: UIButton) {
+        displayString = infoTexts[2]
+        textView.text = displayString
+        button1.isSelected = false
+        button2.isSelected = false
+        button3.isSelected = false
+        button4.isSelected = true
+    }
+    
+    
+    // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == nil {
         displayString = infoTexts[0]
         textView.leftToRightAnimation()
         textView.text = displayString
-        } else if displayString == infoTexts[0] {
+        button1.isSelected = false
+        button2.isSelected = true
+        button3.isSelected = false
+        button4.isSelected = false
+        }
+        else if displayString == infoTexts[0] {
             displayString = infoTexts[1]
             textView.leftToRightAnimation()
             textView.text = displayString
-        } else if displayString == infoTexts[1] {
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = true
+            button4.isSelected = false
+        }
+        else if displayString == infoTexts[1] {
             displayString = infoTexts[2]
             textView.leftToRightAnimation()
             textView.text = displayString
-        } else {
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = false
+            button4.isSelected = true
+        }
+        else {
             displayString = nil
             textView.text = displayString
             textView.leftToRightAnimation()
+            button1.isSelected = true
+            button2.isSelected = false
+            button3.isSelected = false
+            button4.isSelected = false
         }
     }
     
@@ -56,23 +124,42 @@ class ViewController: UIViewController{
             displayString = infoTexts[2]
             textView.rightToLeftAnimation()
             textView.text = displayString
-        } else if displayString == infoTexts[2] {
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = false
+            button4.isSelected = true
+        }
+        else if displayString == infoTexts[2] {
             displayString = infoTexts[1]
             textView.rightToLeftAnimation()
             textView.text = displayString
-        } else if displayString == infoTexts[1] {
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = true
+            button4.isSelected = false
+        }
+        else if displayString == infoTexts[1] {
             displayString = infoTexts[0]
             textView.rightToLeftAnimation()
             textView.text = displayString
-        } else {
+            button1.isSelected = false
+            button2.isSelected = true
+            button3.isSelected = false
+            button4.isSelected = false
+        }
+        else {
             displayString = nil
             textView.rightToLeftAnimation()
             textView.text = displayString
+            button1.isSelected = true
+            button2.isSelected = false
+            button3.isSelected = false
+            button4.isSelected = false
         }
     }
     
 }
-
+ //Animation
 extension UIView {
     func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
         // Create a CATransition object
