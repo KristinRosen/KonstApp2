@@ -23,13 +23,14 @@ class ViewController: UIViewController{
     @IBOutlet weak var textView: UITextView!
     
     var displayString: String?
-    var infoTexts = ["Konstverk", "Konstnär", "Koppling till IBM"]
+    var infoTexts = ["Konstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfKonstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfKonstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdf", "Konstnär", "Koppling till IBM"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         button1.isSelected = true
+        
         
     }
 
@@ -42,7 +43,7 @@ class ViewController: UIViewController{
     
     //Change text + select corresponding buttons when tapping buttons
     
-    /* LÄGG TILL SWIPEANIMATION NÄR VI VET HUR MÅNGA KNAPPAR */
+    /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
     @IBAction func showText1(_ sender: UIButton) {
         displayString = nil
