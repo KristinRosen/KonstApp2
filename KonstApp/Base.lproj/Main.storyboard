@@ -18,6 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vR4-c7-90p" userLabel="bg Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KbY-55-J08">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E0E-Zj-NFM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDh-iM-XWI">
                                 <rect key="frame" x="30" y="335" width="315" height="302"/>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,7 +52,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kladdkaka" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
                                         <rect key="frame" x="30" y="70" width="315" height="170"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="170" id="TgW-Oc-kUw"/>
@@ -120,14 +131,21 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="vR4-c7-90p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0kW-jb-NoJ"/>
+                            <constraint firstItem="KbY-55-J08" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="18C-sM-Bh0"/>
+                            <constraint firstItem="KbY-55-J08" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4wd-kZ-hIj"/>
                             <constraint firstAttribute="trailing" secondItem="S4b-fG-yPC" secondAttribute="trailing" id="5Pd-kV-ufX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AOD-ML-666" secondAttribute="bottom" constant="30" id="5b5-ps-hn2"/>
+                            <constraint firstItem="KbY-55-J08" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="742-j7-tzm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hDh-iM-XWI" secondAttribute="trailing" constant="30" id="B7R-vJ-tD7"/>
+                            <constraint firstItem="vR4-c7-90p" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JDl-Et-vRd"/>
+                            <constraint firstItem="KbY-55-J08" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Lpz-AA-NWV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hDh-iM-XWI" secondAttribute="bottom" constant="30" id="SLx-QS-0Ma"/>
                             <constraint firstItem="S4b-fG-yPC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WLI-Sa-BkP"/>
+                            <constraint firstItem="vR4-c7-90p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dVL-zW-PUL"/>
+                            <constraint firstItem="vR4-c7-90p" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hAR-UI-Pcd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AOD-ML-666" secondAttribute="trailing" constant="30" id="inQ-01-zlJ"/>
                             <constraint firstItem="S4b-fG-yPC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="k8H-24-d2I"/>
                             <constraint firstItem="hDh-iM-XWI" firstAttribute="top" secondItem="S4b-fG-yPC" secondAttribute="bottom" id="ke8-1Z-fGS"/>
@@ -142,10 +160,12 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="bgImageView" destination="vR4-c7-90p" id="o9b-Th-pGh"/>
                         <outlet property="button1" destination="eEs-Oh-lOA" id="FqU-67-Jkm"/>
                         <outlet property="button2" destination="2Tn-I7-eD1" id="r7D-kA-ja3"/>
                         <outlet property="button3" destination="pWU-8Q-RnA" id="0NK-F4-K6B"/>
                         <outlet property="button4" destination="kok-WT-GDX" id="FOI-hd-D5w"/>
+                        <outlet property="imageView" destination="F1g-wz-dlL" id="GeI-jR-JSy"/>
                         <outlet property="textView" destination="AOD-ML-666" id="eGH-kP-ygy"/>
                     </connections>
                 </viewController>
@@ -161,7 +181,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-388" y="36"/>
+            <point key="canvasLocation" x="-388" y="35.532233883058474"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5z6-dS-Zqs">
@@ -189,6 +209,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="kladdkaka" width="385" height="327"/>
+        <image name="defaultPicture" width="160" height="149"/>
     </resources>
 </document>
