@@ -30,17 +30,17 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDh-iM-XWI">
-                                <rect key="frame" x="30" y="335" width="315" height="302"/>
+                                <rect key="frame" x="30" y="375" width="315" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOD-ML-666">
-                                <rect key="frame" x="30" y="335" width="315" height="302"/>
+                                <rect key="frame" x="30" y="375" width="315" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC">
-                                <rect key="frame" x="0.0" y="45" width="375" height="290"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="330"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kladdkaka" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yid-Tl-bQx">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -52,15 +52,18 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
+                                        <rect key="frame" x="177.5" y="70" width="20" height="20"/>
+                                    </activityIndicatorView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
-                                        <rect key="frame" x="30" y="70" width="315" height="170"/>
+                                        <rect key="frame" x="30" y="110" width="315" height="170"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="170" id="TgW-Oc-kUw"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="cyD-4L-zuk"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
-                                        <rect key="frame" x="30" y="260" width="315" height="30"/>
+                                        <rect key="frame" x="30" y="300" width="315" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-Oh-lOA" colorLabel="IBBuiltInLabel-Blue">
                                                 <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
@@ -160,6 +163,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="GOu-3X-X2p" id="Gzg-Xz-kvy"/>
                         <outlet property="bgImageView" destination="vR4-c7-90p" id="o9b-Th-pGh"/>
                         <outlet property="button1" destination="eEs-Oh-lOA" id="FqU-67-Jkm"/>
                         <outlet property="button2" destination="2Tn-I7-eD1" id="r7D-kA-ja3"/>

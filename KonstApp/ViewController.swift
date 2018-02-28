@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
     
+    //Activity Indicator
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     //Texts
     @IBOutlet weak var textView: UITextView!
@@ -40,10 +42,14 @@ class ViewController: UIViewController {
         
         //Image
         print("Begin of code")
-        if let url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VanGogh-starry_night_ballance1.jpg/600px-VanGogh-starry_night_ballance1.jpg") {
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        if let url = URL(string: "https://imagejournal.org/wp-content/uploads/bb-plugin/cache/23466317216_b99485ba14_o-panorama.jpg") {
             downloadImage(url: url)
         }
+
         print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
+        
     }
 
 
@@ -63,22 +69,37 @@ class ViewController: UIViewController {
     
     func downloadImage(url: URL) {
         print("Download Started")
+
         getDataFromUrl(url: url) {
             data, response, error in
             guard let data = data, error == nil else { return }
             
             print(response?.suggestedFilename ?? url.lastPathComponent)
-            
             print("Download Finished")
             DispatchQueue.main.async() {
                 self.imageView.image = UIImage(data: data)
                 self.bgImageView.image = UIImage(data: data)
+                self.activityIndicatorView.stopAnimating()
             }
         }
+        
     }
     
+    //activity indicator
+    /*
+    func showActivityIndicator() {
+        if {
+            self.activityIndicatorView.isHidden = true
+            self.imageView.isHidden = false
+            self.activityIndicatorView.stopAnimating()
+        } else {
+            self.activityIndicatorView.isHidden = false
+            self.imageView.isHidden = true
+            self.activityIndicatorView.startAnimating()
+        }
+    }
+ */
     
-       
     
     //Change text + select corresponding buttons when tapping buttons
     
