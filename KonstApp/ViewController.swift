@@ -40,11 +40,12 @@ class ViewController: UIViewController {
         button1.isSelected = true
         
         
-        //Image
+        //Set url for image + start activity indicator + hide image
         print("Begin of code")
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
-        if let url = URL(string: "https://imagejournal.org/wp-content/uploads/bb-plugin/cache/23466317216_b99485ba14_o-panorama.jpg") {
+        self.imageView.isHidden = true
+        if let url = URL(string: "https://cdn1.tasteline.com/kladdkaka-med-choklad-foto-kerstin-eriksson.jpg") {
             downloadImage(url: url)
         }
 
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
 
     //MARK: Actions
     
-    //Get image from url
+    //Get image from url + stop activity indicator + show image
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
@@ -80,6 +81,7 @@ class ViewController: UIViewController {
                 self.imageView.image = UIImage(data: data)
                 self.bgImageView.image = UIImage(data: data)
                 self.activityIndicatorView.stopAnimating()
+                self.imageView.isHidden = false
             }
         }
         
