@@ -41,15 +41,12 @@ class ViewController: UIViewController {
         
         
         //Set url for image + start activity indicator + hide image
-        print("Begin of code")
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         self.imageView.isHidden = true
         if let url = URL(string: "https://cdn1.tasteline.com/kladdkaka-med-choklad-foto-kerstin-eriksson.jpg") {
             downloadImage(url: url)
         }
-
-        print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
         
     }
 
@@ -69,14 +66,14 @@ class ViewController: UIViewController {
     }
     
     func downloadImage(url: URL) {
-        print("Download Started")
+        print("Started downloading")
 
         getDataFromUrl(url: url) {
             data, response, error in
             guard let data = data, error == nil else { return }
             
             print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
+            print("Finished downloading")
             DispatchQueue.main.async() {
                 self.imageView.image = UIImage(data: data)
                 self.bgImageView.image = UIImage(data: data)
