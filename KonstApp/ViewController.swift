@@ -53,9 +53,6 @@ class ViewController: UIViewController {
         
         button1.isSelected = true
         
-        //run check if downloaded function (kanske överflödig)
-        checkIfDownloaded()
-        
         //Set url for image + start activity indicator + hide image
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
