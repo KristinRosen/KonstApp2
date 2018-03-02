@@ -10,6 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //Check if image has been downloaded earlier during the same session
+    var didDownload = Bool()
+    
+    //check if image named "image.jpeg" has previosly been saved to UserDefaults
+    func checkIfDownloaded() -> Bool {
+        if (UserDefaults.standard.object(forKey: "image.jpeg") != nil) {
+            print("image has previously been downloaded")
+            return true
+        } else {
+            print("image not yet downloaded")
+            return false
+        }
+    }
+    
     
     //MARK: Properties
  
@@ -39,15 +53,33 @@ class ViewController: UIViewController {
         
         button1.isSelected = true
         
+        //run check if downloaded function (kanske överflödig)
+        checkIfDownloaded()
         
         //Set url for image + start activity indicator + hide image
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         self.imageView.isHidden = true
-        if let url = URL(string: "https://cdn1.tasteline.com/kladdkaka-med-choklad-foto-kerstin-eriksson.jpg") {
-            downloadImage(url: url)
+        if let url = URL(string: "url") {
+            
+            //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
+            if didDownload == true || checkIfDownloaded() == true {
+                
+                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
+                
+                self.imageView.image = UIImage(data: newData as Data)
+                self.bgImageView.image = UIImage(data: newData as Data)
+                self.activityIndicatorView.stopAnimating()
+                self.imageView.isHidden = false
+                
+                print("image loaded from memory")
+                
+            //Otherwise download and save image to UserDefaults
+            } else {
+                
+                downloadImage(url: url)
+            }
         }
-        
     }
 
 
@@ -75,10 +107,22 @@ class ViewController: UIViewController {
             print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Finished downloading")
             DispatchQueue.main.async() {
-                self.imageView.image = UIImage(data: data)
-                self.bgImageView.image = UIImage(data: data)
+                
+                let dataREP = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+                
+                UserDefaults.standard.set(dataREP, forKey: "image.jpeg")
+                
+                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
+                
+                self.imageView.image = UIImage(data: newData as Data)
+                self.bgImageView.image = UIImage(data: newData as Data)
                 self.activityIndicatorView.stopAnimating()
                 self.imageView.isHidden = false
+                
+                self.didDownload = true
+                
+                print("image downloaded and saved")
+                
             }
         }
         
@@ -262,12 +306,13 @@ extension UIView {
         rightToLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         rightToLeftTransition.fillMode = kCAFillModeRemoved
         
-        // Add the animation to the View's layernäm
+        // Add the animation to the View's layer
         self.layer.add(rightToLeftTransition, forKey: "rightToLeftTransition")
         
     }
     
 }
+
 
 
 
