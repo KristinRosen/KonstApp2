@@ -8,6 +8,15 @@
 
 import UIKit
 
+
+
+
+struct KonstverkData: Decodable {
+    let namn: String
+}
+
+
+
 class ViewController: UIViewController {
     
     //Check if image has been downloaded earlier during the same session
@@ -50,6 +59,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+    //Fetching JSONobject from url
+        
+        let jsonUrlString = "http://localhost:6002/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            //gammalt sätt att printa jsonobjektet
+         /* let dataAsString = String(data: data, encoding: .utf8)
+            print(dataAsString) */
+            
+           do {
+            
+            //decode data + print namn
+            let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
+                print(konstverkData[0].namn)
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }.resume()
+        
         
         button1.isSelected = true
         
@@ -124,21 +162,9 @@ class ViewController: UIViewController {
         }
         
     }
+ 
     
-    //activity indicator
-    /*
-    func showActivityIndicator() {
-        if {
-            self.activityIndicatorView.isHidden = true
-            self.imageView.isHidden = false
-            self.activityIndicatorView.stopAnimating()
-        } else {
-            self.activityIndicatorView.isHidden = false
-            self.imageView.isHidden = true
-            self.activityIndicatorView.startAnimating()
-        }
-    }
- */
+    
     
     
     //Change text + select corresponding buttons when tapping buttons
