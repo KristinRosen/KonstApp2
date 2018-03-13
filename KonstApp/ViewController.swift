@@ -85,11 +85,6 @@ class ViewController: UIViewController {
             
             guard let data = data else { return }
             
-            //gammalt sätt att printa jsonobjektet
-         /* let dataAsString = String(data: data, encoding: .utf8)
-            print(dataAsString) */
-            
-            
             
            do {
             
