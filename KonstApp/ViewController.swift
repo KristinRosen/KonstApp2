@@ -101,10 +101,15 @@ class ViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.label.text = konstverkData[0].namn
+                self.infoTexts = konstverkData[0].texter
+                self.displayString = self.infoTexts[0]
+                self.textView.text = self.displayString
+                
             }
                 self.bildUrl = konstverkData[0].bild
-                self.infoTexts = konstverkData[0].texter
-           
+            
+            
+            
             
             
            
@@ -200,7 +205,7 @@ class ViewController: UIViewController {
     /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
     @IBAction func showText1(_ sender: UIButton) {
-        displayString = nil
+        displayString = infoTexts[0]
         textView.text = displayString
         button1.isSelected = true
         button2.isSelected = false
@@ -209,23 +214,23 @@ class ViewController: UIViewController {
         
     }
     @IBAction func showText2(_ sender: UIButton) {
-        displayString = infoTexts[0]
+        displayString = infoTexts[1]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = true
         button3.isSelected = false
-         button4.isSelected = false
+        button4.isSelected = false
     }
     @IBAction func showText3(_ sender: UIButton) {
-        displayString = infoTexts[1]
+        displayString = infoTexts[2]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = false
         button3.isSelected = true
-         button4.isSelected = false
+        button4.isSelected = false
     }
     @IBAction func showText4(_ sender: UIButton) {
-        displayString = infoTexts[2]
+        displayString = infoTexts[3]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = false
@@ -236,8 +241,8 @@ class ViewController: UIViewController {
     
     // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == nil {
-        displayString = infoTexts[0]
+        if displayString == infoTexts[0] {
+        displayString = infoTexts[1]
         textView.leftToRightAnimation()
         textView.text = displayString
         button1.isSelected = false
@@ -245,8 +250,8 @@ class ViewController: UIViewController {
         button3.isSelected = false
         button4.isSelected = false
         }
-        else if displayString == infoTexts[0] {
-            displayString = infoTexts[1]
+        else if displayString == infoTexts[1] {
+            displayString = infoTexts[2]
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -254,8 +259,8 @@ class ViewController: UIViewController {
             button3.isSelected = true
             button4.isSelected = false
         }
-        else if displayString == infoTexts[1] {
-            displayString = infoTexts[2]
+        else if displayString == infoTexts[2] {
+            displayString = infoTexts[3]
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -263,8 +268,9 @@ class ViewController: UIViewController {
             button3.isSelected = false
             button4.isSelected = true
         }
+        
         else {
-            displayString = nil
+            displayString = infoTexts[0]
             textView.text = displayString
             textView.leftToRightAnimation()
             button1.isSelected = true
@@ -275,8 +281,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == nil {
-            displayString = infoTexts[2]
+        if displayString == infoTexts[0] {
+            displayString = infoTexts[3]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -284,8 +290,8 @@ class ViewController: UIViewController {
             button3.isSelected = false
             button4.isSelected = true
         }
-        else if displayString == infoTexts[2] {
-            displayString = infoTexts[1]
+        else if displayString == infoTexts[3] {
+            displayString = infoTexts[2]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -293,8 +299,8 @@ class ViewController: UIViewController {
             button3.isSelected = true
             button4.isSelected = false
         }
-        else if displayString == infoTexts[1] {
-            displayString = infoTexts[0]
+        else if displayString == infoTexts[2] {
+            displayString = infoTexts[1]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -302,8 +308,9 @@ class ViewController: UIViewController {
             button3.isSelected = false
             button4.isSelected = false
         }
+        
         else {
-            displayString = nil
+            displayString = infoTexts[0]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = true
