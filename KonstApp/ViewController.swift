@@ -14,6 +14,7 @@ import UIKit
 struct KonstverkData: Decodable {
     let namn: String
     let bild: String
+    let texter: [String]
 }
 
 
@@ -59,7 +60,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     var displayString: String?
-    var infoTexts = ["Konstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfKonstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfKonstverk hurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfvhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdfhurhejhlkhfjhgsfdf", "Konstnär", "Koppling till IBM"]
+    var infoTexts = [String]()
     
     
     override func viewDidLoad() {
@@ -96,11 +97,13 @@ class ViewController: UIViewController {
             let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
                 print(konstverkData[0].namn)
                 print(konstverkData[0].bild)
+                print(konstverkData[0].texter)
             
             DispatchQueue.main.async {
                 self.label.text = konstverkData[0].namn
             }
                 self.bildUrl = konstverkData[0].bild
+                self.infoTexts = konstverkData[0].texter
            
             
             
