@@ -13,11 +13,14 @@ import UIKit
 
 struct KonstverkData: Decodable {
     let namn: String
+    let bild: String
 }
 
 
 
 class ViewController: UIViewController {
+    
+   var bildUrl = String()
     
     //Check if image has been downloaded earlier during the same session
     var didDownload = Bool()
@@ -49,6 +52,9 @@ class ViewController: UIViewController {
     //Activity Indicator
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
+    //Label
+    @IBOutlet weak var label: UILabel!
+    
     //Texts
     @IBOutlet weak var textView: UITextView!
     
@@ -59,10 +65,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+    
+        // start activity indicator + hide image
+        imageView.isHidden = true
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+
         
     //Fetching JSONobject from url
-        
+
         let jsonUrlString = "http://localhost:6002/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
@@ -77,44 +88,58 @@ class ViewController: UIViewController {
          /* let dataAsString = String(data: data, encoding: .utf8)
             print(dataAsString) */
             
+            
+            
            do {
             
             //decode data + print namn
             let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
                 print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
+            
+            DispatchQueue.main.async {
+                self.label.text = konstverkData[0].namn
+            }
+                self.bildUrl = konstverkData[0].bild
+           
+            
+            
+           
+            //Set url for image
+            
+                if let url = URL(string: self.bildUrl) {
                 
+                //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
+                //            if didDownload == true || checkIfDownloaded() == true {
+                //
+                //                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
+                //
+                //                self.imageView.image = UIImage(data: newData as Data)
+                //                self.bgImageView.image = UIImage(data: newData as Data)
+                //                self.activityIndicatorView.stopAnimating()
+                //                self.imageView.isHidden = false
+                //
+                //                print("image loaded from memory")
+                //
+                //            //Otherwise download and save image to UserDefaults
+                //            } else {
+                //
+                print("Hej")
+                self.downloadImage(url: url)
+                //            }
+            }
+            
             } catch let jsonErr {
                 print(jsonErr)
             }
         }.resume()
         
         
+        
+        
         button1.isSelected = true
         
-        //Set url for image + start activity indicator + hide image
-        activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.startAnimating()
-        self.imageView.isHidden = true
-        if let url = URL(string: "url") {
-            
-            //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
-            if didDownload == true || checkIfDownloaded() == true {
-                
-                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
-                
-                self.imageView.image = UIImage(data: newData as Data)
-                self.bgImageView.image = UIImage(data: newData as Data)
-                self.activityIndicatorView.stopAnimating()
-                self.imageView.isHidden = false
-                
-                print("image loaded from memory")
-                
-            //Otherwise download and save image to UserDefaults
-            } else {
-                
-                downloadImage(url: url)
-            }
-        }
+        
     }
 
 
@@ -144,9 +169,9 @@ class ViewController: UIViewController {
             DispatchQueue.main.async() {
                 
                 let dataREP = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-                
+
                 UserDefaults.standard.set(dataREP, forKey: "image.jpeg")
-                
+
                 let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
                 
                 self.imageView.image = UIImage(data: newData as Data)

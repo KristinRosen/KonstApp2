@@ -110,15 +110,19 @@
                                                     <action selector="showText3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBs-xb-fC6"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
                                                 <rect key="frame" x="236.5" y="0.0" width="78.5" height="30"/>
                                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="IBM">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <state key="selected">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="IBM">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                 </state>
                                                 <connections>
                                                     <action selector="showText4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="73I-Bh-4rD"/>
@@ -173,6 +177,7 @@
                         <outlet property="button3" destination="pWU-8Q-RnA" id="0NK-F4-K6B"/>
                         <outlet property="button4" destination="kok-WT-GDX" id="FOI-hd-D5w"/>
                         <outlet property="imageView" destination="F1g-wz-dlL" id="GeI-jR-JSy"/>
+                        <outlet property="label" destination="Yid-Tl-bQx" id="NAr-x1-9Py"/>
                         <outlet property="textView" destination="AOD-ML-666" id="eGH-kP-ygy"/>
                     </connections>
                 </viewController>
