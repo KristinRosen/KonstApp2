@@ -56,12 +56,15 @@ class ViewController: UIViewController {
     //Label
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var textViewLabel: UITextView!
+    
+    @IBOutlet weak var textViewlabel2: UITextView!
+    
     //Texts
     @IBOutlet weak var textView: UITextView!
     
     var displayString: String?
     var infoTexts = [String]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +74,18 @@ class ViewController: UIViewController {
         imageView.isHidden = true
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
+        
+        //add margins to text views
+        textView.textContainerInset = UIEdgeInsetsMake(15, 10, 15, 10)
+        
+        textViewLabel.textContainerInset = UIEdgeInsetsMake(10, 10, 0, 10)
+        
+        textViewlabel2.textContainerInset = UIEdgeInsetsMake(0, 10, 10, 10)
 
         
     //Fetching JSONobject from url
 
-        let jsonUrlString = "http://localhost:6002/konstverk"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -95,7 +105,7 @@ class ViewController: UIViewController {
                 print(konstverkData[0].texter)
             
             DispatchQueue.main.async {
-                self.label.text = konstverkData[0].namn
+                self.textViewLabel.text = konstverkData[0].namn
                 self.infoTexts = konstverkData[0].texter
                 self.displayString = self.infoTexts[0]
                 self.textView.text = self.displayString
@@ -141,6 +151,7 @@ class ViewController: UIViewController {
         
         
         button1.isSelected = true
+        button1.backgroundColor = .white
         
         
     }
@@ -207,6 +218,11 @@ class ViewController: UIViewController {
         button3.isSelected = false
         button4.isSelected = false
         
+        button1.backgroundColor = .white
+        button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        
     }
     @IBAction func showText2(_ sender: UIButton) {
         displayString = infoTexts[1]
@@ -215,6 +231,11 @@ class ViewController: UIViewController {
         button2.isSelected = true
         button3.isSelected = false
         button4.isSelected = false
+        
+        button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button2.backgroundColor = .white
+        button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
     }
     @IBAction func showText3(_ sender: UIButton) {
         displayString = infoTexts[2]
@@ -223,6 +244,11 @@ class ViewController: UIViewController {
         button2.isSelected = false
         button3.isSelected = true
         button4.isSelected = false
+        
+        button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button3.backgroundColor = .white
+        button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
     }
     @IBAction func showText4(_ sender: UIButton) {
         displayString = infoTexts[3]
@@ -231,6 +257,11 @@ class ViewController: UIViewController {
         button2.isSelected = false
         button3.isSelected = false
         button4.isSelected = true
+        
+        button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        button4.backgroundColor = .white
     }
     
     
@@ -244,6 +275,11 @@ class ViewController: UIViewController {
         button2.isSelected = true
         button3.isSelected = false
         button4.isSelected = false
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = .white
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
         else if displayString == infoTexts[1] {
             displayString = infoTexts[2]
@@ -253,6 +289,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = true
             button4.isSelected = false
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = .white
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
         else if displayString == infoTexts[2] {
             displayString = infoTexts[3]
@@ -262,6 +303,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = true
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = .white
         }
         
         else {
@@ -272,6 +318,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = false
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
     }
     
@@ -284,6 +335,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = true
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = .white
         }
         else if displayString == infoTexts[3] {
             displayString = infoTexts[2]
@@ -293,6 +349,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = true
             button4.isSelected = false
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = .white
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
         else if displayString == infoTexts[2] {
             displayString = infoTexts[1]
@@ -302,6 +363,11 @@ class ViewController: UIViewController {
             button2.isSelected = true
             button3.isSelected = false
             button4.isSelected = false
+            
+            button1.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button2.backgroundColor = .white
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
         
         else {
@@ -312,6 +378,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = false
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button3.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            button4.backgroundColor = UIColor(white: 1, alpha: 0.8)
         }
     }
     
