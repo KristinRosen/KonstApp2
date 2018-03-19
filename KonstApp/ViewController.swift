@@ -9,8 +9,6 @@
 import UIKit
 
 
-
-
 struct KonstverkData: Decodable {
     let namn: String
     let bild: String
@@ -63,6 +61,9 @@ class ViewController: UIViewController {
     //Texts
     @IBOutlet weak var textView: UITextView!
     
+    //scroll view
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var displayString: String?
     var infoTexts = [String]()
     
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
         
     //Fetching JSONobject from url
 
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "http://localhost:6002/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
