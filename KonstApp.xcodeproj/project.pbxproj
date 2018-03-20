@@ -13,6 +13,9 @@
 		311CEC4E203EF6DB0090C1A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311CEC4D203EF6DB0090C1A7 /* Assets.xcassets */; };
 		311CEC51203EF6DB0090C1A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311CEC4F203EF6DB0090C1A7 /* LaunchScreen.storyboard */; };
 		311CEC5C203EF6DB0090C1A7 /* KonstAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */; };
+		3932BCA52060FC4A008C8515 /* KonstverkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3932BCA42060FC4A008C8515 /* KonstverkTableViewCell.swift */; };
+		3932BCA72060FE4E008C8515 /* KonstverkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3932BCA62060FE4E008C8515 /* KonstverkTableViewController.swift */; };
+		3932BCA92061013E008C8515 /* Konstverk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3932BCA82061013E008C8515 /* Konstverk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		311CEC57203EF6DB0090C1A7 /* KonstAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KonstAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstAppTests.swift; sourceTree = "<group>"; };
 		311CEC5D203EF6DB0090C1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3932BCA42060FC4A008C8515 /* KonstverkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstverkTableViewCell.swift; sourceTree = "<group>"; };
+		3932BCA62060FE4E008C8515 /* KonstverkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstverkTableViewController.swift; sourceTree = "<group>"; };
+		3932BCA82061013E008C8515 /* Konstverk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Konstverk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,9 @@
 			children = (
 				311CEC46203EF6DB0090C1A7 /* AppDelegate.swift */,
 				311CEC48203EF6DB0090C1A7 /* ViewController.swift */,
+				3932BCA82061013E008C8515 /* Konstverk.swift */,
+				3932BCA62060FE4E008C8515 /* KonstverkTableViewController.swift */,
+				3932BCA42060FC4A008C8515 /* KonstverkTableViewCell.swift */,
 				311CEC4A203EF6DB0090C1A7 /* Main.storyboard */,
 				311CEC4D203EF6DB0090C1A7 /* Assets.xcassets */,
 				311CEC4F203EF6DB0090C1A7 /* LaunchScreen.storyboard */,
@@ -200,7 +209,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				311CEC49203EF6DB0090C1A7 /* ViewController.swift in Sources */,
+				3932BCA92061013E008C8515 /* Konstverk.swift in Sources */,
 				311CEC47203EF6DB0090C1A7 /* AppDelegate.swift in Sources */,
+				3932BCA52060FC4A008C8515 /* KonstverkTableViewCell.swift in Sources */,
+				3932BCA72060FE4E008C8515 /* KonstverkTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

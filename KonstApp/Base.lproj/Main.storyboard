@@ -45,6 +45,9 @@
                                             <state key="normal" title="Alla konstverk">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="KUV-ER-O1L" kind="show" id="N4l-ve-EO2"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kladdkaka" translatesAutoresizingMaskIntoConstraints="NO" id="4Yv-fn-Sps">
                                             <rect key="frame" x="0.0" y="219" width="375" height="128"/>
@@ -72,7 +75,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0X-a8-5eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1036" y="35.532233883058474"/>
+            <point key="canvasLocation" x="-1687" y="36"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="o5y-sy-C60">
+            <objects>
+                <tableViewController id="KUV-ER-O1L" customClass="KonstverkTableViewController" customModule="KonstApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vkx-Qj-Tu0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SkJ-Id-0wa">
+                            <rect key="frame" x="0.0" y="128" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Back"/>
+                            <connections>
+                                <segue destination="0Ta-li-SSi" kind="show" id="akZ-7a-M0d"/>
+                            </connections>
+                        </button>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="J58-zf-fSI" customClass="KonstverkTableViewCell" customModule="KonstApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J58-zf-fSI" id="yBK-9D-zKk">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gY-eZ-bse">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zih-sT-J6T">
+                                            <rect key="frame" x="108" y="11" width="251" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageViewSmall" destination="4gY-eZ-bse" id="fhg-h6-GjC"/>
+                                    <outlet property="previewImageView" destination="4gY-eZ-bse" id="gHt-wZ-Lpl"/>
+                                    <outlet property="previewLabel" destination="Zih-sT-J6T" id="rlL-XG-gun"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KUV-ER-O1L" id="RGy-KD-MFE"/>
+                            <outlet property="delegate" destination="KUV-ER-O1L" id="4ku-ac-gZ0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="G94-zd-jKP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UnT-k7-QxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1044" y="536.58170914542734"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -335,4 +393,7 @@
         <image name="konstnär" width="32" height="32"/>
         <image name="konstverk" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="akZ-7a-M0d"/>
+    </inferredMetricsTieBreakers>
 </document>
