@@ -115,8 +115,6 @@ class ViewController: UIViewController {
             
             
             
-            
-            
            
             //Set url for image
             

@@ -8,34 +8,72 @@
 
 import UIKit
 
-
+struct KonstverkData2: Decodable {
+    let namn: String
+}
 
 class TableViewController: UITableViewController {
 
     @IBOutlet var konstTableView: UITableView!
     
-    var konstName = [String()]
+    var konstName = [String]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        func configureTableView() {
+            self.konstTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.konstTableView.frame = self.view.bounds
+            self.konstTableView.dataSource = self
+            self.view.addSubview(self.konstTableView)
+        }
+
+        
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
+        let jsonUrlString = "http://localhost:6002/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let konstverkData2 = try JSONDecoder().decode([KonstverkData2].self, from: data)
+                print(konstverkData2[0].namn)
+                print("Tjolahopp!!!!!")
+               
+                DispatchQueue.main.async {
+                    self.konstTableView.reloadData()
+                }
+                
+                self.konstName = [konstverkData2[0].namn]
+                print(self.konstName)
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+        
     }
+            
+        
+    
     
 //    func tableVew(_tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return konstName.count
 //    }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = konstTableView.dequeueReusableCell(withIdentifier: "cell")
-        
-        cell?.textLabel?.text = konstName[indexPath.row]
-        return cell!
-    }
+   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,15 +92,15 @@ class TableViewController: UITableViewController {
         return konstName.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = konstName[indexPath.row]
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
