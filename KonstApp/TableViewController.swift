@@ -10,6 +10,7 @@ import UIKit
 
 struct KonstverkData2: Decodable {
     let namn: String
+    let bild: String
 }
 
 class TableViewController: UITableViewController {
@@ -17,6 +18,10 @@ class TableViewController: UITableViewController {
     @IBOutlet var konstTableView: UITableView!
     
     var konstName = [String]()
+    
+    var bildUrl = String()
+    
+    var konstBild = [UIImage()]
     
     
     override func viewDidLoad() {
@@ -33,7 +38,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6002/konstverk"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -58,6 +63,15 @@ class TableViewController: UITableViewController {
                 self.konstName = [konstverkData2[0].namn]
                 print(self.konstName)
                 
+                self.bildUrl = konstverkData2[0].bild
+                
+                if let url = URL(string: self.bildUrl) {
+                    
+                    print("kladdkaka")
+                    self.downloadImage(url: url)
+                   
+                }
+                
             } catch let jsonErr {
                 print(jsonErr)
             }
@@ -80,6 +94,31 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Started downloading")
+        
+        getDataFromUrl(url: url) {
+            data, response, error in
+            guard let data = data, error == nil else { return }
+            
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Finished downloading")
+                
+                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+                
+                self.konstBild = [UIImage(data: imageData as! Data!)!]
+                
+                print(self.konstBild)
+                print("image downloaded and saved")
+                
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,12 +130,16 @@ class TableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return konstName.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
 
-        cell.textLabel?.text = konstName[indexPath.row]
+        cell.tabelLable.text = konstName[indexPath.row]
+        cell.tableImageView.image = konstBild[indexPath.row] as UIImage
 
         return cell
     }

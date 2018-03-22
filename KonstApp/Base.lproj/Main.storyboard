@@ -316,13 +316,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FkA-n4-wkt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="FkA-n4-wkt" customClass="TableViewCell" customModule="KonstApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FkA-n4-wkt" id="r4p-15-C8g">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="dY8-bn-7sp">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="2K5-i0-ynL"/>
+                                                <constraint firstAttribute="height" constant="100" id="GnP-NV-Fif"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq8-l0-7Ol">
+                                            <rect key="frame" x="119" y="11" width="123" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dY8-bn-7sp" firstAttribute="leading" secondItem="r4p-15-C8g" secondAttribute="leading" id="LPj-bI-RA3"/>
+                                        <constraint firstItem="dY8-bn-7sp" firstAttribute="top" secondItem="r4p-15-C8g" secondAttribute="top" id="k3V-7f-uaD"/>
+                                        <constraint firstAttribute="bottom" secondItem="dY8-bn-7sp" secondAttribute="bottom" id="kZ0-jK-5Pg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tabelLable" destination="aq8-l0-7Ol" id="D8K-Qv-olR"/>
+                                    <outlet property="tableImageView" destination="dY8-bn-7sp" id="geM-2n-iBc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -336,7 +361,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9j-Mk-WDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1066" y="634"/>
+            <point key="canvasLocation" x="-1066.4000000000001" y="633.73313343328346"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5z6-dS-Zqs">

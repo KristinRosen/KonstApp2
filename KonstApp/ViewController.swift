@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         
     //Fetching JSONobject from url
 
-        let jsonUrlString = "http://localhost:6002/konstverk"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
