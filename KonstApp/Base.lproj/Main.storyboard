@@ -305,7 +305,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-388" y="35.532233883058474"/>
+            <point key="canvasLocation" x="-521" y="36"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="2Ln-lw-STa">
@@ -361,7 +361,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9j-Mk-WDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1066.4000000000001" y="633.73313343328346"/>
+            <point key="canvasLocation" x="-1103" y="780"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5z6-dS-Zqs">

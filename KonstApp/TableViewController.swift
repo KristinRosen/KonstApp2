@@ -38,7 +38,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "http://localhost:6002/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -55,10 +55,6 @@ class TableViewController: UITableViewController {
                 let konstverkData2 = try JSONDecoder().decode([KonstverkData2].self, from: data)
                 print(konstverkData2[0].namn)
                 print("Tjolahopp!!!!!")
-               
-                DispatchQueue.main.async {
-                    self.konstTableView.reloadData()
-                }
                 
                 self.konstName = [konstverkData2[0].namn]
                 print(self.konstName)
@@ -69,7 +65,7 @@ class TableViewController: UITableViewController {
                     
                     print("kladdkaka")
                     self.downloadImage(url: url)
-                   
+                    
                 }
                 
             } catch let jsonErr {
@@ -78,16 +74,7 @@ class TableViewController: UITableViewController {
             }.resume()
         
     }
-            
-        
-    
-    
-//    func tableVew(_tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return konstName.count
-//    }
 
-    
-   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,11 +99,14 @@ class TableViewController: UITableViewController {
                 
                 let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
                 
-                self.konstBild = [UIImage(data: imageData as! Data!)!]
+            self.konstBild = [UIImage(data: imageData as Data!)!]
                 
                 print(self.konstBild)
                 print("image downloaded and saved")
-                
+            
+            DispatchQueue.main.async {
+                self.konstTableView.reloadData()
+            }
         }
     }
     // MARK: - Table view data source
@@ -143,6 +133,8 @@ class TableViewController: UITableViewController {
 
         return cell
     }
+    
+
     
 
     /*
