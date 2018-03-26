@@ -19,7 +19,7 @@ class TableViewController: UITableViewController {
     
     var konstName = [String]()
     
-    var bildUrl = String()
+    var bildUrl = [String]()
     
     var konstBild = [UIImage()]
     
@@ -56,17 +56,28 @@ class TableViewController: UITableViewController {
                 print(konstverkData2[0].namn)
                 print("Tjolahopp!!!!!")
                 
-                self.konstName = [konstverkData2[0].namn]
+                for namn in konstverkData2{
+                    print("Found \(namn.namn)")
+                    self.konstName.append(namn.namn)
+                }
+                
                 print(self.konstName)
                 
-                self.bildUrl = konstverkData2[0].bild
-                
-                if let url = URL(string: self.bildUrl) {
+                for bild in konstverkData2{
+                    print("Found \(bild.bild)")
+                    self.bildUrl.append(bild.bild)
                     
-                    print("kladdkaka")
-                    self.downloadImage(url: url)
-                    
+                    if let url = URL(string: bild.bild) {
+                        
+                        print("kladdkaka")
+                        self.downloadImage(url: url)
+                        
+                    }
+
+                   
                 }
+               
+               
                 
             } catch let jsonErr {
                 print(jsonErr)
@@ -127,14 +138,12 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-
-        cell.tabelLable.text = konstName[indexPath.row]
-        cell.tableImageView.image = konstBild[indexPath.row] as UIImage
-
+        
+        cell.tabelLable.text = self.konstName[indexPath.row]
+        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
+        
         return cell
     }
-    
-
     
 
     /*
