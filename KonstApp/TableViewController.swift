@@ -38,7 +38,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6002/konstverk"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -76,8 +76,9 @@ class TableViewController: UITableViewController {
 
                    
                 }
-               
-               
+                //ta bort överflödig bild som skapas av mystisk anledning
+                self.konstBild.remove(at: 0)
+                print("superfluous image removed")
                 
             } catch let jsonErr {
                 print(jsonErr)
@@ -110,7 +111,7 @@ class TableViewController: UITableViewController {
                 
                 let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
                 
-            self.konstBild = [UIImage(data: imageData as Data!)!]
+            self.konstBild.append(UIImage(data: imageData as Data!)!)
                 
                 print(self.konstBild)
                 print("image downloaded and saved")

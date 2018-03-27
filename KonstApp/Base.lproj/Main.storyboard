@@ -394,4 +394,7 @@
         <image name="konstnär" width="32" height="32"/>
         <image name="konstverk" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="r9Q-AF-tfJ"/>
+    </inferredMetricsTieBreakers>
 </document>
