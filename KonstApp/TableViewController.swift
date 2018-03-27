@@ -63,6 +63,10 @@ class TableViewController: UITableViewController {
                 
                 print(self.konstName)
                 
+                //ta bort överflödig bild som skapas av mystisk anledning
+                self.konstBild.remove(at: 0)
+                print("superfluous image removed")
+                
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
                     self.bildUrl.append(bild.bild)
@@ -76,9 +80,7 @@ class TableViewController: UITableViewController {
 
                    
                 }
-                //ta bort överflödig bild som skapas av mystisk anledning
-                self.konstBild.remove(at: 0)
-                print("superfluous image removed")
+                
                 
             } catch let jsonErr {
                 print(jsonErr)
