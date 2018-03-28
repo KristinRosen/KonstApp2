@@ -132,7 +132,10 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if konstBild.count == konstName.count {
         return konstName.count
+        } else {print("AAAAASAVENJAAABABABISHIMAMA"); return 0}
+
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
