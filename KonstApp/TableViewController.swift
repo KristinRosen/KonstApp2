@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import os.log
 
 struct KonstverkData2: Decodable {
     let namn: String
     let bild: String
+    let texter: [String]
+}
+
+struct KonstverkData3 {
+    var name: String
+    var image: UIImage
+    var texts: [String]
 }
 
 class TableViewController: UITableViewController {
@@ -22,6 +30,8 @@ class TableViewController: UITableViewController {
     var bildUrl = [String]()
     
     var konstBild = [UIImage()]
+    
+    var konstTexter = [[String]]()
     
     
     override func viewDidLoad() {
@@ -54,11 +64,14 @@ class TableViewController: UITableViewController {
                 //decode data + print namn
                 let konstverkData2 = try JSONDecoder().decode([KonstverkData2].self, from: data)
                 print(konstverkData2[0].namn)
+                print(konstverkData2[0].texter)
                 print("Tjolahopp!!!!!")
                 
                 for namn in konstverkData2{
                     print("Found \(namn.namn)")
+                    print("Found \(namn.texter)")
                     self.konstName.append(namn.namn)
+                    self.konstTexter.append(namn.texter)
                 }
                 
                 print(self.konstName)
@@ -187,14 +200,45 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        
+       super.prepare(for: segue, sender: sender)
+        
+        
+        switch(segue.identifier ?? "") {
+            
+        case "ShowDetail":
+            guard let ViewController = segue.destination as? ViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedCell = sender as? TableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            var selectedKonstverkName = konstName[indexPath.row]
+            print(selectedKonstverkName)
+            var selectedKonstverkBild = konstBild[indexPath.row]
+            print(selectedKonstverkBild)
+            var selectedKonstverkTexter = konstTexter[indexPath.row]
+           var selectedKonstverk = Konstverk(title: selectedKonstverkName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
+           ViewController.konstverket = selectedKonstverk
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            
+        }
+        
 
-}
+    }
+    
+
+}//end of class

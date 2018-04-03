@@ -347,6 +347,7 @@
                                 <connections>
                                     <outlet property="tabelLable" destination="aq8-l0-7Ol" id="D8K-Qv-olR"/>
                                     <outlet property="tableImageView" destination="dY8-bn-7sp" id="geM-2n-iBc"/>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" identifier="ShowDetail" id="Zcp-g6-OGw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -395,6 +396,6 @@
         <image name="konstverk" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r9Q-AF-tfJ"/>
+        <segue reference="Zcp-g6-OGw"/>
     </inferredMetricsTieBreakers>
 </document>

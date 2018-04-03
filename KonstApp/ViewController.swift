@@ -11,15 +11,17 @@ import UIKit
 
 
 
-struct KonstverkData: Decodable {
-    let namn: String
-    let bild: String
-    let texter: [String]
-}
+
 
 
 
 class ViewController: UIViewController {
+    
+    struct KonstverkData: Decodable {
+        let namn: String
+        let bild: String
+        let texter: [String]
+    }
     
    var bildUrl = String()
     
@@ -63,8 +65,10 @@ class ViewController: UIViewController {
     //Texts
     @IBOutlet weak var textView: UITextView!
     
+    var konstverket: Konstverk?
+    
     var displayString: String?
-    var infoTexts = [String]()
+//    var infoTexts = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,123 +86,141 @@ class ViewController: UIViewController {
         
         textViewlabel2.textContainerInset = UIEdgeInsetsMake(0, 10, 10, 10)
 
+        print("!-!-!-!-!-!-!-!-!-!")
         
-    //Fetching JSONobject from url
-
-        let jsonUrlString = "http://localhost:6001/konstverk"
-        guard let url = URL(string: jsonUrlString) else
-        { return }
+        if konstverket?.title != nil {
+            print(konstverket!.photo)
+            print([konstverket?.about])
+            self.imageView.image = konstverket!.photo
+            self.activityIndicatorView.isHidden = true
+            self.imageView.isHidden = false
+            self.bgImageView.image = konstverket!.photo
+            self.textViewLabel.text = konstverket!.title
+            
+            self.displayString = konstverket!.about[0]
+            self.textView.text = displayString
+            
+            print("!-!-!-!-!-!-!-!-!-!")
+        } else {print("error")}
         
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
-            guard let data = data else { return }
-            
-            
-           do {
-            
-            //decode data + print namn
-            let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
-                print(konstverkData[0].namn)
-                print(konstverkData[0].bild)
-                print(konstverkData[0].texter)
-            
-            DispatchQueue.main.async {
-                self.textViewLabel.text = konstverkData[0].namn
-                self.infoTexts = konstverkData[0].texter
-                self.displayString = self.infoTexts[0]
-                self.textView.text = self.displayString
-                
-            }
-                self.bildUrl = konstverkData[0].bild
-            
-            
-            
-           
-            //Set url for image
-            
-                if let url = URL(string: self.bildUrl) {
-                
-                //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
-                //            if didDownload == true || checkIfDownloaded() == true {
-                //
-                //                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
-                //
-                //                self.imageView.image = UIImage(data: newData as Data)
-                //                self.bgImageView.image = UIImage(data: newData as Data)
-                //                self.activityIndicatorView.stopAnimating()
-                //                self.imageView.isHidden = false
-                //
-                //                print("image loaded from memory")
-                //
-                //            //Otherwise download and save image to UserDefaults
-                //            } else {
-                //
-                print("Hej")
-                self.downloadImage(url: url)
-                //            }
-            }
-            
-            } catch let jsonErr {
-                print(jsonErr)
-            }
-        }.resume()
+//    //Fetching JSONobject from url
+//
+//        let jsonUrlString = "http://localhost:6001/konstverk"
+//        guard let url = URL(string: jsonUrlString) else
+//        { return }
+//
+//        URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            //perhaps check err
+//            //also perhaps check response status 200 OK
+//
+//            guard let data = data else { return }
+//
+//
+//           do {
+//
+//            //decode data + print namn
+//            let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
+//                print(konstverkData[0].namn)
+//                print(konstverkData[0].bild)
+//                print(konstverkData[0].texter)
+//
+//            DispatchQueue.main.async {
+//                self.textViewLabel.text = konstverkData[0].namn
+//                self.infoTexts = konstverkData[0].texter
+//                self.displayString = self.infoTexts[0]
+//                self.textView.text = self.displayString
+//
+//            }
+//                self.bildUrl = konstverkData[0].bild
+//
+//
+//
+//
+//            //Set url for image
+//
+//                if let url = URL(string: self.bildUrl) {
+//
+//                //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
+//                //            if didDownload == true || checkIfDownloaded() == true {
+//                //
+//                //                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
+//                //
+//                //                self.imageView.image = UIImage(data: newData as Data)
+//                //                self.bgImageView.image = UIImage(data: newData as Data)
+//                //                self.activityIndicatorView.stopAnimating()
+//                //                self.imageView.isHidden = false
+//                //
+//                //                print("image loaded from memory")
+//                //
+//                //            //Otherwise download and save image to UserDefaults
+//                //            } else {
+//                //
+//                print("Hej")
+//                self.downloadImage(url: url)
+//                //            }
+//            }
+//
+//            } catch let jsonErr {
+//                print(jsonErr)
+//            }
+//        }.resume()
+//
+//
+//
+//
+//        button1.isSelected = true
+//        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+//
+//
+//    }
+//
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+//
+//    //MARK: Actions
+//
+//    //Get image from url + stop activity indicator + show image
+//    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            completion(data, response, error)
+//            }.resume()
+//    }
+//
+//    func downloadImage(url: URL) {
+//        print("Started downloading")
+//
+//        getDataFromUrl(url: url) {
+//            data, response, error in
+//            guard let data = data, error == nil else { return }
+//
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Finished downloading")
+//            DispatchQueue.main.async() {
+//
+//                let dataREP = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+//
+//                UserDefaults.standard.set(dataREP, forKey: "image.jpeg")
+//
+//                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
+//
+//                self.imageView.image = UIImage(data: newData as Data)
+//                self.bgImageView.image = UIImage(data: newData as Data)
+//                self.activityIndicatorView.stopAnimating()
+//                self.imageView.isHidden = false
+//
+//                self.didDownload = true
+//
+//                print("image downloaded and saved")
+//
+//            }
+//        }
+//
         
         
-        
-        
-        button1.isSelected = true
-        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
-        
-        
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    //MARK: Actions
-    
-    //Get image from url + stop activity indicator + show image
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
-    
-    func downloadImage(url: URL) {
-        print("Started downloading")
-
-        getDataFromUrl(url: url) {
-            data, response, error in
-            guard let data = data, error == nil else { return }
-            
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Finished downloading")
-            DispatchQueue.main.async() {
-                
-                let dataREP = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-
-                UserDefaults.standard.set(dataREP, forKey: "image.jpeg")
-
-                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
-                
-                self.imageView.image = UIImage(data: newData as Data)
-                self.bgImageView.image = UIImage(data: newData as Data)
-                self.activityIndicatorView.stopAnimating()
-                self.imageView.isHidden = false
-                
-                self.didDownload = true
-                
-                print("image downloaded and saved")
-                
-            }
-        }
-        
-    }
+  }
  
     
     
@@ -209,7 +231,7 @@ class ViewController: UIViewController {
     /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
     @IBAction func showText1(_ sender: UIButton) {
-        displayString = infoTexts[0]
+        displayString = konstverket!.about[0]
         textView.text = displayString
         button1.isSelected = true
         button2.isSelected = false
@@ -223,7 +245,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func showText2(_ sender: UIButton) {
-        displayString = infoTexts[1]
+        displayString = konstverket!.about[1]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = true
@@ -236,7 +258,7 @@ class ViewController: UIViewController {
         button4.backgroundColor = .white
     }
     @IBAction func showText3(_ sender: UIButton) {
-        displayString = infoTexts[2]
+        displayString = konstverket!.about[2]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = false
@@ -249,7 +271,7 @@ class ViewController: UIViewController {
         button4.backgroundColor = .white
     }
     @IBAction func showText4(_ sender: UIButton) {
-        displayString = infoTexts[3]
+        displayString = konstverket!.about[3]
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = false
@@ -265,8 +287,8 @@ class ViewController: UIViewController {
     
     // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == infoTexts[0] {
-        displayString = infoTexts[1]
+        if displayString == konstverket!.about[0] {
+        displayString = konstverket!.about[1]
         textView.leftToRightAnimation()
         textView.text = displayString
         button1.isSelected = false
@@ -280,8 +302,8 @@ class ViewController: UIViewController {
             button4.backgroundColor = .white
 
         }
-        else if displayString == infoTexts[1] {
-            displayString = infoTexts[2]
+        else if displayString == konstverket!.about[1] {
+            displayString = konstverket!.about[2]
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -294,8 +316,8 @@ class ViewController: UIViewController {
             button3.backgroundColor = UIColor(white: 1, alpha: 0.7)
             button4.backgroundColor = .white
         }
-        else if displayString == infoTexts[2] {
-            displayString = infoTexts[3]
+        else if displayString == konstverket!.about[2] {
+            displayString = konstverket!.about[3]
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -310,7 +332,7 @@ class ViewController: UIViewController {
         }
         
         else {
-            displayString = infoTexts[0]
+            displayString = konstverket!.about[0]
             textView.text = displayString
             textView.leftToRightAnimation()
             button1.isSelected = true
@@ -326,8 +348,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == infoTexts[0] {
-            displayString = infoTexts[3]
+        if displayString == konstverket!.about[0] {
+            displayString = konstverket!.about[3]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -340,8 +362,8 @@ class ViewController: UIViewController {
             button3.backgroundColor = .white
             button4.backgroundColor = UIColor(white: 1, alpha: 0.7)
         }
-        else if displayString == infoTexts[3] {
-            displayString = infoTexts[2]
+        else if displayString == konstverket!.about[3] {
+            displayString = konstverket!.about[2]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -354,8 +376,8 @@ class ViewController: UIViewController {
             button3.backgroundColor = UIColor(white: 1, alpha: 0.7)
             button4.backgroundColor = .white
         }
-        else if displayString == infoTexts[2] {
-            displayString = infoTexts[1]
+        else if displayString == konstverket!.about[2] {
+            displayString = konstverket!.about[1]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -371,7 +393,7 @@ class ViewController: UIViewController {
         }
         
         else {
-            displayString = infoTexts[0]
+            displayString = konstverket!.about[0]
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = true

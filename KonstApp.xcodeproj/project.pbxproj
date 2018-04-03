@@ -14,6 +14,7 @@
 		311CEC51203EF6DB0090C1A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311CEC4F203EF6DB0090C1A7 /* LaunchScreen.storyboard */; };
 		311CEC5C203EF6DB0090C1A7 /* KonstAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */; };
 		315CB502206259DF006CB90E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315CB501206259DF006CB90E /* TableViewController.swift */; };
+		3929832F207366DC009C2632 /* Konstverk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929832E207366DC009C2632 /* Konstverk.swift */; };
 		39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39897AE62062953E00B2A82C /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstAppTests.swift; sourceTree = "<group>"; };
 		311CEC5D203EF6DB0090C1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315CB501206259DF006CB90E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3929832E207366DC009C2632 /* Konstverk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Konstverk.swift; sourceTree = "<group>"; };
 		39897AE62062953E00B2A82C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 				311CEC46203EF6DB0090C1A7 /* AppDelegate.swift */,
 				311CEC48203EF6DB0090C1A7 /* ViewController.swift */,
 				315CB501206259DF006CB90E /* TableViewController.swift */,
+				3929832E207366DC009C2632 /* Konstverk.swift */,
 				39897AE62062953E00B2A82C /* TableViewCell.swift */,
 				311CEC4A203EF6DB0090C1A7 /* Main.storyboard */,
 				311CEC4D203EF6DB0090C1A7 /* Assets.xcassets */,
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				311CEC49203EF6DB0090C1A7 /* ViewController.swift in Sources */,
+				3929832F207366DC009C2632 /* Konstverk.swift in Sources */,
 				39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */,
 				315CB502206259DF006CB90E /* TableViewController.swift in Sources */,
 				311CEC47203EF6DB0090C1A7 /* AppDelegate.swift in Sources */,
