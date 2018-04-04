@@ -168,8 +168,8 @@ class ViewController: UIViewController {
 //
 //
 //
-//        button1.isSelected = true
-//        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button1.isSelected = true
+        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
 //
 //
 //    }
