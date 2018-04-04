@@ -95,7 +95,7 @@ class ViewController: UIViewController {
             self.activityIndicatorView.isHidden = true
             self.imageView.isHidden = false
             self.bgImageView.image = konstverket!.photo
-            self.textViewLabel.text = konstverket!.title
+            self.title = konstverket!.title
             
             self.displayString = konstverket!.about[0]
             self.textView.text = displayString
