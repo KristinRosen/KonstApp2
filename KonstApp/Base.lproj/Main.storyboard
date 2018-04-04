@@ -173,15 +173,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
                                 <rect key="frame" x="0.0" y="616.5" width="375" height="50.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyF-Ws-KhG">
-                                        <rect key="frame" x="0.0" y="10.5" width="75" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <segue destination="uhq-GW-gUY" kind="show" id="CeQ-uO-WLf"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-Oh-lOA" colorLabel="IBBuiltInLabel-Blue">
-                                        <rect key="frame" x="75" y="0.0" width="75" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="94" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="nYM-9C-4aE"/>
@@ -199,7 +192,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
-                                        <rect key="frame" x="150" y="0.0" width="75" height="50.5"/>
+                                        <rect key="frame" x="94" y="0.0" width="93.5" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="PFN-Yd-Ucf"/>
@@ -216,7 +209,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
-                                        <rect key="frame" x="225" y="0.0" width="75" height="50.5"/>
+                                        <rect key="frame" x="187.5" y="0.0" width="94" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Dg7-9Q-9R3"/>
@@ -233,7 +226,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
-                                        <rect key="frame" x="300" y="0.0" width="75" height="50.5"/>
+                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="BDT-CT-JIt"/>
@@ -415,6 +408,6 @@
         <image name="konstverk" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r9Q-AF-tfJ"/>
+        <segue reference="8R2-k8-JM9"/>
     </inferredMetricsTieBreakers>
 </document>
