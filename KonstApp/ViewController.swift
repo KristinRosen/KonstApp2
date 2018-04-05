@@ -74,6 +74,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        //set button image views to aspect fit
+        button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button4.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        
         // start activity indicator + hide image
         imageView.isHidden = true
         activityIndicatorView.hidesWhenStopped = true
@@ -96,6 +102,7 @@ class ViewController: UIViewController {
             self.imageView.isHidden = false
             self.bgImageView.image = konstverket!.photo
             self.title = konstverket!.title
+            self.textViewLabel.text = konstverket!.title
             
             self.displayString = konstverket!.about[0]
             self.textView.text = displayString
@@ -170,6 +177,9 @@ class ViewController: UIViewController {
 //
         button1.isSelected = true
         button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+
+
+        
 //
 //
 //    }
@@ -242,7 +252,7 @@ class ViewController: UIViewController {
         button2.backgroundColor = .white
         button3.backgroundColor = .white
         button4.backgroundColor = .white
-        
+
     }
     @IBAction func showText2(_ sender: UIButton) {
         displayString = konstverket!.about[1]
@@ -356,7 +366,7 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = true
-            
+
             button1.backgroundColor = .white
             button2.backgroundColor = .white
             button3.backgroundColor = .white

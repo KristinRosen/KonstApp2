@@ -168,75 +168,75 @@
                                     <constraint firstAttribute="trailing" secondItem="dXh-f9-fa9" secondAttribute="trailing" id="i54-zl-y0s"/>
                                     <constraint firstAttribute="trailing" secondItem="AOD-ML-666" secondAttribute="trailing" id="kgy-3g-AjE"/>
                                     <constraint firstItem="Pc8-vY-p9F" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="oPE-me-axa"/>
+                                    <constraint firstAttribute="bottom" secondItem="AOD-ML-666" secondAttribute="bottom" id="yUO-eI-FpS"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
                                 <rect key="frame" x="0.0" y="616.5" width="375" height="50.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-Oh-lOA" colorLabel="IBBuiltInLabel-Blue">
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEs-Oh-lOA" colorLabel="IBBuiltInLabel-Blue">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="50.5"/>
-                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="nYM-9C-4aE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Start">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="kort om 2">
+                                            <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="selected" image="kort om">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="showText1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yg0-Yc-Ruh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
                                         <rect key="frame" x="94" y="0.0" width="93.5" height="50.5"/>
-                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="PFN-Yd-Ucf"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="konstverk">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="konstverket 2">
+                                            <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected">
+                                        <state key="selected" image="konstverket">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="showText2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bgu-CQ-Ny0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
+                                    <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
                                         <rect key="frame" x="187.5" y="0.0" width="94" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Dg7-9Q-9R3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="20" maxX="10" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="30"/>
-                                        <state key="normal" title="konstnär" image="konstnär">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="konstnären 2">
+                                            <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected" image="konstnären">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="showText3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBs-xb-fC6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="kok-WT-GDX">
                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="BDT-CT-JIt"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="IBM">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="ibm 2">
+                                            <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected">
+                                        <state key="selected" image="ibm">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
@@ -403,9 +403,15 @@
     </scenes>
     <resources>
         <image name="defaultPicture" width="160" height="149"/>
+        <image name="ibm" width="90" height="63"/>
+        <image name="ibm 2" width="90" height="63"/>
         <image name="kladdkaka" width="385" height="327"/>
-        <image name="konstnär" width="32" height="32"/>
-        <image name="konstverk" width="32" height="32"/>
+        <image name="konstnären" width="90" height="63"/>
+        <image name="konstnären 2" width="90" height="63"/>
+        <image name="konstverket" width="135" height="95"/>
+        <image name="konstverket 2" width="90" height="63"/>
+        <image name="kort om" width="90" height="63"/>
+        <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8R2-k8-JM9"/>
