@@ -97,80 +97,91 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9o-MN-XWe">
                                 <rect key="frame" x="0.0" y="64" width="375" height="552.5"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc8-vY-p9F">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.70354773116438363" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc8-vY-p9F">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.70354773116438363" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="6XG-Hp-PFP"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Titel">
+                                                        <attributes>
+                                                            <font key="NSFont" size="27" name=".SFNSDisplay"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-f9-fa9">
+                                                <rect key="frame" x="0.5" y="60" width="374" height="30"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.700470890410959" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="5AB-Jo-G42"/>
+                                                </constraints>
+                                                <inset key="scrollIndicatorInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Leonardo Da Vinci">
+                                                        <attributes>
+                                                            <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
+                                                <rect key="frame" x="170" y="110" width="35" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="2oj-h5-t66"/>
+                                                    <constraint firstAttribute="height" constant="130" id="cci-dn-Y81"/>
+                                                </constraints>
+                                            </activityIndicatorView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
+                                                <rect key="frame" x="0.0" y="260" width="375" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="TgW-Oc-kUw"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="cyD-4L-zuk"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOD-ML-666">
+                                                <rect key="frame" x="0.0" y="410" width="375" height="257"/>
+                                                <color key="backgroundColor" white="1" alpha="0.70465004280821919" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="6XG-Hp-PFP"/>
+                                            <constraint firstItem="F1g-wz-dlL" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="0b6-e5-cOE"/>
+                                            <constraint firstItem="AOD-ML-666" firstAttribute="top" secondItem="F1g-wz-dlL" secondAttribute="bottom" constant="15" id="5Kz-6r-OZq"/>
+                                            <constraint firstItem="AOD-ML-666" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="6R4-qG-NbA"/>
+                                            <constraint firstItem="GOu-3X-X2p" firstAttribute="top" secondItem="dXh-f9-fa9" secondAttribute="bottom" constant="15" id="85q-mg-o0w"/>
+                                            <constraint firstItem="AOD-ML-666" firstAttribute="top" secondItem="GOu-3X-X2p" secondAttribute="bottom" constant="15" id="NqD-SN-P8D"/>
+                                            <constraint firstItem="Pc8-vY-p9F" firstAttribute="top" secondItem="S4b-fG-yPC" secondAttribute="top" id="Qpe-JA-aKi"/>
+                                            <constraint firstItem="dXh-f9-fa9" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="U0y-65-ihp"/>
+                                            <constraint firstItem="dXh-f9-fa9" firstAttribute="top" secondItem="Pc8-vY-p9F" secondAttribute="bottom" id="c8g-3u-P08"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pc8-vY-p9F" secondAttribute="trailing" id="dfi-0i-HQC"/>
+                                            <constraint firstItem="F1g-wz-dlL" firstAttribute="top" secondItem="dXh-f9-fa9" secondAttribute="bottom" constant="15" id="fbA-aX-x19"/>
+                                            <constraint firstAttribute="trailing" secondItem="dXh-f9-fa9" secondAttribute="trailing" id="i54-zl-y0s"/>
+                                            <constraint firstAttribute="trailing" secondItem="AOD-ML-666" secondAttribute="trailing" id="kgy-3g-AjE"/>
+                                            <constraint firstItem="Pc8-vY-p9F" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="oPE-me-axa"/>
+                                            <constraint firstAttribute="bottom" secondItem="AOD-ML-666" secondAttribute="bottom" id="yUO-eI-FpS"/>
                                         </constraints>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Titel">
-                                                <attributes>
-                                                    <font key="NSFont" size="27" name=".SFNSDisplay"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-f9-fa9">
-                                        <rect key="frame" x="0.5" y="60" width="374" height="30"/>
-                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.700470890410959" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="5AB-Jo-G42"/>
-                                        </constraints>
-                                        <inset key="scrollIndicatorInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Leonardo Da Vinci">
-                                                <attributes>
-                                                    <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
-                                        <rect key="frame" x="170" y="110" width="35" height="130"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="2oj-h5-t66"/>
-                                            <constraint firstAttribute="height" constant="130" id="cci-dn-Y81"/>
-                                        </constraints>
-                                    </activityIndicatorView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
-                                        <rect key="frame" x="0.0" y="260" width="375" height="130"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="130" id="TgW-Oc-kUw"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="cyD-4L-zuk"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOD-ML-666">
-                                        <rect key="frame" x="0.0" y="410" width="375" height="142.5"/>
-                                        <color key="backgroundColor" white="1" alpha="0.70465004280821919" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="F1g-wz-dlL" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="0b6-e5-cOE"/>
-                                    <constraint firstItem="AOD-ML-666" firstAttribute="top" secondItem="F1g-wz-dlL" secondAttribute="bottom" constant="15" id="5Kz-6r-OZq"/>
-                                    <constraint firstItem="AOD-ML-666" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="6R4-qG-NbA"/>
-                                    <constraint firstItem="GOu-3X-X2p" firstAttribute="top" secondItem="dXh-f9-fa9" secondAttribute="bottom" constant="15" id="85q-mg-o0w"/>
-                                    <constraint firstItem="AOD-ML-666" firstAttribute="top" secondItem="GOu-3X-X2p" secondAttribute="bottom" constant="15" id="NqD-SN-P8D"/>
-                                    <constraint firstItem="Pc8-vY-p9F" firstAttribute="top" secondItem="S4b-fG-yPC" secondAttribute="top" id="Qpe-JA-aKi"/>
-                                    <constraint firstItem="dXh-f9-fa9" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="U0y-65-ihp"/>
-                                    <constraint firstItem="dXh-f9-fa9" firstAttribute="top" secondItem="Pc8-vY-p9F" secondAttribute="bottom" id="c8g-3u-P08"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pc8-vY-p9F" secondAttribute="trailing" id="dfi-0i-HQC"/>
-                                    <constraint firstItem="F1g-wz-dlL" firstAttribute="top" secondItem="dXh-f9-fa9" secondAttribute="bottom" constant="15" id="fbA-aX-x19"/>
-                                    <constraint firstAttribute="trailing" secondItem="dXh-f9-fa9" secondAttribute="trailing" id="i54-zl-y0s"/>
-                                    <constraint firstAttribute="trailing" secondItem="AOD-ML-666" secondAttribute="trailing" id="kgy-3g-AjE"/>
-                                    <constraint firstItem="Pc8-vY-p9F" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="oPE-me-axa"/>
-                                    <constraint firstAttribute="bottom" secondItem="AOD-ML-666" secondAttribute="bottom" id="yUO-eI-FpS"/>
+                                    <constraint firstAttribute="bottom" secondItem="S4b-fG-yPC" secondAttribute="bottom" id="L2Z-E1-mq3"/>
+                                    <constraint firstItem="S4b-fG-yPC" firstAttribute="top" secondItem="g9o-MN-XWe" secondAttribute="top" id="MHU-fc-1F5"/>
+                                    <constraint firstItem="S4b-fG-yPC" firstAttribute="leading" secondItem="g9o-MN-XWe" secondAttribute="leading" id="cff-Jm-0s9"/>
+                                    <constraint firstAttribute="trailing" secondItem="S4b-fG-yPC" secondAttribute="trailing" id="nCC-Mz-Nds"/>
                                 </constraints>
-                            </stackView>
+                            </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
                                 <rect key="frame" x="0.0" y="616.5" width="375" height="50.5"/>
                                 <subviews>
@@ -216,7 +227,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="konstnären 2">
+                                        <state key="normal" image="konstnären 2">
                                             <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected" image="konstnären">
@@ -251,22 +262,22 @@
                             <constraint firstItem="KbY-55-J08" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="18C-sM-Bh0"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1yt-EZ-ncG"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="4wd-kZ-hIj"/>
-                            <constraint firstItem="Vpc-qr-9Lj" firstAttribute="trailing" secondItem="S4b-fG-yPC" secondAttribute="trailing" id="5Pd-kV-ufX"/>
                             <constraint firstItem="Vpc-qr-9Lj" firstAttribute="trailing" secondItem="NHm-wA-ghX" secondAttribute="trailing" id="9c8-tg-Reb"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="9md-N9-LHG"/>
+                            <constraint firstItem="S4b-fG-yPC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Ck0-7R-Jby"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="bottom" secondItem="Vpc-qr-9Lj" secondAttribute="bottom" id="EIV-wP-Elw"/>
+                            <constraint firstItem="NHm-wA-ghX" firstAttribute="top" secondItem="g9o-MN-XWe" secondAttribute="bottom" id="GQM-Sv-W12"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="bottom" secondItem="Vpc-qr-9Lj" secondAttribute="bottom" id="I9H-Sf-cE6"/>
                             <constraint firstItem="Vpc-qr-9Lj" firstAttribute="bottom" secondItem="NHm-wA-ghX" secondAttribute="bottom" id="KT0-88-fVa"/>
+                            <constraint firstItem="g9o-MN-XWe" firstAttribute="top" secondItem="Vpc-qr-9Lj" secondAttribute="top" id="P2t-qF-D4d"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="Tu7-MN-bFu"/>
-                            <constraint firstItem="S4b-fG-yPC" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="de2-a9-q6o"/>
+                            <constraint firstItem="S4b-fG-yPC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="X7j-Ok-pT4"/>
+                            <constraint firstItem="g9o-MN-XWe" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="XC4-A1-MuG"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="l3m-wP-iz7"/>
-                            <constraint firstItem="S4b-fG-yPC" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="oJl-W4-ktJ"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="qvK-Jg-azg"/>
-                            <constraint firstItem="Vpc-qr-9Lj" firstAttribute="bottom" secondItem="S4b-fG-yPC" secondAttribute="bottom" constant="50" id="uDJ-yj-lWB"/>
+                            <constraint firstItem="Vpc-qr-9Lj" firstAttribute="trailing" secondItem="g9o-MN-XWe" secondAttribute="trailing" id="sGu-uZ-wsx"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="vZd-3M-NFp"/>
-                            <constraint firstItem="S4b-fG-yPC" firstAttribute="top" secondItem="Vpc-qr-9Lj" secondAttribute="top" id="vox-yC-67U"/>
                             <constraint firstItem="NHm-wA-ghX" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="xKf-aX-BV2"/>
-                            <constraint firstItem="NHm-wA-ghX" firstAttribute="top" secondItem="S4b-fG-yPC" secondAttribute="bottom" id="ybg-nx-kVv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vpc-qr-9Lj"/>
                         <connections>
@@ -407,7 +418,7 @@
         <image name="ibm 2" width="90" height="63"/>
         <image name="kladdkaka" width="385" height="327"/>
         <image name="konstnären" width="90" height="63"/>
-        <image name="konstnären 2" width="90" height="63"/>
+        <image name="konstnären 2" width="90" height="63"/>
         <image name="konstverket" width="135" height="95"/>
         <image name="konstverket 2" width="90" height="63"/>
         <image name="kort om" width="90" height="63"/>
