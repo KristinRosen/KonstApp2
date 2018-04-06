@@ -19,57 +19,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kladdkaka" translatesAutoresizingMaskIntoConstraints="NO" id="JN3-Dx-Vnr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImage" translatesAutoresizingMaskIntoConstraints="NO" id="JN3-Dx-Vnr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m7f-Lt-Sf1">
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-bP-J9u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="rUH-ou-Olg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Välkommen till konstappen wooo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAv-gf-2zU">
-                                            <rect key="frame" x="0.0" y="110" width="375" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7013324058219178" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVU-ZS-3Nw">
-                                            <rect key="frame" x="0.0" y="455" width="375" height="51"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7010113441780822" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Alla konstverk">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="PIW-3o-8Bx" kind="show" id="uZY-WC-h1n"/>
-                                            </connections>
-                                        </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kladdkaka" translatesAutoresizingMaskIntoConstraints="NO" id="4Yv-fn-Sps">
-                                            <rect key="frame" x="0.0" y="219" width="375" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbq-ga-kAj">
-                                            <rect key="frame" x="0.0" y="395" width="375" height="52"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69879066780821919" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Undersök/konstvandring">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="r9Q-AF-tfJ"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-nX-G0a">
+                                        <rect key="frame" x="0.0" y="357" width="375" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69879066779999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Undersök/konstvandring">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="NsV-CF-Hng"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
+                                        <rect key="frame" x="0.0" y="441" width="375" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7010113442" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Alla konstverk">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="PIW-3o-8Bx" kind="show" id="Pxz-Xw-Djh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JN3-Dx-Vnr" firstAttribute="bottom" secondItem="CZa-0D-KPZ" secondAttribute="bottom" id="2SB-hD-uAh"/>
+                            <constraint firstItem="JN3-Dx-Vnr" firstAttribute="trailing" secondItem="CZa-0D-KPZ" secondAttribute="trailing" id="3Ve-hd-K5R"/>
+                            <constraint firstItem="JN3-Dx-Vnr" firstAttribute="top" secondItem="cVC-hG-6qg" secondAttribute="top" id="NUs-ch-w0Y"/>
+                            <constraint firstItem="JN3-Dx-Vnr" firstAttribute="leading" secondItem="CZa-0D-KPZ" secondAttribute="leading" id="PMo-y2-kCZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CZa-0D-KPZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="bKG-wU-RLL"/>
@@ -419,10 +407,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bgImage" width="834" height="1310"/>
         <image name="defaultPicture" width="160" height="149"/>
         <image name="ibm" width="90" height="63"/>
         <image name="ibm 2" width="90" height="63"/>
-        <image name="kladdkaka" width="385" height="327"/>
         <image name="konstnären" width="90" height="63"/>
         <image name="konstnären 2" width="90" height="63"/>
         <image name="konstverket" width="135" height="95"/>
@@ -431,6 +419,6 @@
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8R2-k8-JM9"/>
+        <segue reference="NsV-CF-Hng"/>
     </inferredMetricsTieBreakers>
 </document>
