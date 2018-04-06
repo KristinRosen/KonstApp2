@@ -176,7 +176,7 @@ class ViewController: UIViewController {
 //
 //
         button1.isSelected = true
-        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
 
 
         
@@ -233,9 +233,6 @@ class ViewController: UIViewController {
   }
  
     
-    
-    
-    
     //Change text + select corresponding buttons when tapping buttons
     
     /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
@@ -248,11 +245,11 @@ class ViewController: UIViewController {
         button3.isSelected = false
         button4.isSelected = false
         
-        button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         button2.backgroundColor = .white
         button3.backgroundColor = .white
         button4.backgroundColor = .white
-
+        
     }
     @IBAction func showText2(_ sender: UIButton) {
         displayString = konstverket!.about[1]
@@ -263,7 +260,7 @@ class ViewController: UIViewController {
         button4.isSelected = false
         
         button1.backgroundColor = .white
-        button2.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         button3.backgroundColor = .white
         button4.backgroundColor = .white
     }
@@ -277,7 +274,7 @@ class ViewController: UIViewController {
         
         button1.backgroundColor = .white
         button2.backgroundColor = .white
-        button3.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         button4.backgroundColor = .white
     }
     @IBAction func showText4(_ sender: UIButton) {
@@ -291,26 +288,26 @@ class ViewController: UIViewController {
         button1.backgroundColor = .white
         button2.backgroundColor = .white
         button3.backgroundColor = .white
-        button4.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        button4.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
     }
     
     
     // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about[0] {
-        displayString = konstverket!.about[1]
-        textView.leftToRightAnimation()
-        textView.text = displayString
-        button1.isSelected = false
-        button2.isSelected = true
-        button3.isSelected = false
-        button4.isSelected = false
+            displayString = konstverket!.about[1]
+            textView.leftToRightAnimation()
+            textView.text = displayString
+            button1.isSelected = false
+            button2.isSelected = true
+            button3.isSelected = false
+            button4.isSelected = false
             
             button1.backgroundColor = .white
-            button2.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
             button3.backgroundColor = .white
             button4.backgroundColor = .white
-
+            
         }
         else if displayString == konstverket!.about[1] {
             displayString = konstverket!.about[2]
@@ -323,7 +320,7 @@ class ViewController: UIViewController {
             
             button1.backgroundColor = .white
             button2.backgroundColor = .white
-            button3.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0)
             button4.backgroundColor = .white
         }
         else if displayString == konstverket!.about[2] {
@@ -338,9 +335,9 @@ class ViewController: UIViewController {
             button1.backgroundColor = .white
             button2.backgroundColor = .white
             button3.backgroundColor = .white
-            button4.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button4.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         }
-        
+            
         else {
             displayString = konstverket!.about[0]
             textView.text = displayString
@@ -350,7 +347,7 @@ class ViewController: UIViewController {
             button3.isSelected = false
             button4.isSelected = false
             
-            button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
             button2.backgroundColor = .white
             button3.backgroundColor = .white
             button4.backgroundColor = .white
@@ -366,11 +363,11 @@ class ViewController: UIViewController {
             button2.isSelected = false
             button3.isSelected = false
             button4.isSelected = true
-
+            
             button1.backgroundColor = .white
             button2.backgroundColor = .white
             button3.backgroundColor = .white
-            button4.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button4.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         }
         else if displayString == konstverket!.about[3] {
             displayString = konstverket!.about[2]
@@ -383,7 +380,7 @@ class ViewController: UIViewController {
             
             button1.backgroundColor = .white
             button2.backgroundColor = .white
-            button3.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
             button4.backgroundColor = .white
         }
         else if displayString == konstverket!.about[2] {
@@ -396,12 +393,12 @@ class ViewController: UIViewController {
             button4.isSelected = false
             
             button1.backgroundColor = .white
-            button2.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
             button3.backgroundColor = .white
             button4.backgroundColor = .white
-
+            
         }
-        
+            
         else {
             displayString = konstverket!.about[0]
             textView.rightToLeftAnimation()
@@ -411,7 +408,7 @@ class ViewController: UIViewController {
             button3.isSelected = false
             button4.isSelected = false
             
-            button1.backgroundColor = UIColor(white: 1, alpha: 0.7)
+            button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
             button2.backgroundColor = .white
             button3.backgroundColor = .white
             button4.backgroundColor = .white

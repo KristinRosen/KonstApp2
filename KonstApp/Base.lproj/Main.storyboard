@@ -182,6 +182,13 @@
                                     <constraint firstAttribute="trailing" secondItem="S4b-fG-yPC" secondAttribute="trailing" id="nCC-Mz-Nds"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7W-jt-mIR">
+                                <rect key="frame" x="0.0" y="615.5" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.61737738715277779" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="XWy-u2-Kp1"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NHm-wA-ghX">
                                 <rect key="frame" x="0.0" y="616.5" width="375" height="50.5"/>
                                 <subviews>
@@ -227,7 +234,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="konstnären 2">
+                                        <state key="normal" image="konstnären 2">
                                             <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <state key="selected" image="konstnären">
@@ -268,14 +275,17 @@
                             <constraint firstItem="KbY-55-J08" firstAttribute="bottom" secondItem="Vpc-qr-9Lj" secondAttribute="bottom" id="EIV-wP-Elw"/>
                             <constraint firstItem="NHm-wA-ghX" firstAttribute="top" secondItem="g9o-MN-XWe" secondAttribute="bottom" id="GQM-Sv-W12"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="bottom" secondItem="Vpc-qr-9Lj" secondAttribute="bottom" id="I9H-Sf-cE6"/>
+                            <constraint firstItem="h7W-jt-mIR" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="Js8-g0-req"/>
                             <constraint firstItem="Vpc-qr-9Lj" firstAttribute="bottom" secondItem="NHm-wA-ghX" secondAttribute="bottom" id="KT0-88-fVa"/>
                             <constraint firstItem="g9o-MN-XWe" firstAttribute="top" secondItem="Vpc-qr-9Lj" secondAttribute="top" id="P2t-qF-D4d"/>
                             <constraint firstItem="KbY-55-J08" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="Tu7-MN-bFu"/>
                             <constraint firstItem="S4b-fG-yPC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="X7j-Ok-pT4"/>
                             <constraint firstItem="g9o-MN-XWe" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="XC4-A1-MuG"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="l3m-wP-iz7"/>
+                            <constraint firstItem="Vpc-qr-9Lj" firstAttribute="trailing" secondItem="h7W-jt-mIR" secondAttribute="trailing" id="oba-CP-WLV"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="qvK-Jg-azg"/>
                             <constraint firstItem="Vpc-qr-9Lj" firstAttribute="trailing" secondItem="g9o-MN-XWe" secondAttribute="trailing" id="sGu-uZ-wsx"/>
+                            <constraint firstItem="NHm-wA-ghX" firstAttribute="top" secondItem="h7W-jt-mIR" secondAttribute="bottom" id="uda-0Y-ywB"/>
                             <constraint firstItem="vR4-c7-90p" firstAttribute="trailing" secondItem="Vpc-qr-9Lj" secondAttribute="trailing" id="vZd-3M-NFp"/>
                             <constraint firstItem="NHm-wA-ghX" firstAttribute="leading" secondItem="Vpc-qr-9Lj" secondAttribute="leading" id="xKf-aX-BV2"/>
                         </constraints>
@@ -418,7 +428,7 @@
         <image name="ibm 2" width="90" height="63"/>
         <image name="kladdkaka" width="385" height="327"/>
         <image name="konstnären" width="90" height="63"/>
-        <image name="konstnären 2" width="90" height="63"/>
+        <image name="konstnären 2" width="90" height="63"/>
         <image name="konstverket" width="135" height="95"/>
         <image name="konstverket 2" width="90" height="63"/>
         <image name="kort om" width="90" height="63"/>
