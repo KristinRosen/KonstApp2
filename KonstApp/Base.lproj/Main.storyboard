@@ -227,14 +227,14 @@
                                         <rect key="frame" x="187.5" y="0.0" width="94" height="50.5"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Dg7-9Q-9R3"/>
+                                            <constraint firstAttribute="height" constant="50.5" id="mh3-Jb-GjV"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="konstnären 2">
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="konstnären 2">
                                             <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" image="konstnären">
+                                        <state key="selected" image="konstnären">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -423,8 +423,8 @@
         <image name="ibm" width="90" height="63"/>
         <image name="ibm 2" width="90" height="63"/>
         <image name="kladdkaka" width="385" height="327"/>
-        <image name="konstnären" width="90" height="63"/>
-        <image name="konstnären 2" width="90" height="63"/>
+        <image name="konstnären" width="90" height="63"/>
+        <image name="konstnären 2" width="90" height="63"/>
         <image name="konstverket" width="135" height="95"/>
         <image name="konstverket 2" width="90" height="63"/>
         <image name="kort om" width="90" height="63"/>
