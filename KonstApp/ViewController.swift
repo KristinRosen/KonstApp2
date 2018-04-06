@@ -86,11 +86,11 @@ class ViewController: UIViewController {
         activityIndicatorView.startAnimating()
         
         //add margins to text views
-        textView.textContainerInset = UIEdgeInsetsMake(15, 10, 15, 10)
+        textView.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
         
-        textViewLabel.textContainerInset = UIEdgeInsetsMake(10, 10, 0, 10)
+        textViewLabel.textContainerInset = UIEdgeInsetsMake(16, 10, 0, 10)
         
-        textViewlabel2.textContainerInset = UIEdgeInsetsMake(0, 10, 10, 10)
+        textViewlabel2.textContainerInset = UIEdgeInsetsMake(0, 10, 5, 10)
 
         print("!-!-!-!-!-!-!-!-!-!")
         
