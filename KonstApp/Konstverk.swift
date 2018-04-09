@@ -13,6 +13,8 @@ class Konstverk {
     
     var title: String
     
+    var artistName: String
+    
     var photo: UIImage
     
     var about: [String]
@@ -20,7 +22,7 @@ class Konstverk {
     
     //initialization
     
-    init?(title: String, photo: UIImage?, about: [String]?) {
+    init?(title: String, artistName: String, photo: UIImage?, about: [String]?) {
         
         guard !title.isEmpty else {
             print("noName")
@@ -28,6 +30,7 @@ class Konstverk {
         }
         
         self.title = title
+        self.artistName = artistName
         self.photo = photo!
         self.about = about!
     }

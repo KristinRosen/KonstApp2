@@ -330,10 +330,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq8-l0-7Ol">
-                                            <rect key="frame" x="119" y="11" width="123" height="35"/>
+                                            <rect key="frame" x="119" y="11" width="240" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHs-ZP-eSe">
+                                            <rect key="frame" x="119" y="54" width="240" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.41031901040000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -345,6 +352,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tabelLable" destination="aq8-l0-7Ol" id="D8K-Qv-olR"/>
+                                    <outlet property="tabelLable2" destination="QHs-ZP-eSe" id="dv4-5B-7c6"/>
                                     <outlet property="tableImageView" destination="dY8-bn-7sp" id="geM-2n-iBc"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="8R2-k8-JM9"/>
                                 </connections>
@@ -361,7 +369,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9j-Mk-WDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1103" y="780"/>
+            <point key="canvasLocation" x="-1103.2" y="779.46026986506752"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5z6-dS-Zqs">
@@ -411,14 +419,14 @@
         <image name="defaultPicture" width="160" height="149"/>
         <image name="ibm" width="90" height="63"/>
         <image name="ibm 2" width="90" height="63"/>
-        <image name="konstnären" width="90" height="63"/>
-        <image name="konstnären 2" width="90" height="63"/>
+        <image name="konstnären" width="16" height="16"/>
+        <image name="konstnären 2" width="16" height="16"/>
         <image name="konstverket" width="135" height="95"/>
         <image name="konstverket 2" width="90" height="63"/>
         <image name="kort om" width="90" height="63"/>
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NsV-CF-Hng"/>
+        <segue reference="8R2-k8-JM9"/>
     </inferredMetricsTieBreakers>
 </document>

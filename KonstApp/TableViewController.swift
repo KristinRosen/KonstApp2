@@ -11,12 +11,14 @@ import os.log
 
 struct KonstverkData2: Decodable {
     let namn: String
+    let konstnar: String
     let bild: String
     let texter: [String]
 }
 
 struct KonstverkData3 {
     var name: String
+    var artist: String
     var image: UIImage
     var texts: [String]
 }
@@ -26,6 +28,8 @@ class TableViewController: UITableViewController {
     @IBOutlet var konstTableView: UITableView!
     
     var konstName = [String]()
+    
+    var konstnarName = [String]()
     
     var bildUrl = [String]()
     
@@ -48,7 +52,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6002/konstverk"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -64,13 +68,16 @@ class TableViewController: UITableViewController {
                 //decode data + print namn
                 let konstverkData2 = try JSONDecoder().decode([KonstverkData2].self, from: data)
                 print(konstverkData2[0].namn)
+                print(konstverkData2[0].konstnar)
                 print(konstverkData2[0].texter)
                 print("Tjolahopp!!!!!")
                 
                 for namn in konstverkData2{
                     print("Found \(namn.namn)")
+                    print("Found \(namn.konstnar)")
                     print("Found \(namn.texter)")
                     self.konstName.append(namn.namn)
+                    self.konstnarName.append(namn.konstnar)
                     self.konstTexter.append(namn.texter)
                 }
                 
@@ -159,6 +166,7 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
         cell.tabelLable.text = self.konstName[indexPath.row]
+        cell.tabelLable2.text = self.konstnarName[indexPath.row]
         cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
         
         return cell
@@ -226,10 +234,12 @@ class TableViewController: UITableViewController {
             
             var selectedKonstverkName = konstName[indexPath.row]
             print(selectedKonstverkName)
+            var selectedKonstnarName = konstnarName[indexPath.row]
+            print(selectedKonstnarName)
             var selectedKonstverkBild = konstBild[indexPath.row]
             print(selectedKonstverkBild)
             var selectedKonstverkTexter = konstTexter[indexPath.row]
-           var selectedKonstverk = Konstverk(title: selectedKonstverkName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
+            var selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
            ViewController.konstverket = selectedKonstverk
             
         default:

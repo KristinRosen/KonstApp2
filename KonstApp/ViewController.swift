@@ -103,6 +103,7 @@ class ViewController: UIViewController {
             self.bgImageView.image = konstverket!.photo
             self.title = konstverket!.title
             self.textViewLabel.text = konstverket!.title
+            self.textViewlabel2.text = konstverket!.artistName
             
             self.displayString = konstverket!.about[0]
             self.textView.text = displayString
