@@ -22,14 +22,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImage" translatesAutoresizingMaskIntoConstraints="NO" id="JN3-Dx-Vnr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-bP-J9u">
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-bP-J9u">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-nX-G0a">
+                                    <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-nX-G0a">
                                         <rect key="frame" x="0.0" y="357" width="375" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69879066779999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="CWi-Zs-jzM"/>
+                                        </constraints>
                                         <state key="normal" title="Undersök/konstvandring">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -37,10 +38,12 @@
                                             <segue destination="BYZ-38-t0r" kind="show" id="NsV-CF-Hng"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
+                                    <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
                                         <rect key="frame" x="0.0" y="441" width="375" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7010113442" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="SJJ-1v-eTA"/>
+                                        </constraints>
                                         <state key="normal" title="Alla konstverk">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -49,14 +52,25 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d4w-nX-G0a" secondAttribute="trailing" id="6Ia-ki-4Ud"/>
+                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="leading" secondItem="ftO-bP-J9u" secondAttribute="leading" id="Ogc-wQ-4tT"/>
+                                    <constraint firstAttribute="trailing" secondItem="C86-Qq-STd" secondAttribute="trailing" id="eQk-ay-tn5"/>
+                                    <constraint firstItem="C86-Qq-STd" firstAttribute="leading" secondItem="ftO-bP-J9u" secondAttribute="leading" id="j9C-66-d2Z"/>
+                                    <constraint firstItem="C86-Qq-STd" firstAttribute="top" secondItem="d4w-nX-G0a" secondAttribute="bottom" constant="32" id="n7R-j4-Km9"/>
+                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="ftO-bP-J9u" secondAttribute="top" constant="357" id="qLW-bn-bQN"/>
+                                    <constraint firstAttribute="bottom" secondItem="C86-Qq-STd" secondAttribute="bottom" constant="175" id="ryJ-Wa-HEm"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JN3-Dx-Vnr" firstAttribute="bottom" secondItem="CZa-0D-KPZ" secondAttribute="bottom" id="2SB-hD-uAh"/>
                             <constraint firstItem="JN3-Dx-Vnr" firstAttribute="trailing" secondItem="CZa-0D-KPZ" secondAttribute="trailing" id="3Ve-hd-K5R"/>
+                            <constraint firstItem="C86-Qq-STd" firstAttribute="width" secondItem="CZa-0D-KPZ" secondAttribute="width" id="EJF-UL-yJ6"/>
                             <constraint firstItem="JN3-Dx-Vnr" firstAttribute="top" secondItem="cVC-hG-6qg" secondAttribute="top" id="NUs-ch-w0Y"/>
                             <constraint firstItem="JN3-Dx-Vnr" firstAttribute="leading" secondItem="CZa-0D-KPZ" secondAttribute="leading" id="PMo-y2-kCZ"/>
+                            <constraint firstItem="d4w-nX-G0a" firstAttribute="width" secondItem="CZa-0D-KPZ" secondAttribute="width" id="qPa-if-UcX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CZa-0D-KPZ"/>
                     </view>
@@ -427,6 +441,6 @@
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8R2-k8-JM9"/>
+        <segue reference="NsV-CF-Hng"/>
     </inferredMetricsTieBreakers>
 </document>
