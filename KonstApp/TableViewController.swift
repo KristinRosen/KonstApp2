@@ -28,7 +28,7 @@ class TableViewController: UITableViewController {
     @IBOutlet var konstTableView: UITableView!
     
     var konstName = [String]()
-    
+
     var konstnarName = [String]()
     
     var bildUrl = [String]()
@@ -36,6 +36,8 @@ class TableViewController: UITableViewController {
     var konstBild = [UIImage()]
     
     var konstTexter = [[String]]()
+    
+  
     
     
     override func viewDidLoad() {
@@ -73,13 +75,18 @@ class TableViewController: UITableViewController {
                 print("Tjolahopp!!!!!")
                 
                 for namn in konstverkData2{
-                    print("Found \(namn.namn)")
-                    print("Found \(namn.konstnar)")
-                    print("Found \(namn.texter)")
-                    self.konstName.append(namn.namn)
-                    self.konstnarName.append(namn.konstnar)
+//                    print("Found \(namn.namn)")
+//                    print("Found \(namn.konstnar)")
+//                    print("Found \(namn.texter)")
+//                    self.konstName.append(namn.namn)
+//                    self.konstnarName.append(namn.konstnar)
                     self.konstTexter.append(namn.texter)
                 }
+                
+                self.konstName = ["Mona Lisa", "Vase with Cornflower and Poppies", "The Ice Floes (Les Glaçons)", "Starry Night"]
+                
+                self.konstnarName = ["Leonado Da Vinci", "Vincent van Gogh", "Clause Monet", "Vincent van Gogh"]
+                
                 
                 print(self.konstName)
                 
