@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import KontaktSDK
+
 
 class startViewController: UIViewController {
 

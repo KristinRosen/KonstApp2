@@ -8,6 +8,8 @@
 
 import UIKit
 import os.log
+import KontaktSDK
+
 
 struct KonstverkData2: Decodable {
     let namn: String
@@ -225,25 +227,25 @@ class TableViewController: UITableViewController {
             }
             
             guard let selectedCell = sender as? TableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            var selectedKonstverkName = konstName[indexPath.row]
+            let selectedKonstverkName = konstName[indexPath.row]
             print(selectedKonstverkName)
-            var selectedKonstnarName = konstnarName[indexPath.row]
+            let selectedKonstnarName = konstnarName[indexPath.row]
             print(selectedKonstnarName)
-            var selectedKonstverkBild = konstBild[indexPath.row]
+            let selectedKonstverkBild = konstBild[indexPath.row]
             print(selectedKonstverkBild)
-            var selectedKonstverkTexter = konstTexter[indexPath.row]
-            var selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
+            let selectedKonstverkTexter = konstTexter[indexPath.row]
+            let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
            ViewController.konstverket = selectedKonstverk
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
             
         }
         

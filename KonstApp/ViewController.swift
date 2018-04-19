@@ -7,12 +7,7 @@
 //
 
 import UIKit
-
-
-
-
-
-
+import KontaktSDK
 
 
 class ViewController: UIViewController {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import KontaktSDK
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
