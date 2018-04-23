@@ -219,9 +219,8 @@ class TableViewController: UITableViewController {
        super.prepare(for: segue, sender: sender)
         
         
-        switch(segue.identifier ?? "") {
-            
-        case "ShowDetail":
+        if segue.identifier == "ShowDetail" {
+        
             guard let ViewController = segue.destination as? ViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -244,8 +243,8 @@ class TableViewController: UITableViewController {
             let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter)
            ViewController.konstverket = selectedKonstverk
             
-        default:
-            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+            
+            
             
         }
         
