@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;HELPM EREEEEE!&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -44,9 +46,11 @@
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>LÄGG TILL FÖRKLARING!!!!!!!!!</string>
+	<string>&quot;LÄGG TILL FÖRKLARING!!!!!!!!!&quot;</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>LÄGG TILL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</string>
+	<string>&quot;LÄGG TILL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>&quot;ahahahahahahaaaaaaaaa&quot;</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

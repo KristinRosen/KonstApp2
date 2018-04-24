@@ -46,6 +46,8 @@ class startViewController: UIViewController {
                 beaconManager.startMonitoring(for: region)
             }
             // We will use this later
+            
+            
         }
 
         vandrButton.addTextSpacing(spacing: 2.5)
@@ -156,28 +158,28 @@ extension ViewController: KTKBeaconManagerDelegate {
             // we can start region monitoring from here
         }
     }
-    
+
     func beaconManager(_ manager: KTKBeaconManager, didStartMonitoringFor region: KTKBeaconRegion) {
         // Do something when monitoring for a particular
         // region is successfully initiated
     }
-    
+
     func beaconManager(_ manager: KTKBeaconManager, monitoringDidFailFor region: KTKBeaconRegion?, withError error: Error?) {
         // Handle monitoring failing to start for your region
     }
-    
+
     func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
         // Decide what to do when a user enters a range of your region; usually used
         // for triggering a local notification and/or starting a beacon ranging
         manager.startRangingBeacons(in: region)
     }
-    
+
     func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
         // Decide what to do when a user exits a range of your region; usually used
         // for triggering a local notification and stoping a beacon ranging
         manager.stopRangingBeacons(in: region)
     }
-    
+
     func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
         // Do something depending on a value of the state argument
     }
@@ -185,9 +187,10 @@ extension ViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
+            print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
         }
     }
-
+    
 }
 
 extension UIButton{
