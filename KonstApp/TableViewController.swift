@@ -102,8 +102,6 @@ class TableViewController: UITableViewController {
 
                    
                 }
-                
-                
             } catch let jsonErr {
                 print(jsonErr)
             }

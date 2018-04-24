@@ -14,8 +14,16 @@ class startViewController: UIViewController {
     
     var beaconManager: KTKBeaconManager!
 
+    
+    
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
+    
+    var beaconImage = UIImage()
+    var beaconUrl  = String()
+    var beaconTexts = [String]()
+    var beaconName = String()
+    var beaconArtist = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +52,77 @@ class startViewController: UIViewController {
         allaButton.addTextSpacing(spacing: 2.5)
 
         // Do any additional setup after loading the view.
-    }
+        
+        let jsonUrlString = "http://localhost:6002/beacon"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+        
+       URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let konstverkData = try JSONDecoder().decode([KonstverkData2].self, from: data)
+                print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
+                print(konstverkData[0].texter)
+                
+                DispatchQueue.main.async {
+                    self.beaconName = konstverkData[0].namn
+                    self.beaconArtist = konstverkData[0].konstnar
+                    self.beaconTexts = konstverkData[0].texter
+                    self.beaconUrl = konstverkData[0].bild
+                    
+                    if let url = URL(string: self.beaconUrl) {
+                        
+                        print("kladdkaka2")
+                        self.downloadImage(url: url)
+                        
+                    }
+                    
+                }
+               
+            } catch let jsonErr {
+                print(jsonErr)
+        }
+        }.resume()
+
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Started downloading")
+        
+        getDataFromUrl(url: url) {
+            data, response, error in
+            guard let data = data, error == nil else { return }
+            
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Finished downloading")
+            
+            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+            
+            self.beaconImage = UIImage(data: imageData as Data!)!
+            
+            print(self.beaconImage)
+            print("image downloaded and saved")
+            
+        }
     }
     
     // MARK: - Navigation
@@ -64,21 +138,13 @@ class startViewController: UIViewController {
             guard let ViewController = segue.destination as? ViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-//
-//            let beaconKonstverkName = LÄGG TILL
-//            print(beaconKonstverkName)
-//            let beaconKonstnarName = LÄGG TILL
-//            print(beaconKonstnarName)
-//            let beaconKonstverkBild = LÄGG TILL
-//            print(beaconKonstverkBild)
-//            let beaconKonstverkTexter = LÄGG TILL
-            let beaconKonstverk = Konstverk(title: "Fiskmas 2", artistName: "Kladdkaka", photo: #imageLiteral(resourceName: "kladdkaka"), about: ["fisk", "mas", "fismkas", "tjabbatjenahallå"])
-//                beaconKonstverkName, artistName: beaconKonstnarName, photo: beaconKonstverkBild, about: beaconKonstverkTexter)
+
+            let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts)
+
             ViewController.konstverket = beaconKonstverk
 //
         }
     }
-
 
 }
 
