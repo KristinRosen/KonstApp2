@@ -45,6 +45,8 @@ class startViewController: UIViewController {
         case .authorizedAlways:
             if KTKBeaconManager.isMonitoringAvailable() {
                 beaconManager.startMonitoring(for: region)
+                beaconManager.startRangingBeacons(in: region)
+                beaconManager.stopRangingBeacons(in: region)
             }
             // We will use this later
             
