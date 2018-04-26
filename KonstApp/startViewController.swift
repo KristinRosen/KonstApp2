@@ -18,6 +18,7 @@ class startViewController: UIViewController {
     
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
+    @IBOutlet weak var ibmButton: UIButton!
     
     var beaconImage = UIImage()
     var beaconUrl  = String()
@@ -52,6 +53,7 @@ class startViewController: UIViewController {
 
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
+        ibmButton.addTextSpacing(spacing: 2.5)
 
         // Do any additional setup after loading the view.
         
