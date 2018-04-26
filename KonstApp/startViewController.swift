@@ -8,12 +8,11 @@
 
 import UIKit
 import KontaktSDK
+import CoreLocation
 
-
-class startViewController: UIViewController {
+class startViewController: UIViewController, CLLocationManagerDelegate {
     
-    var beaconManager: KTKBeaconManager!
-
+    var manager = CLLocationManager()
     
     
     @IBOutlet weak var vandrButton: UIButton!
@@ -28,26 +27,12 @@ class startViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
         
-        let myProximityUuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
-        let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
-        
-        switch KTKBeaconManager.locationAuthorizationStatus() {
-        case .notDetermined:
-            beaconManager.requestLocationAlwaysAuthorization()
-        case .denied, .restricted: break
-        // No access to Location Services
-        case .authorizedWhenInUse: break
-            // For most iBeacon-based app this type of
-        // permission is not adequate
-        case .authorizedAlways:
-            if KTKBeaconManager.isMonitoringAvailable() {
-                beaconManager.startMonitoring(for: region)
-            }
-            // We will use this later
-            
-            
+        if let uuid = NSUUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13") {
+            let region = CLBeaconRegion(proximityUUID: uuid as UUID, identifier: uuid.uuidString)
+            manager.startMonitoring(for: region)
         }
 
         vandrButton.addTextSpacing(spacing: 2.5)
@@ -147,51 +132,18 @@ class startViewController: UIViewController {
 //
         }
     }
-
-}
-
-extension ViewController: KTKBeaconManagerDelegate {
-    func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            // When status changes to CLAuthorizationStatus.authorizedAlways
-            // e.g. after calling beaconManager.requestLocationAlwaysAuthorization()
-            // we can start region monitoring from here
+    
+    // MARK: CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if let region = region as? CLBeaconRegion {
+            // region.major and region.minor will return nil
+            print("Entered in region with UUID: \(region.proximityUUID) Major: \(String(describing: region.major)) Minor: \(String(describing: region.minor))")
         }
     }
 
-    func beaconManager(_ manager: KTKBeaconManager, didStartMonitoringFor region: KTKBeaconRegion) {
-        // Do something when monitoring for a particular
-        // region is successfully initiated
-    }
-
-    func beaconManager(_ manager: KTKBeaconManager, monitoringDidFailFor region: KTKBeaconRegion?, withError error: Error?) {
-        // Handle monitoring failing to start for your region
-    }
-
-    func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
-        // Decide what to do when a user enters a range of your region; usually used
-        // for triggering a local notification and/or starting a beacon ranging
-        manager.startRangingBeacons(in: region)
-    }
-
-    func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
-        // Decide what to do when a user exits a range of your region; usually used
-        // for triggering a local notification and stoping a beacon ranging
-        manager.stopRangingBeacons(in: region)
-    }
-
-    func beaconManager(_ manager: KTKBeaconManager, didDetermineState state: CLRegionState, for region: KTKBeaconRegion) {
-        // Do something depending on a value of the state argument
-    }
-    
-    func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        for beacon in beacons {
-            print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
-            print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
-        }
-    }
-    
 }
+
+
 
 extension UIButton{
     func addTextSpacing(spacing: CGFloat){
