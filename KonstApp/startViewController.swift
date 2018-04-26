@@ -137,7 +137,15 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if let region = region as? CLBeaconRegion {
             // region.major and region.minor will return nil
+            manager.startRangingBeacons(in: region)
             print("Entered in region with UUID: \(region.proximityUUID) Major: \(String(describing: region.major)) Minor: \(String(describing: region.minor))")
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if let region = region as? CLBeaconRegion {
+            manager.stopRangingBeacons(in: region)
         }
     }
 
