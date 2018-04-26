@@ -9,15 +9,17 @@
 import UIKit
 import KontaktSDK
 
+var beaconUUID = UUID()
+var beaconMinor = NSNumber(value: 1)
 
-class startViewController: UIViewController {
+class startViewController: UIViewController, KTKBeaconManagerDelegate {
     
     var beaconManager: KTKBeaconManager!
 
     
-    
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
+    
     
     var beaconImage = UIImage()
     var beaconUrl  = String()
@@ -28,34 +30,49 @@ class startViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("VIEWDIDLOAD")
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
-        let myProximityUuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
+        let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
+        
+        print("VIEWDIDLOAD2")
+        
         
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
+            print("VIEWDIDLOAD1111")
         case .denied, .restricted: break
+            print("VIEWDIDLOAD2222")
         // No access to Location Services
         case .authorizedWhenInUse: break
+            print("VIEWDIDLOAD3333")
             // For most iBeacon-based app this type of
         // permission is not adequate
         case .authorizedAlways:
+            print("VIEWDIDLOAD4444")
             if KTKBeaconManager.isMonitoringAvailable() {
                 beaconManager.startMonitoring(for: region)
+                beaconManager.startRangingBeacons(in: region)
+                beaconManager.startRangingBeacons(in: region)
+                print(beaconUUID)
+                if beaconMinor == 1 {
+                } else {print("AAAAAAAAAAAA \(beaconMinor)")}
+                print("VIEWDIDLOAD435356")
             }
             // We will use this later
-            
+            print("VIEWDIDLOAD3")
             
         }
+    
 
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
 
         // Do any additional setup after loading the view.
         
-        let jsonUrlString = "http://localhost:6002/beacon"
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -127,6 +144,8 @@ class startViewController: UIViewController {
         }
     }
     
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -148,9 +167,8 @@ class startViewController: UIViewController {
         }
     }
 
-}
 
-extension ViewController: KTKBeaconManagerDelegate {
+
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             // When status changes to CLAuthorizationStatus.authorizedAlways
@@ -188,6 +206,10 @@ extension ViewController: KTKBeaconManagerDelegate {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
+            beaconUUID = beacon.proximityUUID
+            print(beaconUUID)
+            beaconMinor = beacon.minor
+            
         }
     }
     
