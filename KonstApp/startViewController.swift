@@ -27,16 +27,24 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("hsfyctutaulycutctctyc!!!!!!!!!!")
+        
         manager.delegate = self
         manager.requestAlwaysAuthorization()
         
-        if let uuid = NSUUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13") {
-            let region = CLBeaconRegion(proximityUUID: uuid as UUID, identifier: uuid.uuidString)
+            let uuid = NSUUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
+        let region = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: (uuid?.uuidString)!)
             manager.startMonitoring(for: region)
-        }
+            manager.startRangingBeacons(in: region)
+        print("hsfyctutaulycutctctyc!!!!!!!!!!")
+        
+        
+        
 
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
+        
+        manager.stopRangingBeacons(in: region)
 
         // Do any additional setup after loading the view.
         
