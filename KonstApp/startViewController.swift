@@ -9,8 +9,10 @@
 import UIKit
 import KontaktSDK
 
+var isRanging = Bool()
+var beaconMinor = CLBeaconMinorValue(1)
 
-class startViewController: UIViewController {
+class startViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconManager: KTKBeaconManager!
 
@@ -31,7 +33,7 @@ class startViewController: UIViewController {
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
-        let myProximityUuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
+        let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
         
         switch KTKBeaconManager.locationAuthorizationStatus() {
@@ -43,14 +45,18 @@ class startViewController: UIViewController {
             // For most iBeacon-based app this type of
         // permission is not adequate
         case .authorizedAlways:
+            print("HEJHEJ")
+            beaconManager.startRangingBeacons(in: region)
+            
             if KTKBeaconManager.isMonitoringAvailable() {
+               
                 beaconManager.startMonitoring(for: region)
                 beaconManager.startRangingBeacons(in: region)
+                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
                 beaconManager.stopRangingBeacons(in: region)
             }
             // We will use this later
-            
-            
+           
         }
 
         vandrButton.addTextSpacing(spacing: 2.5)
@@ -59,7 +65,10 @@ class startViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let jsonUrlString = "http://localhost:6002/beacon"
+        
+        print("slutat")
+        
+        let jsonUrlString = "http://localhost:6001/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -113,6 +122,7 @@ class startViewController: UIViewController {
     
     func downloadImage(url: URL) {
         print("Started downloading")
+        
         
         getDataFromUrl(url: url) {
             data, response, error in
@@ -176,6 +186,7 @@ extension ViewController: KTKBeaconManagerDelegate {
         // Decide what to do when a user enters a range of your region; usually used
         // for triggering a local notification and/or starting a beacon ranging
         manager.startRangingBeacons(in: region)
+        
     }
 
     func beaconManager(_ manager: KTKBeaconManager, didExitRegion region: KTKBeaconRegion) {
@@ -189,12 +200,15 @@ extension ViewController: KTKBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
+        if beacons.count > 1 {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
-        }
-    }
+            }
+        } else {print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            return}
     
+    }
 }
 
 extension UIButton{
