@@ -16,7 +16,7 @@ struct KonstverkData2: Decodable {
     let konstnar: String
     let bild: String
     let texter: [String]
-    let beaconMinor: UInt16
+    let beaconMinor: String
 }
 
 struct KonstverkData3 {
@@ -40,7 +40,7 @@ class TableViewController: UITableViewController {
     
     var konstTexter = [[String]]()
     
-    var beaconMinorValues = [UInt16]()
+    var beaconMinorValues = [String]()
     
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "http://localhost:6002/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -90,6 +90,8 @@ class TableViewController: UITableViewController {
                 }
                 
                 print(self.konstName)
+                print("UGAYGYAFYUFAYUFAYUA")
+                print(self.beaconMinorValues)
                 
                 //ta bort överflödig bild som skapas av mystisk anledning
                 self.konstBild.remove(at: 0)

@@ -10,13 +10,13 @@ import UIKit
 import KontaktSDK
 
 var isRanging = Bool()
-var beaconMinor = CLBeaconMinorValue(1)
+//var beaconMinor = CLBeaconMinorValue(1)
 
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconManager: KTKBeaconManager!
 
-    var beaconArray = [NSNumber]()
+    var beaconArray = [String]()
     
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
@@ -27,6 +27,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     var beaconTexts = [String]()
     var beaconName = String()
     var beaconArtist = String()
+    var beaconBEACON = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "http://localhost:6002/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -87,12 +88,15 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 print(konstverkData[0].namn)
                 print(konstverkData[0].bild)
                 print(konstverkData[0].texter)
+                print(konstverkData[0].beaconMinor)
                 
                 DispatchQueue.main.async {
                     self.beaconName = konstverkData[0].namn
                     self.beaconArtist = konstverkData[0].konstnar
                     self.beaconTexts = konstverkData[0].texter
                     self.beaconUrl = konstverkData[0].bild
+                    self.beaconBEACON = konstverkData[0].beaconMinor
+                    
                     
                     if let url = URL(string: self.beaconUrl) {
                         
@@ -156,7 +160,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
 
-            let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconMinor)
+            let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconBEACON)
 
             ViewController.konstverket = beaconKonstverk
 //
@@ -205,7 +209,7 @@ extension startViewController: KTKBeaconManagerDelegate {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
-            beaconArray.append(beacon.minor)
+            beaconArray.append(beacon.minor.stringValue)
             }
       print(beaconArray)
         }

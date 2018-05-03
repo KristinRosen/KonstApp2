@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         let namn: String
         let bild: String
         let texter: [String]
+        let beaconMinor: String
     }
     
    var bildUrl = String()

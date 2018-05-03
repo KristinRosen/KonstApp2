@@ -21,12 +21,12 @@ class Konstverk {
     
     var about: [String]
     
-    var beaconMinor: UInt16
+    var beaconMinor: String
     
     
     //initialization
     
-    init?(title: String, artistName: String, photo: UIImage?, about: [String]?, beaconMinor: UInt16) {
+    init?(title: String, artistName: String, photo: UIImage?, about: [String]?, beaconMinor: String) {
         
         guard !title.isEmpty else {
             print("noName")
