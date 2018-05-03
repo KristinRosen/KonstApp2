@@ -46,17 +46,18 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         // permission is not adequate
         case .authorizedAlways:
             print("HEJHEJ")
-            beaconManager.startRangingBeacons(in: region)
+            
             
             if KTKBeaconManager.isMonitoringAvailable() {
                
                 beaconManager.startMonitoring(for: region)
-                beaconManager.startRangingBeacons(in: region)
+                
                 print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
-                beaconManager.stopRangingBeacons(in: region)
+                
             }
+            beaconManager.startRangingBeacons(in: region)
             // We will use this later
-           
+           beaconManager.stopRangingBeacons(in: region)
         }
 
         vandrButton.addTextSpacing(spacing: 2.5)
@@ -164,7 +165,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
 
 }
 
-extension ViewController: KTKBeaconManagerDelegate {
+extension startViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             // When status changes to CLAuthorizationStatus.authorizedAlways
