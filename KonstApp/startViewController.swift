@@ -16,7 +16,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconManager: KTKBeaconManager!
 
-    
+    var beaconArray = [NSNumber]()
     
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
@@ -156,7 +156,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
 
-            let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts)
+            let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconMinor)
 
             ViewController.konstverket = beaconKonstverk
 //
@@ -201,14 +201,16 @@ extension startViewController: KTKBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        if beacons.count > 1 {
+        while beaconArray.count < 3 {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
+            beaconArray.append(beacon.minor)
             }
-        } else {print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-            return}
-    
+      print(beaconArray)
+        }
+        
+        
     }
 }
 

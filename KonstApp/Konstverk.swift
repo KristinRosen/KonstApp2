@@ -21,10 +21,12 @@ class Konstverk {
     
     var about: [String]
     
+    var beaconMinor: UInt16
+    
     
     //initialization
     
-    init?(title: String, artistName: String, photo: UIImage?, about: [String]?) {
+    init?(title: String, artistName: String, photo: UIImage?, about: [String]?, beaconMinor: UInt16) {
         
         guard !title.isEmpty else {
             print("noName")
@@ -35,6 +37,7 @@ class Konstverk {
         self.artistName = artistName
         self.photo = photo!
         self.about = about!
+        self.beaconMinor = beaconMinor
     }
     
 }//end of class
