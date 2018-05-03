@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="64" width="0.0" height="621.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC" userLabel="Stack View 1">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="18187.333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="17190.333333333332"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
                                                 <rect key="frame" x="189.66666666666666" y="0.0" width="35" height="200"/>
@@ -242,7 +242,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
-                                        <rect key="frame" x="154.66666666666666" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="207" y="0.0" width="0.0" height="50.333333333333336"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="PFN-Yd-Ucf"/>
@@ -259,17 +259,17 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
-                                        <rect key="frame" x="259.66666666666669" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="207" y="0.0" width="0.0" height="50.333333333333336"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="mh3-Jb-GjV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="konstnären 2">
+                                        <state key="normal" image="ibm 2">
                                             <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" image="konstnären">
+                                        <state key="selected" image="ibm">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -504,11 +504,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="wV2-j5-OwY"/>
                                                 </constraints>
-                                                <mutableString key="text">Fiskmås (Larus canus) är en fågel som tillhör familjen måsfåglar som häckar över stora delar av det norra halvklotet och merparten är flyttfåglar. Arten delas vanligtvis upp i fyra underarter som alla uppvisar mindre dräktskillnader. Fiskmåsen påminner om gråtruten men är betydligt mindre och slankare. Som adult i sommardräkt har den grå ovansida och är i övrigt vit, med gul näbb och ben, och svarta vingspetsar med vita slantar. Juvenilen är spräcklig och denna dräkt ruggas sedan i omgångar tills den anlägger adult dräkt under sitt tredje levnadsår.
+                                                <string key="text">Fiskmås (Larus canus) är en fågel som tillhör familjen måsfåglar som häckar över stora delar av det norra halvklotet och merparten är flyttfåglar. Arten delas vanligtvis upp i fyra underarter som alla uppvisar mindre dräktskillnader. Fiskmåsen påminner om gråtruten men är betydligt mindre och slankare. Som adult i sommardräkt har den grå ovansida och är i övrigt vit, med gul näbb och ben, och svarta vingspetsar med vita slantar. Juvenilen är spräcklig och denna dräkt ruggas sedan i omgångar tills den anlägger adult dräkt under sitt tredje levnadsår.
 
 Fiskmåsen häckar i en mängd olika biotoper i närheten av vatten men återfinns också i stadsmiljö. Den häckar både i större kolonier och som enstaka par. Fiskmåsen lägger vanligtvis en kull om året som i snitt innehåller tre ägg. Paret ruvar och tar hand om ungarna tillsammans. Fiskmåsen är en allätare som ofta söker föda i närheten av människan och kan flyga långa sträckor från häckningsplatsen för att födosöka. Den tar fisk och fiskavfall, musslor, daggmask, hushållsavfall, insekter som flygmyror, bär och utsäde.
 
-Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är stor varför den kategoriseras som livskraftig (LC).[1] </mutableString>
+Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är stor varför den kategoriseras som livskraftig (LC).[1] </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -566,14 +566,14 @@ Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är s
     <resources>
         <image name="bgImage" width="834" height="803"/>
         <image name="defaultPicture" width="160" height="149"/>
-        <image name="konstnären" width="90" height="63"/>
-        <image name="konstnären 2" width="90" height="63"/>
+        <image name="ibm" width="90" height="63"/>
+        <image name="ibm 2" width="90" height="63"/>
         <image name="konstverket" width="135" height="95"/>
         <image name="konstverket 2" width="90" height="63"/>
         <image name="kort om" width="90" height="63"/>
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NsV-CF-Hng"/>
+        <segue reference="8R2-k8-JM9"/>
     </inferredMetricsTieBreakers>
 </document>
