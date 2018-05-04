@@ -193,59 +193,24 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            let minorIndex = beaconArray[0]
+            let i = beaconMinorValues.index(of: minorIndex)
+            
             if beaconArray.count > 0 {
-                
-                if beaconArray[0] == beaconMinorValues[0] {
                     
                     print("OOOOOOOOOOOOOO")
-                    print(beaconArray[0])
+                    print(beaconArray[i!])
                     
 //                    beaconName = konstName[0]
 //                    beaconArtist = konstnarName[0]
 //                    beaconImage = konstBild[0]
 //                    beaconTexts = konstTexter[0]
-                    beaconBEACON = beaconMinorValues[0]
-                    
-                    
-                    let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconBEACON)
-                    
-                    ViewController.konstverket = beaconKonstverk
-                    
-                } else if beaconArray[0] == beaconMinorValues[1] {
-                    
-                     print("IIIIIIIIIIIIIII")
-                    print(beaconArray[0])
-                    
-                    beaconName = konstName[1]
-                    beaconArtist = konstnarName[1]
-                    beaconImage = konstBild[1]
-                    beaconTexts = konstTexter[1]
-                    beaconBEACON = beaconMinorValues[1]
-                    
+                    beaconBEACON = beaconMinorValues[i!]
                     
                     let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconBEACON)
                     
                     ViewController.konstverket = beaconKonstverk
                     
-                } else if beaconArray[0] == beaconMinorValues[2] {
-                    
-                     print("SGVJSFSYFSFSFSFFF")
-                    print(beaconArray[0])
-                    
-                    beaconName = konstName[2]
-                    beaconArtist = konstnarName[2]
-                    beaconImage = konstBild[2]
-                    beaconTexts = konstTexter[2]
-                    beaconBEACON = beaconMinorValues[2]
-                    
-                    
-                    let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconBEACON)
-                    
-                    ViewController.konstverket = beaconKonstverk
-                    
-                } else {print("beaconvalues does not match")
-                    return
-                }
                 
             } else {print("inga beacons i beaconArray")
                 return
