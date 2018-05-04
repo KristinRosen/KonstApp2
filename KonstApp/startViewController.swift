@@ -49,8 +49,11 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     var beaconArtist = String()
     var beaconBEACON = String()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        beaconMinorValues = ["45"]
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
@@ -90,90 +93,90 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
-        guard let url = URL(string: jsonUrlString) else
-        { return }
-        
-       URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
-            guard let data = data else { return }
-            
-            
-            do {
-                
-                //decode data + print namn
-                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
-                print(konstverkData[0].namn)
-                print(konstverkData[0].bild)
-                print(konstverkData[0].texter)
-                print(konstverkData[0].beaconMinor)
-                
-                DispatchQueue.main.async {
-        
-                for namn in konstverkData {
-                    print("Found \(namn.namn)")
-                    print("Found \(namn.konstnar)")
-                    print("Found \(namn.texter)")
-                    print("Found \(namn.beaconMinor)")
-                    self.konstName.append(namn.namn)
-                    self.konstnarName.append(namn.konstnar)
-                    self.konstTexter.append(namn.texter)
-                    self.beaconMinorValues.append(namn.beaconMinor)
-               
-                    
-                    
-                    if let url = URL(string: namn.bild) {
-                        
-                        print("kladdkaka2")
-                        self.downloadImage(url: url)
-                        
-                            }
-                        }
-                    }
-                
-                
-               
-            } catch let jsonErr {
-                print(jsonErr)
-        }
-        }.resume()
-
-        
-        
-}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
-    
-    func downloadImage(url: URL) {
-        print("Started downloading")
-        
-        
-        getDataFromUrl(url: url) {
-            data, response, error in
-            guard let data = data, error == nil else { return }
-            
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Finished downloading")
-            
-            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-            
-            self.konstBild.append(UIImage(data: imageData as Data!)!)
-            
-            print(self.beaconImage)
-            print("image downloaded and saved")
-            
-        }
+//        let jsonUrlString = "http://localhost:6001/konstverk"
+//        guard let url = URL(string: jsonUrlString) else
+//        { return }
+//
+//       URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            //perhaps check err
+//            //also perhaps check response status 200 OK
+//
+//            guard let data = data else { return }
+//
+//
+//            do {
+//
+//                //decode data + print namn
+//                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
+//                print(konstverkData[0].namn)
+//                print(konstverkData[0].bild)
+//                print(konstverkData[0].texter)
+//                print(konstverkData[0].beaconMinor)
+//
+//                DispatchQueue.main.async {
+//
+//                for namn in konstverkData {
+//                    print("Found \(namn.namn)")
+//                    print("Found \(namn.konstnar)")
+//                    print("Found \(namn.texter)")
+//                    print("Found \(namn.beaconMinor)")
+//                    self.konstName.append(namn.namn)
+//                    self.konstnarName.append(namn.konstnar)
+//                    self.konstTexter.append(namn.texter)
+//                    self.beaconMinorValues.append(namn.beaconMinor)
+//
+//
+//
+//                    if let url = URL(string: namn.bild) {
+//
+//                        print("kladdkaka2")
+//                        self.downloadImage(url: url)
+//
+//                            }
+//                        }
+//                    }
+//
+//
+//
+//            } catch let jsonErr {
+//                print(jsonErr)
+//        }
+//        }.resume()
+//
+//
+//
+//}
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+//
+//    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            completion(data, response, error)
+//            }.resume()
+//    }
+//
+//    func downloadImage(url: URL) {
+//        print("Started downloading")
+//
+//
+//        getDataFromUrl(url: url) {
+//            data, response, error in
+//            guard let data = data, error == nil else { return }
+//
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Finished downloading")
+//
+//            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+//
+//            self.konstBild.append(UIImage(data: imageData as Data!)!)
+//
+//            print(self.beaconImage)
+//            print("image downloaded and saved")
+//
+//        }
     }
     
     // MARK: - Navigation
@@ -190,16 +193,17 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            if beaconArray.count > 1 {
+            if beaconArray.count > 0 {
                 
                 if beaconArray[0] == beaconMinorValues[0] {
                     
+                    print("OOOOOOOOOOOOOO")
                     print(beaconArray[0])
                     
-                    beaconName = konstName[0]
-                    beaconArtist = konstnarName[0]
-                    beaconImage = konstBild[0]
-                    beaconTexts = konstTexter[0]
+//                    beaconName = konstName[0]
+//                    beaconArtist = konstnarName[0]
+//                    beaconImage = konstBild[0]
+//                    beaconTexts = konstTexter[0]
                     beaconBEACON = beaconMinorValues[0]
                     
                     
@@ -207,9 +211,10 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     
                     ViewController.konstverket = beaconKonstverk
                     
-                } else if beaconArray[1] == beaconMinorValues[1] {
+                } else if beaconArray[0] == beaconMinorValues[1] {
                     
-                    print(beaconArray[1])
+                     print("IIIIIIIIIIIIIII")
+                    print(beaconArray[0])
                     
                     beaconName = konstName[1]
                     beaconArtist = konstnarName[1]
@@ -222,9 +227,10 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     
                     ViewController.konstverket = beaconKonstverk
                     
-                } else if beaconArray[2] == beaconMinorValues[2] {
+                } else if beaconArray[0] == beaconMinorValues[2] {
                     
-                    print(beaconArray[2])
+                     print("SGVJSFSYFSFSFSFFF")
+                    print(beaconArray[0])
                     
                     beaconName = konstName[2]
                     beaconArtist = konstnarName[2]
