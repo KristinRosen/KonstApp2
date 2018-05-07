@@ -45,6 +45,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("T-J-E-N-A DETTA ÄR TABLEVIEEEEEEEEEEEEEEWNNN-!_!_!_!_!_!_!_!_")
         
         func configureTableView() {
             self.konstTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

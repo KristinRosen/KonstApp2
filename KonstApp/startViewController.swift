@@ -22,6 +22,8 @@ struct KonstverkData4: Decodable {
 
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
+    var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: [""], beaconMinor: "")
+    
     var beaconManager: KTKBeaconManager!
 
     var beaconArray = [String]()
@@ -42,18 +44,22 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var allaButton: UIButton!
     @IBOutlet weak var ibmButton: UIButton!
     
-    var beaconImage = UIImage()
+    var beaconImage = [UIImage]()
     var beaconUrl  = String()
     var beaconTexts = [String]()
     var beaconName = String()
     var beaconArtist = String()
     var beaconBEACON = String()
+    var beaconBild = String()
+    
+    var beaconBilden = UIImage()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        beaconMinorValues = ["45"]
+        beaconArray = ["45"]
+//        beaconMinorValues = ["45", "16222", "28909"]
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
@@ -93,90 +99,98 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
-//        let jsonUrlString = "http://localhost:6001/konstverk"
-//        guard let url = URL(string: jsonUrlString) else
-//        { return }
-//
-//       URLSession.shared.dataTask(with: url) { (data, response, err) in
-//            //perhaps check err
-//            //also perhaps check response status 200 OK
-//
-//            guard let data = data else { return }
-//
-//
-//            do {
-//
-//                //decode data + print namn
-//                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
-//                print(konstverkData[0].namn)
-//                print(konstverkData[0].bild)
-//                print(konstverkData[0].texter)
-//                print(konstverkData[0].beaconMinor)
-//
-//                DispatchQueue.main.async {
-//
-//                for namn in konstverkData {
-//                    print("Found \(namn.namn)")
-//                    print("Found \(namn.konstnar)")
-//                    print("Found \(namn.texter)")
-//                    print("Found \(namn.beaconMinor)")
-//                    self.konstName.append(namn.namn)
-//                    self.konstnarName.append(namn.konstnar)
-//                    self.konstTexter.append(namn.texter)
-//                    self.beaconMinorValues.append(namn.beaconMinor)
-//
-//
-//
+        let jsonUrlString = "http://localhost:6001/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+
+       URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+
+            guard let data = data else { return }
+
+
+            do {
+
+                //decode data + print namn
+                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
+                print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
+                print(konstverkData[0].texter)
+                print(konstverkData[0].beaconMinor)
+
+               
+
+                for namn in konstverkData {
+                    print("Found \(namn.namn)")
+                    print("Found \(namn.konstnar)")
+                    print("Found \(namn.texter)")
+                    print("Found \(namn.beaconMinor)")
+                    self.konstName.append(namn.namn)
+                    self.konstnarName.append(namn.konstnar)
+                    self.konstTexter.append(namn.texter)
+                    self.beaconMinorValues.append(namn.beaconMinor)
+                    self.bildUrl.append(namn.bild)
+
+
+
 //                    if let url = URL(string: namn.bild) {
 //
 //                        print("kladdkaka2")
 //                        self.downloadImage(url: url)
 //
 //                            }
-//                        }
-//                    }
-//
-//
-//
-//            } catch let jsonErr {
-//                print(jsonErr)
-//        }
-//        }.resume()
-//
-//
-//
-//}
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//
-//    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            completion(data, response, error)
-//            }.resume()
-//    }
-//
-//    func downloadImage(url: URL) {
-//        print("Started downloading")
-//
-//
-//        getDataFromUrl(url: url) {
-//            data, response, error in
-//            guard let data = data, error == nil else { return }
-//
-//            print(response?.suggestedFilename ?? url.lastPathComponent)
-//            print("Finished downloading")
-//
-//            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-//
-//            self.konstBild.append(UIImage(data: imageData as Data!)!)
-//
-//            print(self.beaconImage)
-//            print("image downloaded and saved")
-//
-//        }
+                        }
+                
+
+
+
+            } catch let jsonErr {
+                print(jsonErr)
+        }
+        }.resume()
+
+
+
+}
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+
+    func downloadImage(url: URL) {
+        print("Started downloading")
+
+
+        getDataFromUrl(url: url) {
+            data, response, error in
+            guard let data = data, error == nil else { return }
+
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Finished downloading")
+
+            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+
+            self.beaconImage = [(UIImage(data: imageData as Data!)!)]
+
+            self.beaconBilden = self.beaconImage[0]
+            
+            print(self.beaconBilden)
+            print("image downloaded and saved")
+
+            if self.beaconImage.count > 0 {
+                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON)
+                print("BEACONKONSTVERK SAVED")
+            } else { print("ingen beaconImage")
+                return}
+        }
     }
     
     // MARK: - Navigation
@@ -197,20 +211,42 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             let i = beaconMinorValues.index(of: minorIndex)
             
             if beaconArray.count > 0 {
+                
+                
                     
                     print("OOOOOOOOOOOOOO")
-                    print(beaconArray[i!])
-                    
-//                    beaconName = konstName[0]
-//                    beaconArtist = konstnarName[0]
-//                    beaconImage = konstBild[0]
-//                    beaconTexts = konstTexter[0]
+                print(i!)
+//                    print(beaconArray[i!])
+                
+                    beaconName = konstName[i!]
+                    beaconArtist = konstnarName[i!]
+//                    beaconImage = konstBild[i!]
+                    beaconTexts = konstTexter[i!]
                     beaconBEACON = beaconMinorValues[i!]
+                    beaconBild = bildUrl[i!]
+                
+                if let url = URL(string: beaconBild) {
                     
-                    let beaconKonstverk = Konstverk(title: beaconName, artistName: beaconArtist, photo: beaconImage, about: beaconTexts, beaconMinor: beaconBEACON)
+                    print("kladdkaka2")
+                    self.downloadImage(url: url)
                     
+                }
+                
+                print(beaconBEACON)
+                    
+                
+                repeat {
+        print("WAIT")
+                }  while beaconKonstverk?.photo == nil
+                    
+                if beaconKonstverk?.photo !== nil {
                     ViewController.konstverket = beaconKonstverk
+                    print("INTE NIL LÄNGRE")
+                    print(ViewController.konstverket!)
                     
+                }
+                
+                
                 
             } else {print("inga beacons i beaconArray")
                 return
@@ -260,13 +296,13 @@ extension startViewController: KTKBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        while beaconArray.count < 3 {
+//        while beaconArray.count < 3 {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
-            beaconArray.append(beacon.minor.stringValue)
-            }
-      print(beaconArray)
+//            beaconArray.append(beacon.minor.stringValue)
+//            }
+//      print(beaconArray)
         }
         
         

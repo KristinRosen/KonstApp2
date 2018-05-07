@@ -89,6 +89,10 @@ class ViewController: UIViewController {
         print("!-!-!-!-!-!-!-!-!-!")
         
         if konstverket?.title != nil {
+//            if konstverket?.photo.size == CGSize(width: 0, height: 0) {
+//                print("!!!!!!********bilden existerar inte********!!!!!!")
+//                return } else {
+            
             print(konstverket!.photo)
             print([konstverket?.about])
             self.imageView.image = konstverket!.photo
@@ -103,6 +107,8 @@ class ViewController: UIViewController {
             self.textView.text = displayString
             
             print("!-!-!-!-!-!-!-!-!-!")
+                
+//            }
         } else {print("error")}
         
 //    //Fetching JSONobject from url
