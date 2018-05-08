@@ -72,7 +72,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        beaconArray = ["16222"]
+//        beaconArray = ["16222"]
 //        beaconMinorValues = ["45", "16222", "28909"]
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -113,7 +113,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
 
@@ -164,7 +164,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         }
         }.resume()
 
-        let jsonUrlString2 = "http://localhost:6001/konstTexter"
+        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
         
@@ -364,12 +364,12 @@ extension startViewController: KTKBeaconManagerDelegate {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
             //add minor & major to arrays
-//            beaconArray.append(beacon.minor.stringValue)
-//            beaconArray2.append(beacon.major.stringValue)
-//            }
-//            print("minor: \(beaconArray)")
-//            print("major: \(beaconArray2)")
-        }
+            beaconArray.append(beacon.minor.stringValue)
+            beaconArray2.append(beacon.major.stringValue)
+            }
+            print("minor: \(beaconArray)")
+            print("major: \(beaconArray2)")
+        
         
         
     }

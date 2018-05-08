@@ -112,19 +112,19 @@ class ViewController: UIViewController {
             self.textViewlabel2.text = konstverket!.artistName
             self.IBMtext = "IBM" //(konstverkTexter?.IBMKonstsamling)!
             
-            if konstverket!.beaconMajor == "40314" || konstverket!.beaconMajor == "1" {
+            if konstverket!.beaconMajor == "17261" || konstverket!.beaconMajor == "1" {
                 
-                self.temaText = "vån 1"//(konstverkTexter?.temaTexter[0])!
+                self.temaText = (konstverkTexter?.temaTexter[0])!
                 print("vån \(temaText!)")
                 
-            } else if konstverket!.beaconMajor == "17261" || konstverket!.beaconMajor == "2" {
+            } else if konstverket!.beaconMajor == "40314" || konstverket!.beaconMajor == "2" {
                 
-                self.temaText = "vån 2"//(konstverkTexter?.temaTexter[1])!
+                self.temaText = (konstverkTexter?.temaTexter[1])!
                 print("vån \(temaText!)")
                 
             } else if konstverket!.beaconMajor == "40203" || konstverket!.beaconMajor == "3" {
                 
-                self.temaText = "vån 3"//(konstverkTexter?.temaTexter[2])!
+                self.temaText = (konstverkTexter?.temaTexter[2])!
                 print("vån \(temaText!)")
                 
             }

@@ -27,9 +27,20 @@ struct KonstverkData3 {
     var texts: [String]
 }
 
+struct KonstTextData2: Decodable {
+    let IBMkonstsamling: String
+    let temaTexter: [String]
+}
+
+   var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""])
+
+
 class TableViewController: UITableViewController {
 
     @IBOutlet var konstTableView: UITableView!
+    
+ 
+    
     
     var konstName = [String]()
     
@@ -44,6 +55,7 @@ class TableViewController: UITableViewController {
     var beaconMinorValues = [String]()
     
     var planLista = [String]()
+    
     
     
     override func viewDidLoad() {
@@ -61,7 +73,7 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
-        let jsonUrlString = "http://localhost:6001/konstverk"
+        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -121,6 +133,48 @@ class TableViewController: UITableViewController {
                 print(jsonErr)
             }
             }.resume()
+        
+        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        guard let url2 = URL(string: jsonUrlString2) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url2) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let konstverkData2 = try JSONDecoder().decode([KonstTextData2].self, from: data)
+                print(konstverkData2[0].IBMkonstsamling)
+                print(konstverkData2[0].temaTexter)
+                
+                konstverketTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
+                
+                print(konstverketTexter!)
+                print("KONSTTEXTER SPARADE")
+                
+                
+                
+                //                    if let url = URL(string: namn.bild) {
+                //
+                //                        print("kladdkaka2")
+                //                        self.downloadImage(url: url)
+                //
+                //                            }
+                
+                
+                
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+
         
     }
 
@@ -259,6 +313,7 @@ class TableViewController: UITableViewController {
             let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter, beaconMinor: selectedKonstverkBeaconMinor, beaconMajor: selectedKonstverkPlan)
             
            ViewController.konstverket = selectedKonstverk
+            ViewController.konstverkTexter = konstverketTexter
             
             
             
