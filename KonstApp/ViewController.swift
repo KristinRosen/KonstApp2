@@ -62,13 +62,21 @@ class ViewController: UIViewController {
     
     var konstverket: Konstverk?
     
+    var konstverkTexter: KonstTexter?
+    
     var displayString: String?
 //    var infoTexts = [String]()
+    
+    var temaText: String?
+    
+    var IBMtext: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        print("!!!!!!!!!!ABC DU E MINA TANKAR!!!!!!!!!!!!!")
+        //print(konstverkTexter?.IBMKonstsamling as! String)
+        
         //set button image views to aspect fit
         button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
@@ -102,9 +110,39 @@ class ViewController: UIViewController {
             self.title = konstverket!.title
             self.textViewLabel.text = konstverket!.title
             self.textViewlabel2.text = konstverket!.artistName
+            self.IBMtext = "IBM" //(konstverkTexter?.IBMKonstsamling)!
+            
+            if konstverket!.beaconMajor == "40314" || konstverket!.beaconMajor == "1" {
+                
+                self.temaText = "vån 1"//(konstverkTexter?.temaTexter[0])!
+                print("vån \(temaText!)")
+                
+            } else if konstverket!.beaconMajor == "17261" || konstverket!.beaconMajor == "2" {
+                
+                self.temaText = "vån 2"//(konstverkTexter?.temaTexter[1])!
+                print("vån \(temaText!)")
+                
+            } else if konstverket!.beaconMajor == "40203" || konstverket!.beaconMajor == "3" {
+                
+                self.temaText = "vån 3"//(konstverkTexter?.temaTexter[2])!
+                print("vån \(temaText!)")
+                
+            }
+                
+//             else if konstverket!.beaconMajor == "aaa" || konstverket!.beaconMajor == "4" {
+//
+//                self.temaText = (konstverkTexter?.temaTexter[3])!
+//                print("vån \(temaText)")
+//
+//            }
+            else { print("okänt våningsplan")}
+            
+            
             
             self.displayString = konstverket!.about[0]
             self.textView.text = displayString
+            
+            
             
             print("!-!-!-!-!-!-!-!-!-!")
                 
@@ -251,7 +289,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func showText2(_ sender: UIButton) {
-        displayString = konstverket!.about[1]
+        displayString = temaText
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = true
@@ -262,7 +300,7 @@ class ViewController: UIViewController {
         button3.backgroundColor = .white
     }
     @IBAction func showText3(_ sender: UIButton) {
-        displayString = konstverket!.about[2]
+        displayString = IBMtext
         textView.text = displayString
         button1.isSelected = false
         button2.isSelected = false
@@ -278,7 +316,7 @@ class ViewController: UIViewController {
     // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about[0] {
-            displayString = konstverket!.about[1]
+            displayString = temaText
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -290,8 +328,8 @@ class ViewController: UIViewController {
             button3.backgroundColor = .white
             
         }
-        else if displayString == konstverket!.about[1] {
-            displayString = konstverket!.about[2]
+        else if displayString == temaText {
+            displayString = IBMtext
             textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -319,7 +357,7 @@ class ViewController: UIViewController {
     
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about[0] {
-            displayString = konstverket!.about[2]
+            displayString = IBMtext
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
@@ -330,8 +368,8 @@ class ViewController: UIViewController {
             button2.backgroundColor = .white
             button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         }
-            else if displayString == konstverket!.about[2] {
-            displayString = konstverket!.about[1]
+            else if displayString == IBMtext {
+            displayString = temaText
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false

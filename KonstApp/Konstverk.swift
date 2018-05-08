@@ -23,10 +23,12 @@ class Konstverk {
     
     var beaconMinor: String
     
+    var beaconMajor: String
+    
     
     //initialization
     
-    init?(title: String, artistName: String, photo: UIImage?, about: [String]?, beaconMinor: String) {
+    init?(title: String, artistName: String, photo: UIImage?, about: [String]?, beaconMinor: String, beaconMajor: String) {
         
         guard !title.isEmpty else {
             print("noName")
@@ -38,6 +40,7 @@ class Konstverk {
         self.photo = photo!
         self.about = about!
         self.beaconMinor = beaconMinor
+        self.beaconMajor = beaconMajor
     }
     
 }//end of class

@@ -20,13 +20,26 @@ struct KonstverkData4: Decodable {
     let beaconMinor: String
 }
 
+struct KonstTextData: Decodable {
+    let IBMkonstsamling: String
+    let temaTexter: [String]
+}
+
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
-    var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: [""], beaconMinor: "")
+    var konstverkTexter: KonstTexter?
+    
+    var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: [""], beaconMinor: "", beaconMajor: "")
     
     var beaconManager: KTKBeaconManager!
-
+    
+// minor och major hämtade från beacons
+    //minor
     var beaconArray = [String]()
+    
+    //major
+    var beaconArray2 = [String]()
+    
     
     var konstName = [String]()
     
@@ -51,6 +64,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     var beaconArtist = String()
     var beaconBEACON = String()
     var beaconBild = String()
+    var beaconBEACONBEACON = String()
     
     var beaconBilden = UIImage()
     
@@ -58,7 +72,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        beaconArray = ["45"]
+        beaconArray = ["16222"]
 //        beaconMinorValues = ["45", "16222", "28909"]
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -150,8 +164,48 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         }
         }.resume()
 
+        let jsonUrlString2 = "http://localhost:6001/konstTexter"
+        guard let url2 = URL(string: jsonUrlString2) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url2) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let konstverkData2 = try JSONDecoder().decode([KonstTextData].self, from: data)
+                print(konstverkData2[0].IBMkonstsamling)
+                print(konstverkData2[0].temaTexter)
+                
+                self.konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
+                
+                print(self.konstverkTexter)
+                print("KONSTTEXTER SPARADE")
+                    
+                    
+                    
+                    //                    if let url = URL(string: namn.bild) {
+                    //
+                    //                        print("kladdkaka2")
+                    //                        self.downloadImage(url: url)
+                    //
+                    //                            }
+                
+                
+                
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
 
-
+    
 }
 
     override func didReceiveMemoryWarning() {
@@ -186,7 +240,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             print("image downloaded and saved")
 
             if self.beaconImage.count > 0 {
-                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON)
+                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
                 print("BEACONKONSTVERK SAVED")
             } else { print("ingen beaconImage")
                 return}
@@ -207,6 +261,14 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            guard konstverkTexter?.IBMKonstsamling != nil
+                else { print("Inga konstTexter")
+                    return
+            }
+                ViewController.konstverkTexter = konstverkTexter
+                
+            
+            
             let minorIndex = beaconArray[0]
             let i = beaconMinorValues.index(of: minorIndex)
             
@@ -224,6 +286,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     beaconTexts = konstTexter[i!]
                     beaconBEACON = beaconMinorValues[i!]
                     beaconBild = bildUrl[i!]
+                beaconBEACONBEACON = beaconArray2[i!]
                 
                 if let url = URL(string: beaconBild) {
                     
@@ -300,9 +363,12 @@ extension startViewController: KTKBeaconManagerDelegate {
         for beacon in beacons {
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
+            //add minor & major to arrays
 //            beaconArray.append(beacon.minor.stringValue)
+//            beaconArray2.append(beacon.major.stringValue)
 //            }
-//      print(beaconArray)
+//            print("minor: \(beaconArray)")
+//            print("major: \(beaconArray2)")
         }
         
         

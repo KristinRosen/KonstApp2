@@ -18,6 +18,7 @@
 		31CE81AF20862F2B00D64A9C /* startViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CE81AE20862F2B00D64A9C /* startViewController.swift */; };
 		3929832F207366DC009C2632 /* Konstverk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929832E207366DC009C2632 /* Konstverk.swift */; };
 		39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39897AE62062953E00B2A82C /* TableViewCell.swift */; };
+		39C2CC1C20A073DC00392C3A /* KonstTexter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2CC1B20A073DB00392C3A /* KonstTexter.swift */; };
 		B35B61E002A0B8785E551CA6 /* Pods_KonstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6C87B005AE7D6A585C6D98 /* Pods_KonstApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		31CE81AE20862F2B00D64A9C /* startViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startViewController.swift; sourceTree = "<group>"; };
 		3929832E207366DC009C2632 /* Konstverk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Konstverk.swift; sourceTree = "<group>"; };
 		39897AE62062953E00B2A82C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		39C2CC1B20A073DB00392C3A /* KonstTexter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstTexter.swift; sourceTree = "<group>"; };
 		4D6C87B005AE7D6A585C6D98 /* Pods_KonstApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KonstApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CD4A134A1ECB87FEC9A8A80 /* Pods-KonstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KonstApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KonstApp/Pods-KonstApp.release.xcconfig"; sourceTree = "<group>"; };
 		976EFF7C58235066C61009AC /* Pods-KonstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KonstApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KonstApp/Pods-KonstApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				311CEC46203EF6DB0090C1A7 /* AppDelegate.swift */,
 				311CEC48203EF6DB0090C1A7 /* ViewController.swift */,
 				315CB501206259DF006CB90E /* TableViewController.swift */,
+				39C2CC1B20A073DB00392C3A /* KonstTexter.swift */,
 				3929832E207366DC009C2632 /* Konstverk.swift */,
 				31CE81AE20862F2B00D64A9C /* startViewController.swift */,
 				39897AE62062953E00B2A82C /* TableViewCell.swift */,
@@ -286,6 +289,7 @@
 				39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */,
 				315CB502206259DF006CB90E /* TableViewController.swift in Sources */,
 				311CEC47203EF6DB0090C1A7 /* AppDelegate.swift in Sources */,
+				39C2CC1C20A073DC00392C3A /* KonstTexter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
