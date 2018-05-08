@@ -135,7 +135,7 @@ class ViewController: UIViewController {
 //                print("vån \(temaText)")
 //
 //            }
-            else { print("okänt våningsplan")}
+            else { print("okänt våningsplan") }
             
             
             

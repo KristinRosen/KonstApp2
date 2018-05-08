@@ -46,11 +46,11 @@
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>&quot;LÄGG TILL FÖRKLARING!!!!!!!!!&quot;</string>
+	<string>KonstAppen använder bluetooth för att hitta närliggande konstverk</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;LÄGG TILL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</string>
+	<string>KonstAppen behöver tillgång till platstjänster för att hitta närliggande konstverk</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;ahahahahahahaaaaaaaaa&quot;</string>
+	<string>Appen behöver tillgång till platstjänster för att kunna hitta närliggande konstverk</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
