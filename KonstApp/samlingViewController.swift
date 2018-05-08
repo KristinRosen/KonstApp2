@@ -16,12 +16,32 @@ class samlingViewController: UIViewController {
     
     var IBMtext: String?
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var text: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        textView.text = konstverkTexterSa!.IBMKonstsamling
+        
+//        // start activity indicator + hide image
+//        imageView.isHidden = true
+//        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.startAnimating()
+        
+        //add margins to text views
+        text.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
+        label.textContainerInset = UIEdgeInsetsMake(16, 10, 5, 10)
+        
+        
+            self.imageView.image = #imageLiteral(resourceName: "bgImage")
+//            self.activityIndicator.isHidden = true
+//            self.imageView.isHidden = false
+        
+        text.text = konstverkTexterSa!.IBMKonstsamling
+        label.text = "IBM's konstsamling"
+        self.title = "IBM's konstsamling"
     }
 
     override func didReceiveMemoryWarning() {

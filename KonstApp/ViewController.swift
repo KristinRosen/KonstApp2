@@ -110,7 +110,7 @@ class ViewController: UIViewController {
             self.title = konstverket!.title
             self.textViewLabel.text = konstverket!.title
             self.textViewlabel2.text = konstverket!.artistName
-            self.IBMtext = "IBM" //(konstverkTexter?.IBMKonstsamling)!
+            self.IBMtext = (konstverkTexter?.IBMKonstsamling)!
             
             if konstverket!.beaconMajor == "17261" || konstverket!.beaconMajor == "1" {
                 

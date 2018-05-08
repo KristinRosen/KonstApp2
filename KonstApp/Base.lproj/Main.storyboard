@@ -465,8 +465,8 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X6-pb-Wlg">
-                                <rect key="frame" x="0.0" y="64" width="35" height="672"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X6-pb-Wlg">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-sP-bLz">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="1176.3333333333333"/>
@@ -487,7 +487,7 @@
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIC-Y3-sN9" userLabel="Rubrik">
                                                 <rect key="frame" x="0.0" y="274.66666666666669" width="35" height="531.66666666666652"/>
-                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.70354773120000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.88409139558356153" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Om IBMs konstsamling">
                                                         <attributes>
@@ -500,7 +500,7 @@
                                             </textView>
                                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyf-yq-3Yh" userLabel="Text">
                                                 <rect key="frame" x="0.0" y="826.33333333333337" width="35" height="350.00000000000011"/>
-                                                <color key="backgroundColor" white="1" alpha="0.70465004279999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="0.87989619006027386" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="wV2-j5-OwY"/>
                                                 </constraints>
@@ -553,12 +553,15 @@
                         <viewLayoutGuide key="safeArea" id="4Tq-ia-esM"/>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="vIC-Y3-sN9" id="7Q0-GY-69T"/>
+                        <outlet property="activityIndicator" destination="hky-Uy-sLh" id="dWi-Yf-pbN"/>
+                        <outlet property="imageView" destination="HGw-j2-jsL" id="Y2c-Ei-jz5"/>
+                        <outlet property="label" destination="vIC-Y3-sN9" id="cOr-La-l1h"/>
+                        <outlet property="text" destination="Zyf-yq-3Yh" id="wdN-Sk-nlC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzv-wW-bnA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184" y="779"/>
+            <point key="canvasLocation" x="-184.05797101449278" y="778.53260869565224"/>
         </scene>
     </scenes>
     <resources>
