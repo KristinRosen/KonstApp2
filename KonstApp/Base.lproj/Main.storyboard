@@ -56,7 +56,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.75187285958904104" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="PIW-3o-8Bx" kind="show" identifier="" id="Pxz-Xw-Djh"/>
+                                            <segue destination="PIW-3o-8Bx" kind="show" identifier="allaKonstverk" id="Pxz-Xw-Djh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4V-O3-s6s">
@@ -70,7 +70,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.75088291952054798" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="vgY-Yf-GSk" kind="show" id="g25-5k-vxY"/>
+                                            <segue destination="vgY-Yf-GSk" kind="show" identifier="ibmKonstsamling" id="g25-5k-vxY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="64" width="0.0" height="621.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC" userLabel="Stack View 1">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="17190.333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="18187.333333333332"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
                                                 <rect key="frame" x="189.66666666666666" y="0.0" width="35" height="200"/>
@@ -242,7 +242,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tn-I7-eD1">
-                                        <rect key="frame" x="207" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="154.66666666666666" y="0.0" width="0.0" height="50.333333333333336"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="PFN-Yd-Ucf"/>
@@ -259,7 +259,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-8Q-RnA">
-                                        <rect key="frame" x="207" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="259.66666666666669" y="0.0" width="0.0" height="50.333333333333336"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50.5" id="mh3-Jb-GjV"/>
@@ -469,7 +469,7 @@
                                 <rect key="frame" x="0.0" y="64" width="35" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-sP-bLz">
-                                        <rect key="frame" x="0.0" y="0.0" width="35" height="10174.666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="1176.3333333333333"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hky-Uy-sLh">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="200"/>
@@ -499,16 +499,11 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyf-yq-3Yh" userLabel="Text">
-                                                <rect key="frame" x="0.0" y="826.33333333333303" width="35" height="9348.3333333333358"/>
+                                                <rect key="frame" x="0.0" y="826.33333333333337" width="35" height="350.00000000000011"/>
                                                 <color key="backgroundColor" white="1" alpha="0.70465004279999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="wV2-j5-OwY"/>
                                                 </constraints>
-                                                <string key="text">Fiskmås (Larus canus) är en fågel som tillhör familjen måsfåglar som häckar över stora delar av det norra halvklotet och merparten är flyttfåglar. Arten delas vanligtvis upp i fyra underarter som alla uppvisar mindre dräktskillnader. Fiskmåsen påminner om gråtruten men är betydligt mindre och slankare. Som adult i sommardräkt har den grå ovansida och är i övrigt vit, med gul näbb och ben, och svarta vingspetsar med vita slantar. Juvenilen är spräcklig och denna dräkt ruggas sedan i omgångar tills den anlägger adult dräkt under sitt tredje levnadsår.
-
-Fiskmåsen häckar i en mängd olika biotoper i närheten av vatten men återfinns också i stadsmiljö. Den häckar både i större kolonier och som enstaka par. Fiskmåsen lägger vanligtvis en kull om året som i snitt innehåller tre ägg. Paret ruvar och tar hand om ungarna tillsammans. Fiskmåsen är en allätare som ofta söker föda i närheten av människan och kan flyga långa sträckor från häckningsplatsen för att födosöka. Den tar fisk och fiskavfall, musslor, daggmask, hushållsavfall, insekter som flygmyror, bär och utsäde.
-
-Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är stor varför den kategoriseras som livskraftig (LC).[1] </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -557,6 +552,9 @@ Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är s
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4Tq-ia-esM"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="vIC-Y3-sN9" id="7Q0-GY-69T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzv-wW-bnA" sceneMemberID="firstResponder"/>
             </objects>
@@ -574,6 +572,6 @@ Fiskmåsen har ett mycket stort utbredningsområde och världspopulationen är s
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8R2-k8-JM9"/>
+        <segue reference="NsV-CF-Hng"/>
     </inferredMetricsTieBreakers>
 </document>

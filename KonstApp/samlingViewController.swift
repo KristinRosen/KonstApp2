@@ -9,11 +9,19 @@
 import UIKit
 
 class samlingViewController: UIViewController {
+    
+    var konstverkTexterSa: KonstTexter?
+    
+    var temaText: String?
+    
+    var IBMtext: String?
 
+    @IBOutlet weak var textView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        textView.text = konstverkTexterSa!.IBMKonstsamling
     }
 
     override func didReceiveMemoryWarning() {

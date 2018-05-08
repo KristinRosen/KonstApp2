@@ -25,9 +25,11 @@ struct KonstTextData: Decodable {
     let temaTexter: [String]
 }
 
+var konstverkTexter: KonstTexter?
+
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
-    var konstverkTexter: KonstTexter?
+    
     
     var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: [""], beaconMinor: "", beaconMajor: "")
     
@@ -193,9 +195,9 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 print(konstverkData2[0].IBMkonstsamling)
                 print(konstverkData2[0].temaTexter)
                 
-                self.konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
+                konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
                 
-                print(self.konstverkTexter)
+                print(konstverkTexter)
                 print("KONSTTEXTER SPARADE")
                     
                     
@@ -277,16 +279,12 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     return
             }
                 ViewController.konstverkTexter = konstverkTexter
-                
-            
             
             let minorIndex = beaconArray[0]
             let i = beaconMinorValues.index(of: minorIndex)
             
             if beaconArray.count > 0 {
                 
-                
-                    
                     print("OOOOOOOOOOOOOO")
                 print(i!)
 //                    print(beaconArray[i!])
@@ -303,11 +301,8 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     
                     print("kladdkaka2")
                     self.downloadImage(url: url)
-                    
                 }
-                
                 print(beaconBEACON)
-                    
                 
                 repeat {
         print("WAIT")
@@ -320,14 +315,20 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     
                 }
                 
-                
-                
             } else {print("inga beacons i beaconArray")
                 return
             }
+           
+        } else if segue.identifier == "ibmKonstsamling" {
+            guard let samlingViewController = segue.destination as? samlingViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
             
-            
-//
+            guard konstverkTexter?.IBMKonstsamling != nil
+                else { print("Inga konstTexter")
+                    return
+            }
+            samlingViewController.konstverkTexterSa = konstverkTexter
         }
     }
 
