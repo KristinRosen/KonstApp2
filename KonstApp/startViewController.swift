@@ -68,12 +68,23 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconBilden = UIImage()
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    //nollställ beacon minor- & major-värden
+    print("REMOVE BEACONS")
+    beaconArray.removeAll()
+    beaconArray2.removeAll()
+    print("BEACONS REMOVED")
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        beaconArray = ["16222"]
+        
+       
 //        beaconMinorValues = ["45", "16222", "28909"]
+        
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
