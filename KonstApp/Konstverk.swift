@@ -12,7 +12,6 @@ import KontaktSDK
 
 class Konstverk {
     
-    
     var title: String
     
     var artistName: String

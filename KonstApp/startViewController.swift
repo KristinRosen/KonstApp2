@@ -25,7 +25,17 @@ struct KonstTextData: Decodable {
     let temaTexter: [String]
 }
 
+var thisIsTheOne = Bool(false)
+
 var konstverkTexter: KonstTexter?
+
+var beaconen = Beacon(minor: "0", major: "0", distance: 0)
+
+var beaconens = [Beacon(minor: "", major: "", distance: 1)]
+
+var beaconDistance = [Int]()
+
+var theOneAndOnly = Beacon(minor: "0", major: "0", distance: 0)
 
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -80,12 +90,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-       
-//        beaconMinorValues = ["45", "16222", "28909"]
+    override func viewDidAppear(_ animated: Bool) {
         
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -106,7 +111,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             
             
             if KTKBeaconManager.isMonitoringAvailable() {
-               
+                
                 beaconManager.startMonitoring(for: region)
                 
                 print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
@@ -114,40 +119,37 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             }
             beaconManager.startRangingBeacons(in: region)
             // We will use this later
-           beaconManager.stopRangingBeacons(in: region)
+            beaconManager.stopRangingBeacons(in: region)
         }
-
+        
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
         ibmButton.addTextSpacing(spacing: 2.5)
 
-        // Do any additional setup after loading the view.
-        
-        
         print("slutat")
         
         let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
-
-       URLSession.shared.dataTask(with: url) { (data, response, err) in
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
             //perhaps check err
             //also perhaps check response status 200 OK
-
+            
             guard let data = data else { return }
-
-
+            
+            
             do {
-
+                
                 //decode data + print namn
                 let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
                 print(konstverkData[0].namn)
                 print(konstverkData[0].bild)
                 print(konstverkData[0].texter)
                 print(konstverkData[0].beaconMinor)
-
-               
-
+                
+                
+                
                 for namn in konstverkData {
                     print("Found \(namn.namn)")
                     print("Found \(namn.konstnar)")
@@ -158,25 +160,25 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                     self.konstTexter.append(namn.texter)
                     self.beaconMinorValues.append(namn.beaconMinor)
                     self.bildUrl.append(namn.bild)
-
-
-
-//                    if let url = URL(string: namn.bild) {
-//
-//                        print("kladdkaka2")
-//                        self.downloadImage(url: url)
-//
-//                            }
-                        }
+                    
+                    
+                    
+                    //                    if let url = URL(string: namn.bild) {
+                    //
+                    //                        print("kladdkaka2")
+                    //                        self.downloadImage(url: url)
+                    //
+                    //                            }
+                }
                 
-
-
-
+                
+                
+                
             } catch let jsonErr {
                 print(jsonErr)
-        }
-        }.resume()
-
+            }
+            }.resume()
+        
         let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
@@ -199,15 +201,15 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
                 
                 print(konstverkTexter)
                 print("KONSTTEXTER SPARADE")
-                    
-                    
-                    
-                    //                    if let url = URL(string: namn.bild) {
-                    //
-                    //                        print("kladdkaka2")
-                    //                        self.downloadImage(url: url)
-                    //
-                    //                            }
+                
+                
+                
+                //                    if let url = URL(string: namn.bild) {
+                //
+                //                        print("kladdkaka2")
+                //                        self.downloadImage(url: url)
+                //
+                //                            }
                 
                 
                 
@@ -218,6 +220,24 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             }
             }.resume()
 
+        
+    }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      
+
+       
+//        beaconMinorValues = ["45", "16222", "28909"]
+        
+        
+        
+        // Do any additional setup after loading the view.
+        
+        
+       
     
 }
 
@@ -371,16 +391,53 @@ extension startViewController: KTKBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-//        while beaconArray.count < 3 {
+//        while beaconArray.count < 20 {
+        while thisIsTheOne == false {
         for beacon in beacons {
+            
+            
             print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
             print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
             //add minor & major to arrays
             beaconArray.append(beacon.minor.stringValue)
+            beaconen!.minor = beacon.minor.stringValue
             beaconArray2.append(beacon.major.stringValue)
+            beaconen!.major = beacon.major.stringValue
+            print(beacon.rssi)
+            beaconDistance.append(beacon.rssi)
+            beaconen!.distance = beacon.rssi
+            print("DET HÄR ÄR EN BEACON \(beaconen?.minor, beaconen?.major, beaconen?.distance)")
+            repeat {
+                print("BEACONEN ÄR NIL")
+            } while beaconen?.major == nil
+            beaconens.append(beaconen!)
+            
+            //print(beaconDistance)
+            beaconDistance.sort { $0 < $1 }
+            //print(beaconDistance)
+            
+            if beaconDistance.count >= konstName.count {
+                
+                for beaconsarna in beaconens {
+                if beaconDistance.last == beaconsarna?.distance {
+                    
+                    print("THIS IS THE ONE!!! \(beaconsarna?.minor)")
+                    
+                    thisIsTheOne = true
+                } else { print("this is not the one :(")}
+                
+                }
             }
-            print("minor: \(beaconArray)")
-            print("major: \(beaconArray2)")
+        
+        }
+        }
+        
+       
+        
+        
+        
+//            print("minor: \(beaconArray)")
+//            print("major: \(beaconArray2)")
         
         
         

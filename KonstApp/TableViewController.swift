@@ -119,20 +119,26 @@ class TableViewController: UITableViewController {
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
                     self.bildUrl.append(bild.bild)
-                    
-                    if let url = URL(string: bild.bild) {
+                }
+                
+                print(self.bildUrl)
+                
+                for urlstring in self.bildUrl {
+                    if let url = URL(string: urlstring) {
                         
                         print("kladdkaka")
                         self.downloadImage(url: url)
                         
                     }
-
-                   
                 }
+                
+                
             } catch let jsonErr {
                 print(jsonErr)
             }
             }.resume()
+        
+        
         
         let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else

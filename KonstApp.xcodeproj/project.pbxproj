@@ -17,6 +17,7 @@
 		31C3CC7B20920D3A0043AB99 /* samlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */; };
 		31CE81AF20862F2B00D64A9C /* startViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CE81AE20862F2B00D64A9C /* startViewController.swift */; };
 		3929832F207366DC009C2632 /* Konstverk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929832E207366DC009C2632 /* Konstverk.swift */; };
+		392C3E4420A338A600E5456C /* beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C3E4320A338A600E5456C /* beacon.swift */; };
 		39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39897AE62062953E00B2A82C /* TableViewCell.swift */; };
 		39C2CC1C20A073DC00392C3A /* KonstTexter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2CC1B20A073DB00392C3A /* KonstTexter.swift */; };
 		B35B61E002A0B8785E551CA6 /* Pods_KonstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6C87B005AE7D6A585C6D98 /* Pods_KonstApp.framework */; };
@@ -47,6 +48,7 @@
 		31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = samlingViewController.swift; sourceTree = "<group>"; };
 		31CE81AE20862F2B00D64A9C /* startViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startViewController.swift; sourceTree = "<group>"; };
 		3929832E207366DC009C2632 /* Konstverk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Konstverk.swift; sourceTree = "<group>"; };
+		392C3E4320A338A600E5456C /* beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beacon.swift; sourceTree = "<group>"; };
 		39897AE62062953E00B2A82C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39C2CC1B20A073DB00392C3A /* KonstTexter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstTexter.swift; sourceTree = "<group>"; };
 		4D6C87B005AE7D6A585C6D98 /* Pods_KonstApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KonstApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 				39C2CC1B20A073DB00392C3A /* KonstTexter.swift */,
 				3929832E207366DC009C2632 /* Konstverk.swift */,
 				31CE81AE20862F2B00D64A9C /* startViewController.swift */,
+				392C3E4320A338A600E5456C /* beacon.swift */,
 				39897AE62062953E00B2A82C /* TableViewCell.swift */,
 				31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */,
 				311CEC4A203EF6DB0090C1A7 /* Main.storyboard */,
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				392C3E4420A338A600E5456C /* beacon.swift in Sources */,
 				31C3CC7B20920D3A0043AB99 /* samlingViewController.swift in Sources */,
 				311CEC49203EF6DB0090C1A7 /* ViewController.swift in Sources */,
 				31CE81AF20862F2B00D64A9C /* startViewController.swift in Sources */,
