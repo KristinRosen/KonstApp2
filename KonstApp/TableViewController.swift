@@ -56,7 +56,13 @@ class TableViewController: UITableViewController {
     
     var planLista = [String]()
     
+    var bildDictionary = [AnyHashable: AnyHashable]()
     
+    var keyList:[AnyHashable] {
+        get{
+            return [AnyHashable](self.bildDictionary.keys)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,15 +125,12 @@ class TableViewController: UITableViewController {
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
                     self.bildUrl.append(bild.bild)
-                    
+//                    self.bildDictionary[bild.bild] = bild.bild
+//                    print(self.bildDictionary)
                     if let url = URL(string: bild.bild) {
-                        
                         print("kladdkaka")
                         self.downloadImage(url: url)
-                        
                     }
-
-                   
                 }
             } catch let jsonErr {
                 print(jsonErr)
@@ -174,7 +177,6 @@ class TableViewController: UITableViewController {
                 print(jsonErr)
             }
             }.resume()
-
         
     }
 
@@ -201,7 +203,17 @@ class TableViewController: UITableViewController {
             print("Finished downloading")
                 
                 let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-                
+            
+            
+            
+            
+            print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+            self.bildDictionary[url] = UIImage(data: imageData as Data!)!
+            print(self.bildDictionary)
+            
+            
+            
+            
             self.konstBild.append(UIImage(data: imageData as Data!)!)
                 
                 print(self.konstBild)
@@ -213,6 +225,8 @@ class TableViewController: UITableViewController {
         }
     }
     // MARK: - Table view data source
+    
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -221,7 +235,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if konstBild.count == konstName.count {
+        if bildDictionary.count == konstName.count {
         return konstName.count
         } else {print("AAAAASAVENJAAABABABISHIMAMA"); return 0}
 
@@ -233,10 +247,14 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        let row = indexPath.row
+        let myRowKey = self.keyList[row]
+        let myRowData = self.bildDictionary[myRowKey]
         
         cell.tabelLable.text = self.konstName[indexPath.row]
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
-        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
+//        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
+        cell.tableImageView.image = myRowData as? UIImage
         
         return cell
     }
