@@ -497,7 +497,7 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-sP-bLz">
-                                        <rect key="frame" x="0.0" y="0.0" width="35" height="174693"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="1176.3333333333333"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hky-Uy-sLh">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="200"/>
@@ -514,7 +514,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIC-Y3-sN9" userLabel="Rubrik">
-                                                <rect key="frame" x="0.0" y="274.66666666667152" width="35" height="174048.33333333331"/>
+                                                <rect key="frame" x="0.0" y="274.66666666666669" width="35" height="531.66666666666652"/>
                                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.88409139558356153" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Om IBMs konstsamling">
@@ -527,7 +527,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyf-yq-3Yh" userLabel="Text">
-                                                <rect key="frame" x="0.0" y="174343" width="35" height="350"/>
+                                                <rect key="frame" x="0.0" y="826.33333333333337" width="35" height="350.00000000000011"/>
                                                 <color key="backgroundColor" white="1" alpha="0.87989619006027386" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="wV2-j5-OwY"/>

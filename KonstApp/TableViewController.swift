@@ -17,7 +17,7 @@ struct KonstverkData2: Decodable {
     let bild: String
     let texter: [String]
     let beaconMinor: String
-    let plan: String
+    let beaconMajor: String
 }
 
 struct KonstverkData3 {
@@ -54,7 +54,7 @@ class TableViewController: UITableViewController {
     
     var beaconMinorValues = [String]()
     
-    var planLista = [String]()
+    var beaconMajorValues = [String]()
     
     
     
@@ -92,7 +92,7 @@ class TableViewController: UITableViewController {
                 print(konstverkData2[0].konstnar)
                 print(konstverkData2[0].texter)
                 print(konstverkData2[0].beaconMinor)
-                print(konstverkData2[0].plan)
+                print(konstverkData2[0].beaconMajor)
                 print("Tjolahopp!!!!!")
                 
                 for namn in konstverkData2{
@@ -100,12 +100,12 @@ class TableViewController: UITableViewController {
                     print("Found \(namn.konstnar)")
                     print("Found \(namn.texter)")
                     print("Found \(namn.beaconMinor)")
-                    print("Found \(namn.plan)")
+                    print("Found \(namn.beaconMajor)")
                     self.konstName.append(namn.namn)
                     self.konstnarName.append(namn.konstnar)
                     self.konstTexter.append(namn.texter)
                     self.beaconMinorValues.append(namn.beaconMinor)
-                    self.planLista.append(namn.plan)
+                    self.beaconMajorValues.append(namn.beaconMajor)
                 }
                 
                 print(self.konstName)
@@ -314,9 +314,9 @@ class TableViewController: UITableViewController {
             print(selectedKonstverkBild)
             let selectedKonstverkTexter = konstTexter[indexPath.row]
             let selectedKonstverkBeaconMinor = beaconMinorValues[indexPath.row]
-            let selectedKonstverkPlan = planLista[indexPath.row]
+            let selectedKonstverkBeaconMajor = beaconMajorValues[indexPath.row]
             
-            let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter, beaconMinor: selectedKonstverkBeaconMinor, beaconMajor: selectedKonstverkPlan)
+            let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter, beaconMinor: selectedKonstverkBeaconMinor, beaconMajor: selectedKonstverkBeaconMajor)
             
            ViewController.konstverket = selectedKonstverk
             ViewController.konstverkTexter = konstverketTexter
