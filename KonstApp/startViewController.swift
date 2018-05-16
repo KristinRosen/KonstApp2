@@ -25,6 +25,16 @@ struct KonstTextData: Decodable {
     let temaTexter: [String]
 }
 
+var minorValue = String()
+
+var i = Int()
+
+
+var validBeacons = [CLBeacon]()
+
+var validBeacons2 = [CLBeacon]()
+
+
 var thisIsTheOne = Bool(false)
 
 var konstverkTexter: KonstTexter?
@@ -36,6 +46,8 @@ var beaconens = [Beacon(minor: "", major: "", distance: 1)]
 var beaconDistance = [Int]()
 
 var theOneAndOnly = Beacon(minor: "0", major: "0", distance: 0)
+
+var closestBeaconMinor = String()
 
 class startViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -50,7 +62,7 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     var beaconArray = [String]()
     
     //major
-    var beaconArray2 = [String]()
+    var beaconArray2 = String()
     
     
     var konstName = [String]()
@@ -81,9 +93,11 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
     var beaconBilden = UIImage()
     
     override func viewWillAppear(_ animated: Bool) {
+        thisIsTheOne = false
         
     //nollställ beacon minor- & major-värden
     print("REMOVE BEACONS")
+    validBeacons.removeAll()
     beaconArray.removeAll()
     beaconArray2.removeAll()
     print("BEACONS REMOVED")
@@ -300,44 +314,62 @@ class startViewController: UIViewController, CLLocationManagerDelegate {
             }
                 ViewController.konstverkTexter = konstverkTexter
             
-            let minorIndex = beaconArray[0]
-            let i = beaconMinorValues.index(of: minorIndex)
+            guard validBeacons.count > 0
+                else {return //lägg till "placeholder-konstverk"
+            }
             
-            if beaconArray.count > 0 {
+            guard beaconArray2.count > 0
+                else {return}
+            
+            minorValue = closestBeaconMinor
+            i = beaconMinorValues.index(of: minorValue)!
+            
+        //if beaconArray.count > 0 {
+            
+            guard i >= 0
+                else {print("error: i är nil")
+                    return}
                 
                     print("OOOOOOOOOOOOOO")
-                print(i!)
+            print(i)
 //                    print(beaconArray[i!])
                 
-                    beaconName = konstName[i!]
-                    beaconArtist = konstnarName[i!]
+            beaconName = konstName[i]
+            beaconArtist = konstnarName[i]
 //                    beaconImage = konstBild[i!]
-                    beaconTexts = konstTexter[i!]
-                    beaconBEACON = beaconMinorValues[i!]
-                    beaconBild = bildUrl[i!]
-                beaconBEACONBEACON = beaconArray2[i!]
-                
+            beaconTexts = konstTexter[i]
+            beaconBEACON = beaconMinorValues[i]
+            beaconBild = bildUrl[i]
+                    beaconBEACONBEACON = beaconArray2
+            
                 if let url = URL(string: beaconBild) {
                     
                     print("kladdkaka2")
                     self.downloadImage(url: url)
                 }
                 print(beaconBEACON)
+            
+            repeat {
+                print("FEL KONSTVERK")
+            } while beaconKonstverk?.beaconMinor != closestBeaconMinor
                 
                 repeat {
         print("WAIT")
                 }  while beaconKonstverk?.photo == nil
                     
                 if beaconKonstverk?.photo !== nil {
+                    
+                   
+                    
                     ViewController.konstverket = beaconKonstverk
-                    print("INTE NIL LÄNGRE")
+                    print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
                     print(ViewController.konstverket!)
                     
                 }
                 
-            } else {print("inga beacons i beaconArray")
-                return
-            }
+           // } else {print("inga beacons i beaconArray")
+                //return
+            //}
            
         } else if segue.identifier == "ibmKonstsamling" {
             guard let samlingViewController = segue.destination as? samlingViewController else {
@@ -392,45 +424,114 @@ extension startViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
 //        while beaconArray.count < 20 {
-        while thisIsTheOne == false {
-        for beacon in beacons {
-            
-            
-            print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
-            print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
-            //add minor & major to arrays
-            beaconArray.append(beacon.minor.stringValue)
-            beaconen!.minor = beacon.minor.stringValue
-            beaconArray2.append(beacon.major.stringValue)
-            beaconen!.major = beacon.major.stringValue
-            print(beacon.rssi)
-            beaconDistance.append(beacon.rssi)
-            beaconen!.distance = beacon.rssi
-            print("DET HÄR ÄR EN BEACON \(beaconen?.minor, beaconen?.major, beaconen?.distance)")
-            repeat {
-                print("BEACONEN ÄR NIL")
-            } while beaconen?.major == nil
-            beaconens.append(beaconen!)
-            
-            //print(beaconDistance)
-            beaconDistance.sort { $0 < $1 }
-            //print(beaconDistance)
-            
-            if beaconDistance.count >= konstName.count {
+        
+//        print(beacons.first!)
+//        print(beacons)
+//
+//        for beacon in beacons {
+//
+//            print(beacon.proximity)
+//            print(beacon.minor.stringValue)
+        
+
+        
+//        for beacon in beacons {
+        
+            if beacons.first!.rssi != 0 {
                 
-                for beaconsarna in beaconens {
-                if beaconDistance.last == beaconsarna?.distance {
+                validBeacons = beacons
+
+            } else { for beacon in beacons {
+                
+                if beacon.rssi != 0 {
                     
-                    print("THIS IS THE ONE!!! \(beaconsarna?.minor)")
+                    validBeacons.append(beacon)
+                    beaconDistance.append(beacon.rssi)
                     
-                    thisIsTheOne = true
-                } else { print("this is not the one :(")}
+                        }
+                    }
+                
+                beaconDistance.sort { $0 < $1 }
+                
+                let beaconIndex = beaconDistance.first!
+                
+                for beacon2 in validBeacons {
+                    
+                    if beaconIndex == beacon2.rssi {
+                        validBeacons2.append(beacon2)
+                    }
+                }
+                
+                validBeacons = validBeacons2
                 
                 }
-            }
+            
+//        }
         
-        }
-        }
+        print("beacons in range: \(validBeacons)")
+        
+        beaconArray2 = validBeacons.first!.major.stringValue
+        
+        closestBeaconMinor = validBeacons.first!.minor.stringValue
+        
+//        var beacons2 = beacons
+//
+//        for beacon in beacons2 {
+//
+//            if beacon.rssi == 0 {
+//
+//                let i2 = beacons2.index(of: beacon)
+//                beacons2.remove(at: i2!)
+//
+//            }
+//
+//        }
+//
+//        print("<#T##items: Any...##Any#>")
+        
+        
+//        while thisIsTheOne == false {
+//        for beacon in beacons {
+//
+//            if beacon.rssi != 0 {
+//
+//            print(beacon)
+//            print("Ranged beacon with Proximity UUID: \(beacon.proximityUUID), Major: \(beacon.major) and Minor: \(beacon.minor) from \(region.identifier) in \(beacon.proximity) proximity")
+//            print("HAAAAAAAAAAAAAAAAHOOOOOOOEEEEEEHJÄLP!")
+//            //add minor & major to arrays
+//            beaconArray.append(beacon.minor.stringValue)
+//            beaconen!.minor = beacon.minor.stringValue
+//            beaconArray2.append(beacon.major.stringValue)
+//            beaconen!.major = beacon.major.stringValue
+//            beaconDistance.append(beacon.rssi)
+//            beaconen!.distance = beacon.rssi
+//            print("DET HÄR ÄR EN BEACON \(beaconen?.minor, beaconen?.major, beaconen?.distance)")
+//            repeat {
+//                print("BEACONEN ÄR NIL")
+//            } while beaconen?.major == nil
+//            beaconens.append(beaconen!)
+//
+//            //print(beaconDistance)
+//            beaconDistance.sort { $0 < $1 }
+//            //print(beaconDistance)
+//
+//            if beaconDistance.count >= konstName.count {
+//
+//                for beaconsarna in beaconens {
+//
+//
+//                if beaconDistance.last == beaconsarna?.distance {
+//
+//                    print("THIS IS THE ONE!!! \(beaconsarna?.minor)")
+//
+//                    thisIsTheOne = true
+//                } else { print("this is not the one :(")}
+//
+//                }
+//            }
+//            }
+//        }
+//        }
         
        
         
