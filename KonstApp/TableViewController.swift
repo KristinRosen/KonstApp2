@@ -39,14 +39,11 @@ class TableViewController: UITableViewController {
 
     @IBOutlet var konstTableView: UITableView!
     
- 
-    
-    
     var konstName = [String]()
     
     var konstnarName = [String]()
     
-    var bildUrl = [String]()
+    var bildUrl = [URL]()
     
     var konstBild = [UIImage()]
     
@@ -56,13 +53,18 @@ class TableViewController: UITableViewController {
     
     var planLista = [String]()
     
-    var bildDictionary = [AnyHashable: AnyHashable]()
+    var bildDictionary = [URL: UIImage]()
     
-    var keyList:[AnyHashable] {
+    var keyList:[URL] {
         get{
-            return [AnyHashable](self.bildDictionary.keys)
+            return [URL](self.bildDictionary.keys)
         }
     }
+    
+    var cellArray = [UIImage]()
+    
+    var myRowKey: URL!
+    var myRowData = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,11 +114,14 @@ class TableViewController: UITableViewController {
                     self.konstTexter.append(namn.texter)
                     self.beaconMinorValues.append(namn.beaconMinor)
                     self.planLista.append(namn.plan)
+                    self.bildUrl.append(URL(string: namn.bild)!)
                 }
                 
                 print(self.konstName)
                 print("UGAYGYAFYUFAYUFAYUA")
                 print(self.beaconMinorValues)
+                print("________________________________________U-R-L--L-I-S-T-A___________________________________")
+                print(self.bildUrl)
                 
                 //ta bort överflödig bild som skapas av mystisk anledning
                 self.konstBild.remove(at: 0)
@@ -124,7 +129,6 @@ class TableViewController: UITableViewController {
                 
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
-                    self.bildUrl.append(bild.bild)
 //                    self.bildDictionary[bild.bild] = bild.bild
 //                    print(self.bildDictionary)
                     if let url = URL(string: bild.bild) {
@@ -247,14 +251,23 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        let row = indexPath.row
-        let myRowKey = self.keyList[row]
-        let myRowData = self.bildDictionary[myRowKey]
+      
+        for urlen in bildUrl {
+            self.myRowKey = urlen
+            self.myRowData = self.bildDictionary[myRowKey]!
+            
+            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+            print(myRowKey)
+            print(myRowData as Any)
+            cellArray.append(myRowData)
+            print(cellArray)
+        }
         
-        cell.tabelLable.text = self.konstName[indexPath.row]
-        cell.tabelLable2.text = self.konstnarName[indexPath.row]
-//        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
-        cell.tableImageView.image = myRowData as? UIImage
+            cell.tabelLable.text = self.konstName[indexPath.row]
+            cell.tabelLable2.text = self.konstnarName[indexPath.row]
+            //        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
+            cell.tableImageView.image = cellArray[indexPath.row] as UIImage
+       
         
         return cell
     }
@@ -322,7 +335,7 @@ class TableViewController: UITableViewController {
             print(selectedKonstverkName)
             let selectedKonstnarName = konstnarName[indexPath.row]
             print(selectedKonstnarName)
-            let selectedKonstverkBild = konstBild[indexPath.row]
+            let selectedKonstverkBild = cellArray[indexPath.row]
             print(selectedKonstverkBild)
             let selectedKonstverkTexter = konstTexter[indexPath.row]
             let selectedKonstverkBeaconMinor = beaconMinorValues[indexPath.row]
