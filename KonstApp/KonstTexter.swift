@@ -15,10 +15,12 @@ class KonstTexter {
     
     var temaTexter: [String]
     
+    var beaconMajorValues: [String]
+    
 
     //initialization
     
-    init?(IBMKonstsamling: String, temaTexter: [String]) {
+    init?(IBMKonstsamling: String, temaTexter: [String], beaconMajorValues: [String]) {
         
         guard !IBMKonstsamling.isEmpty else {
             print("noText")
@@ -27,6 +29,7 @@ class KonstTexter {
         
         self.IBMKonstsamling = IBMKonstsamling
         self.temaTexter = temaTexter
+        self.beaconMajorValues = beaconMajorValues
     }
     
 }//end of class

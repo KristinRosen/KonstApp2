@@ -30,9 +30,10 @@ struct KonstverkData3 {
 struct KonstTextData2: Decodable {
     let IBMkonstsamling: String
     let temaTexter: [String]
+    let beaconMajorValues: [String]
 }
 
-var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""])
+var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""])
 
 
 class TableViewController: UITableViewController {
@@ -49,9 +50,9 @@ class TableViewController: UITableViewController {
     
     var konstTexter = [[String]]()
     
-    var beaconMinorValues = [String]()
+    var MinorValues = [String]()
     
-    var beaconMajorValues = [String]()
+    var MajorValues = [String]()
     
     var bildDictionary = [URL: UIImage]()
     
@@ -112,14 +113,14 @@ class TableViewController: UITableViewController {
                     self.konstName.append(namn.namn)
                     self.konstnarName.append(namn.konstnar)
                     self.konstTexter.append(namn.texter)
-                    self.beaconMinorValues.append(namn.beaconMinor)
-                    self.beaconMajorValues.append(namn.beaconMajor)
+                    self.MinorValues.append(namn.beaconMinor)
+                    self.MajorValues.append(namn.beaconMajor)
                     self.bildUrl.append(URL(string: namn.bild)!)
                 }
                 
                 print(self.konstName)
                 print("UGAYGYAFYUFAYUFAYUA")
-                print(self.beaconMinorValues)
+                print(self.MinorValues)
                 print("________________________________________U-R-L--L-I-S-T-A___________________________________")
                 print(self.bildUrl)
                 
@@ -155,11 +156,12 @@ class TableViewController: UITableViewController {
             do {
                 
                 //decode data + print namn
-                let konstverkData2 = try JSONDecoder().decode([KonstTextData2].self, from: data)
-                print(konstverkData2[0].IBMkonstsamling)
-                print(konstverkData2[0].temaTexter)
+                let konstTextData = try JSONDecoder().decode([KonstTextData2].self, from: data)
+                print(konstTextData[0].IBMkonstsamling)
+                print(konstTextData[0].temaTexter)
+                print(konstTextData[0].beaconMajorValues)
                 
-                konstverketTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
+                konstverketTexter = KonstTexter(IBMKonstsamling: konstTextData[0].IBMkonstsamling, temaTexter: konstTextData[0].temaTexter, beaconMajorValues: konstTextData[0].beaconMajorValues)
                 
                 print(konstverketTexter!)
                 print("KONSTTEXTER SPARADE")
@@ -338,8 +340,8 @@ class TableViewController: UITableViewController {
             let selectedKonstverkBild = cellArray[indexPath.row]
             print(selectedKonstverkBild)
             let selectedKonstverkTexter = konstTexter[indexPath.row]
-            let selectedKonstverkBeaconMinor = beaconMinorValues[indexPath.row]
-            let selectedKonstverkBeaconMajor = beaconMajorValues[indexPath.row]
+            let selectedKonstverkBeaconMinor = MinorValues[indexPath.row]
+            let selectedKonstverkBeaconMajor = MajorValues[indexPath.row]
             
             let selectedKonstverk = Konstverk(title: selectedKonstverkName, artistName: selectedKonstnarName, photo: selectedKonstverkBild, about: selectedKonstverkTexter, beaconMinor: selectedKonstverkBeaconMinor, beaconMajor: selectedKonstverkBeaconMajor)
             
