@@ -20,10 +20,11 @@ import UIKit
 //    let beaconMinor: String
 //}
 //
-//struct KonstTextData: Decodable {
-//    let IBMkonstsamling: String
-//    let temaTexter: [String]
-//}
+struct KonstTextData3: Decodable {
+    let IBMkonstsamling: String
+    let temaTexter: [String]
+    let beaconMajorValues: [String]
+}
 //
 //var minorValue = String()
 //
@@ -37,7 +38,7 @@ import UIKit
 //
 //var thisIsTheOne = Bool(false)
 //
-//var konstverkTexter: KonstTexter?
+var konstverkTexter2: KonstTexter?
 //
 //var beaconen = Beacon(minor: "0", major: "0", distance: 0)
 //
@@ -104,7 +105,7 @@ import UIKit
 //
 //    }
     
-//    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 //
 //
 //        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -191,51 +192,52 @@ import UIKit
 //            }
 //            }.resume()
 //
-//        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
-//        guard let url2 = URL(string: jsonUrlString2) else
-//        { return }
-//
-//        URLSession.shared.dataTask(with: url2) { (data, response, err) in
-//            //perhaps check err
-//            //also perhaps check response status 200 OK
-//
-//            guard let data = data else { return }
-//
-//
-//            do {
-//
-//                //decode data + print namn
-//                let konstverkData2 = try JSONDecoder().decode([KonstTextData].self, from: data)
-//                print(konstverkData2[0].IBMkonstsamling)
-//                print(konstverkData2[0].temaTexter)
-//
-//                konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter)
-//
-//                print(konstverkTexter)
-//                print("KONSTTEXTER SPARADE")
-//
-//
-//
-//                //                    if let url = URL(string: namn.bild) {
-//                //
-//                //                        print("kladdkaka2")
-//                //                        self.downloadImage(url: url)
-//                //
-//                //                            }
-//
-//
-//
-//
-//
-//            } catch let jsonErr {
-//                print(jsonErr)
-//            }
-//            }.resume()
-//
-//
-//    }
-    
-    
+        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        guard let url2 = URL(string: jsonUrlString2) else
+        { return }
+
+        URLSession.shared.dataTask(with: url2) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+
+            guard let data = data else { return }
+
+
+            do {
+
+                //decode data + print namn
+                let konstTextData2 = try JSONDecoder().decode([KonstTextData3].self, from: data)
+                print(konstTextData2[0].IBMkonstsamling)
+                print(konstTextData2[0].temaTexter)
+                print(konstTextData2[0].beaconMajorValues)
+
+                konstverkTexter2 = KonstTexter(IBMKonstsamling: konstTextData2[0].IBMkonstsamling, temaTexter: konstTextData2[0].temaTexter, beaconMajorValues: konstTextData2[0].beaconMajorValues)
+
+                print(konstverkTexter2)
+                print("KONSTTEXTER SPARADE")
+
+
+
+                //                    if let url = URL(string: namn.bild) {
+                //
+                //                        print("kladdkaka2")
+                //                        self.downloadImage(url: url)
+                //
+                //                            }
+
+
+
+
+
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+
+
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -376,11 +378,11 @@ import UIKit
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            guard konstverkTexter?.IBMKonstsamling != nil
+            guard konstverkTexter2?.IBMKonstsamling != nil
                 else { print("Inga konstTexter")
                     return
             }
-            samlingViewController.konstverkTexterSa = konstverkTexter
+            samlingViewController.konstverkTexterSa = konstverkTexter2
         }
     }
 
