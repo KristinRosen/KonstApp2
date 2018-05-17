@@ -12,13 +12,13 @@ import UIKit
 //var isRanging = Bool()
 ////var beaconMinor = CLBeaconMinorValue(1)
 //
-//struct KonstverkData4: Decodable {
-//    let namn: String
-//    let konstnar: String
-//    let bild: String
-//    let texter: [String]
-//    let beaconMinor: String
-//}
+struct KonstverkData5: Decodable {
+    let namn: String
+    let konstnar: String
+    let bild: String
+    let texter: [String]
+    let beaconMinor: String
+}
 //
 struct KonstTextData3: Decodable {
     let IBMkonstsamling: String
@@ -39,6 +39,9 @@ struct KonstTextData3: Decodable {
 //var thisIsTheOne = Bool(false)
 //
 var konstverkTexter2: KonstTexter?
+
+var imagess = Images(konstBild: [UIImage()])
+
 //
 //var beaconen = Beacon(minor: "0", major: "0", distance: 0)
 //
@@ -70,9 +73,22 @@ var konstverkTexter2: KonstTexter?
 //
 //    var konstnarName = [String]()
 //
-//    var bildUrl = [String]()
+    var bildUrl = [URL]()
 //
-//    var konstBild = [UIImage()]
+    
+        
+        var bildDictionary = [URL: UIImage]()
+        
+        var keyList:[URL] {
+            get{
+                return [URL](self.bildDictionary.keys)
+            }
+        }
+        
+        var cellArray = [UIImage]()
+        
+        var myRowKey: URL!
+        var myRowData = UIImage()
 //
 //    var konstTexter = [[String]]()
 //
@@ -82,7 +98,7 @@ var konstverkTexter2: KonstTexter?
     @IBOutlet weak var allaButton: UIButton!
     @IBOutlet weak var ibmButton: UIButton!
     
-//    var beaconImage = [UIImage]()
+    var beaconImage = [UIImage]()
 //    var beaconUrl  = String()
 //    var beaconTexts = [String]()
 //    var beaconName = String()
@@ -91,7 +107,7 @@ var konstverkTexter2: KonstTexter?
 //    var beaconBild = String()
 //    var beaconBEACONBEACON = String()
 //
-//    var beaconBilden = UIImage()
+    var beaconBilden = UIImage()
 //
 //    override func viewWillAppear(_ animated: Bool) {
 //        thisIsTheOne = false
@@ -105,7 +121,7 @@ var konstverkTexter2: KonstTexter?
 //
 //    }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
 //
 //
 //        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -141,57 +157,51 @@ var konstverkTexter2: KonstTexter?
 
 //        print("slutat")
 //
-//        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
-//        guard let url = URL(string: jsonUrlString) else
-//        { return }
+        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+
+            guard let data = data else { return }
 //
-//        URLSession.shared.dataTask(with: url) { (data, response, err) in
-//            //perhaps check err
-//            //also perhaps check response status 200 OK
 //
-//            guard let data = data else { return }
+            do {
 //
-//
-//            do {
-//
-//                //decode data + print namn
-//                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
-//                print(konstverkData[0].namn)
-//                print(konstverkData[0].bild)
+                //decode data + print namn
+                let konstverkData = try JSONDecoder().decode([KonstverkData5].self, from: data)
+                print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
 //                print(konstverkData[0].texter)
 //                print(konstverkData[0].beaconMinor)
 //
 //
 //
-//                for namn in konstverkData {
-//                    print("Found \(namn.namn)")
-//                    print("Found \(namn.konstnar)")
-//                    print("Found \(namn.texter)")
-//                    print("Found \(namn.beaconMinor)")
-//                    self.konstName.append(namn.namn)
-//                    self.konstnarName.append(namn.konstnar)
-//                    self.konstTexter.append(namn.texter)
-//                    self.beaconMinorValues.append(namn.beaconMinor)
-//                    self.bildUrl.append(namn.bild)
+                for bild in konstverkData{
+                    self.bildUrl.append(URL(string: bild.bild)!)
+                    print("Found \(bild.bild)")
+                    //                    self.bildDictionary[bild.bild] = bild.bild
+                    //                    print(self.bildDictionary)
+                    if let url = URL(string: bild.bild) {
+                        print("kladdkaka")
+                        self.downloadImage(url: url)
+                    }
+                }
 //
-//
-//
-//                    //                    if let url = URL(string: namn.bild) {
-//                    //
-//                    //                        print("kladdkaka2")
-//                    //                        self.downloadImage(url: url)
-//                    //
-//                    //                            }
-//                }
-//
-//
-//
-//
-//            } catch let jsonErr {
-//                print(jsonErr)
-//            }
-//            }.resume()
-//
+               
+
+            } catch let jsonErr {
+                print(jsonErr)
+                
+            }
+            
+            
+            }.resume()
+        
+        
+
         let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
@@ -237,7 +247,7 @@ var konstverkTexter2: KonstTexter?
 
     }
 
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -245,6 +255,8 @@ var konstverkTexter2: KonstTexter?
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
         ibmButton.addTextSpacing(spacing: 2.5)
+        
+       
        
 //        beaconMinorValues = ["45", "16222", "28909"]
         
@@ -268,33 +280,30 @@ var konstverkTexter2: KonstTexter?
             }.resume()
     }
 
-//    func downloadImage(url: URL) {
-//        print("Started downloading")
-//
-//
-//        getDataFromUrl(url: url) {
-//            data, response, error in
-//            guard let data = data, error == nil else { return }
-//
-//            print(response?.suggestedFilename ?? url.lastPathComponent)
-//            print("Finished downloading")
-//
-//            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-//
-//            self.beaconImage = [(UIImage(data: imageData as Data!)!)]
-//
-//            self.beaconBilden = self.beaconImage[0]
-//
-//            print(self.beaconBilden)
-//            print("image downloaded and saved")
-//
-//            if self.beaconImage.count > 0 {
-//                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
-//                print("BEACONKONSTVERK SAVED")
-//            } else { print("ingen beaconImage")
-//                return}
-//        }
-//    }
+        func downloadImage(url: URL) {
+            print("Started downloading")
+            
+            getDataFromUrl(url: url) {
+                data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                print(response?.suggestedFilename ?? url.lastPathComponent)
+                print("Finished downloading")
+                
+                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+                
+                
+                
+                
+                print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+                self.bildDictionary[url] = UIImage(data: imageData as Data!)!
+                print(self.bildDictionary)
+                
+                
+                print("image downloaded and saved")
+                
+            }
+        }
 //
     // MARK: - Navigation
 
@@ -309,6 +318,30 @@ var konstverkTexter2: KonstTexter?
             guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
+            for urlen in self.bildUrl {
+                self.myRowKey = urlen
+                self.myRowData = self.bildDictionary[self.myRowKey]!
+                
+                print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+                print(self.myRowKey)
+                print(self.myRowData as Any)
+                self.cellArray.append(self.myRowData)
+                print(self.cellArray)
+            }
+            
+            if self.cellArray.count > 0 {
+                imagess = Images(konstBild: self.cellArray)
+            } else {print("inga bilder")
+                return}
+            
+            guard imagess!.konstBild.count > 0
+                else {
+                    print("inga bilder")
+                    return
+            }
+            
+            konstvandringViewController.konstBilder = imagess
             
 //            guard konstverkTexter?.IBMKonstsamling != nil
 //                else { print("Inga konstTexter")
