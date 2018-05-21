@@ -25,6 +25,10 @@ struct KonstTextData3: Decodable {
     let temaTexter: [String]
     let beaconMajorValues: [String]
 }
+
+struct StartData: Decodable {
+    let bild: String
+}
 //
 //var minorValue = String()
 //
@@ -97,6 +101,7 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
     @IBOutlet weak var ibmButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
         
     var beaconImage = [UIImage]()
 //    var beaconUrl  = String()
@@ -123,6 +128,11 @@ var imagess = Images(konstBild: [UIImage()])
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("----------------------------Välkommen :) ---------------------------------")
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
 //
 //
 //        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -245,10 +255,34 @@ var imagess = Images(konstBild: [UIImage()])
             }
             }.resume()
         
+        let jsonUrlString3 = ""
+        guard let url3 = URL(string: jsonUrlString3) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url3) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
             
             
-            // Hide the navigation bar on the this view controller
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+            do {
+                
+                //decode data + print namn
+                let startData = try JSONDecoder().decode([StartData].self, from: data)
+                print(startData[0].bild)
+                
+                if let url = URL(string: startData[0].bild) {
+                
+                print("kladdkaka2")
+                self.downloadImage2(url: url)
+                
+            }
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
             
     }
         
@@ -317,122 +351,140 @@ var imagess = Images(konstBild: [UIImage()])
                 
             }
         }
+        
+        func downloadImage2(url: URL) {
+            print("Started downloading")
+            
+            getDataFromUrl(url: url) {
+                data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                print(response?.suggestedFilename ?? url.lastPathComponent)
+                print("Finished downloading startimage")
+                
+                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+                self.imageView.image = UIImage(data: imageData!)
+                    
+                print("startimage downloaded and saved")
+                
+            }
+        }
 //
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+////        // Get the new view controller using segue.destinationViewController.
+////        // Pass the selected object to the new view controller.
+////
+//        super.prepare(for: segue, sender: sender)
 //
-        super.prepare(for: segue, sender: sender)
-
-        if segue.identifier == "konstvandring" {
-            guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            for urlen in self.bildUrl {
-                self.myRowKey = urlen
-                self.myRowData = self.bildDictionary[self.myRowKey]!
-                
-                print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-                print(self.myRowKey)
-                print(self.myRowData as Any)
-                self.cellArray.append(self.myRowData)
-                print(self.cellArray)
-            }
-            
-            if self.cellArray.count > 0 {
-                imagess = Images(konstBild: self.cellArray)
-            } else {print("inga bilder")
-                return}
-            
-            guard imagess!.konstBild.count > 0
-                else {
-                    print("inga bilder")
-                    return
-            }
-            
-//            konstvandringViewController.konstBilder = imagess
-            
-//            guard konstverkTexter?.IBMKonstsamling != nil
+//        if segue.identifier == "konstvandring" {
+//            guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//
+//            for urlen in self.bildUrl {
+//                self.myRowKey = urlen
+//                self.myRowData = self.bildDictionary[self.myRowKey]!
+//
+//                print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+//                print(self.myRowKey)
+//                print(self.myRowData as Any)
+//                self.cellArray.append(self.myRowData)
+//                print(self.cellArray)
+//            }
+//
+//            if self.cellArray.count > 0 {
+//                imagess = Images(konstBild: self.cellArray)
+//            } else {print("inga bilder")
+//                return}
+//
+//            guard imagess!.konstBild.count > 0
+//                else {
+//                    print("inga bilder")
+//                    return
+//            }
+//
+////            konstvandringViewController.konstBilder = imagess
+//
+////            guard konstverkTexter?.IBMKonstsamling != nil
+////                else { print("Inga konstTexter")
+////                    return
+////            }
+////                ViewController.konstverkTexter = konstverkTexter
+////
+////            guard validBeacons.count > 0
+////                else {return //lägg till "placeholder-konstverk"
+////            }
+////
+////            guard beaconArray2.count > 0
+////                else {return}
+////
+////            minorValue = closestBeaconMinor
+////            i = beaconMinorValues.index(of: minorValue)!
+////
+////        //if beaconArray.count > 0 {
+////
+////            guard i >= 0
+////                else {print("error: i är nil")
+////                    return}
+////
+////                    print("OOOOOOOOOOOOOO")
+////            print(i)
+//////                    print(beaconArray[i!])
+////
+////            beaconName = konstName[i]
+////            beaconArtist = konstnarName[i]
+//////                    beaconImage = konstBild[i!]
+////            beaconTexts = konstTexter[i]
+////            beaconBEACON = beaconMinorValues[i]
+////            beaconBild = bildUrl[i]
+////                    beaconBEACONBEACON = beaconArray2
+////
+////                if let url = URL(string: beaconBild) {
+////
+////                    print("kladdkaka2")
+////                    self.downloadImage(url: url)
+////                }
+////                print(beaconBEACON)
+////
+////            repeat {
+////                print("FEL KONSTVERK")
+////            } while beaconKonstverk?.beaconMinor != closestBeaconMinor
+////
+////                repeat {
+////        print("WAIT")
+////                }  while beaconKonstverk?.photo == nil
+////
+////                if beaconKonstverk?.photo !== nil {
+////
+////
+////
+////                    ViewController.konstverket = beaconKonstverk
+////                    print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
+////                    print(ViewController.konstverket!)
+////
+////                }
+//
+//           // } else {print("inga beacons i beaconArray")
+//                //return
+//            //}
+//
+//        } else if segue.identifier == "ibmKonstsamling" {
+//            guard let samlingViewController = segue.destination as? samlingViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//
+//            guard konstverkTexter2?.IBMKonstsamling != nil
 //                else { print("Inga konstTexter")
 //                    return
 //            }
-//                ViewController.konstverkTexter = konstverkTexter
-//
-//            guard validBeacons.count > 0
-//                else {return //lägg till "placeholder-konstverk"
-//            }
-//
-//            guard beaconArray2.count > 0
-//                else {return}
-//
-//            minorValue = closestBeaconMinor
-//            i = beaconMinorValues.index(of: minorValue)!
-//
-//        //if beaconArray.count > 0 {
-//
-//            guard i >= 0
-//                else {print("error: i är nil")
-//                    return}
-//
-//                    print("OOOOOOOOOOOOOO")
-//            print(i)
-////                    print(beaconArray[i!])
-//
-//            beaconName = konstName[i]
-//            beaconArtist = konstnarName[i]
-////                    beaconImage = konstBild[i!]
-//            beaconTexts = konstTexter[i]
-//            beaconBEACON = beaconMinorValues[i]
-//            beaconBild = bildUrl[i]
-//                    beaconBEACONBEACON = beaconArray2
-//
-//                if let url = URL(string: beaconBild) {
-//
-//                    print("kladdkaka2")
-//                    self.downloadImage(url: url)
-//                }
-//                print(beaconBEACON)
-//
-//            repeat {
-//                print("FEL KONSTVERK")
-//            } while beaconKonstverk?.beaconMinor != closestBeaconMinor
-//
-//                repeat {
-//        print("WAIT")
-//                }  while beaconKonstverk?.photo == nil
-//
-//                if beaconKonstverk?.photo !== nil {
+//            samlingViewController.konstverkTexterSa = konstverkTexter2
+//        }
+//    }
 //
 //
-//
-//                    ViewController.konstverket = beaconKonstverk
-//                    print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
-//                    print(ViewController.konstverket!)
-//
-//                }
-            
-           // } else {print("inga beacons i beaconArray")
-                //return
-            //}
-           
-        } else if segue.identifier == "ibmKonstsamling" {
-            guard let samlingViewController = segue.destination as? samlingViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard konstverkTexter2?.IBMKonstsamling != nil
-                else { print("Inga konstTexter")
-                    return
-            }
-            samlingViewController.konstverkTexterSa = konstverkTexter2
-        }
-    }
-
-    
 }
 
 //extension startViewController: KTKBeaconManagerDelegate {

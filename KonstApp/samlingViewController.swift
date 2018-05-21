@@ -18,6 +18,7 @@ class samlingViewController: UIViewController {
 
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var label: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -39,9 +40,93 @@ class samlingViewController: UIViewController {
 //            self.activityIndicator.isHidden = true
 //            self.imageView.isHidden = false
         
-        text.text = konstverkTexterSa!.IBMKonstsamling
+        
+        
+        
+        
+        
+        
+        
+        
+//        ----------------------thohoo
+        
+        
+        
+        
+        
+        
+//        text.text = konstverkTexterSa!.IBMKonstsamling
+        
+        
+        
+        
+        
+        //hänä-------------------bye!!!!!!-------------------------------------------------
+        
+        
+        
+        
+        
+        
+        
+        
         label.text = "IBM's konstsamling"
         self.title = "IBM's konstsamling"
+        
+        let jsonUrlString3 = ""
+        guard let url3 = URL(string: jsonUrlString3) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url3) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let startData = try JSONDecoder().decode([StartData].self, from: data)
+                print(startData[0].bild)
+                
+                if let url = URL(string: startData[0].bild) {
+                    
+                    print("kladdkaka2")
+                    self.downloadImage2(url: url)
+                    
+                }
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage2(url: URL) {
+        print("Started downloading")
+        
+        getDataFromUrl(url: url) {
+            data, response, error in
+            guard let data = data, error == nil else { return }
+            
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Finished downloading startimage")
+            
+            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+            self.imageView.image = UIImage(data: imageData!)
+            self.bgImage.image = UIImage(data: imageData!)
+            
+            print("startimage downloaded and saved")
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
