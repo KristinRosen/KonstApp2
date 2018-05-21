@@ -97,7 +97,7 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
     @IBOutlet weak var ibmButton: UIButton!
-    
+        
     var beaconImage = [UIImage]()
 //    var beaconUrl  = String()
 //    var beaconTexts = [String]()
@@ -122,6 +122,7 @@ var imagess = Images(konstBild: [UIImage()])
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 //
 //
 //        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -243,11 +244,23 @@ var imagess = Images(konstBild: [UIImage()])
                 print(jsonErr)
             }
             }.resume()
-
-
+        
+            
+            
+            // Hide the navigation bar on the this view controller
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+            
     }
+        
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            
+            // Show the navigation bar on other view controllers
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+            
+        }
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -341,7 +354,7 @@ var imagess = Images(konstBild: [UIImage()])
                     return
             }
             
-            konstvandringViewController.konstBilder = imagess
+//            konstvandringViewController.konstBilder = imagess
             
 //            guard konstverkTexter?.IBMKonstsamling != nil
 //                else { print("Inga konstTexter")
@@ -587,5 +600,3 @@ extension UIButton {
         self.setAttributedTitle(attributedString, for: .normal)
     }
 }
-
-

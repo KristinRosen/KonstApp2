@@ -51,6 +51,8 @@
 	<string>KonstAppen behöver tillgång till platstjänster för att hitta närliggande konstverk</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Appen behöver tillgång till platstjänster för att kunna hitta närliggande konstverk</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
