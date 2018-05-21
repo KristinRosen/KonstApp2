@@ -93,6 +93,7 @@
                         <viewLayoutGuide key="safeArea" id="059-nZ-hTD"/>
                     </view>
                     <connections>
+                        <outlet property="bgImage" destination="ks4-HX-34q" id="w3x-eW-2YT"/>
                         <outlet property="imageView" destination="PZ5-Tf-3g8" id="gZL-tS-a5E"/>
                         <outlet property="showDetailButton" destination="zQc-be-yFs" id="2pS-4X-1Fg"/>
                     </connections>
@@ -2295,6 +2296,6 @@ WQAAAAAAAAAAAAAAAAABej0
         <image name="kort om 2" width="90" height="63"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8R2-k8-JM9"/>
+        <segue reference="HFz-l1-xH8"/>
     </inferredMetricsTieBreakers>
 </document>
