@@ -31,9 +31,10 @@ struct KonstTextData2: Decodable {
     let IBMkonstsamling: String
     let temaTexter: [String]
     let beaconMajorValues: [String]
+    let startBild: String
 }
 
-var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""])
+var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""], startBild: UIImage())
 
 
 class TableViewController: UITableViewController {
@@ -161,7 +162,7 @@ class TableViewController: UITableViewController {
                 print(konstTextData[0].temaTexter)
                 print(konstTextData[0].beaconMajorValues)
                 
-                konstverketTexter = KonstTexter(IBMKonstsamling: konstTextData[0].IBMkonstsamling, temaTexter: konstTextData[0].temaTexter, beaconMajorValues: konstTextData[0].beaconMajorValues)
+                konstverketTexter = KonstTexter(IBMKonstsamling: konstTextData[0].IBMkonstsamling, temaTexter: konstTextData[0].temaTexter, beaconMajorValues: konstTextData[0].beaconMajorValues, startBild: UIImage())
                 
                 print(konstverketTexter!)
                 print("KONSTTEXTER SPARADE")

@@ -18,12 +18,29 @@ class samlingViewController: UIViewController {
 
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var label: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("_______________WE WELCOME YOU TO THE KONSTSAMLINGsA_______________")
+       print(konstverkTexterSa?.startBild)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        guard konstverkTexterSa?.startBild != nil
+            else {print("ingen start-bild")
+                return
+        }
+        
+        imageView.image = konstverkTexterSa?.startBild
+        bgImageView.image = konstverkTexterSa?.startBild
         
 //        // start activity indicator + hide image
 //        imageView.isHidden = true
@@ -35,7 +52,7 @@ class samlingViewController: UIViewController {
         label.textContainerInset = UIEdgeInsetsMake(16, 10, 5, 10)
         
         
-            self.imageView.image = #imageLiteral(resourceName: "bgImage")
+           
 //            self.activityIndicator.isHidden = true
 //            self.imageView.isHidden = false
         
@@ -43,11 +60,21 @@ class samlingViewController: UIViewController {
         label.text = "IBM's konstsamling"
         self.title = "IBM's konstsamling"
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+   
     
 
     /*

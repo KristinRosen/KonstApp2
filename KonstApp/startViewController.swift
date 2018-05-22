@@ -24,6 +24,7 @@ struct KonstTextData3: Decodable {
     let IBMkonstsamling: String
     let temaTexter: [String]
     let beaconMajorValues: [String]
+    let startBild: String
 }
 //
 //var minorValue = String()
@@ -41,6 +42,9 @@ struct KonstTextData3: Decodable {
 var konstverkTexter2: KonstTexter?
 
 var imagess = Images(konstBild: [UIImage()])
+
+//var startBild = [UIImage()]
+
 
 //
 //var beaconen = Beacon(minor: "0", major: "0", distance: 0)
@@ -97,7 +101,8 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var vandrButton: UIButton!
     @IBOutlet weak var allaButton: UIButton!
     @IBOutlet weak var ibmButton: UIButton!
-    
+        @IBOutlet weak var imageView: UIImageView!
+        
     var beaconImage = [UIImage]()
 //    var beaconUrl  = String()
 //    var beaconTexts = [String]()
@@ -122,6 +127,11 @@ var imagess = Images(konstBild: [UIImage()])
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        print("----------------------------Välkommen  ---------------------------------")
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
         print("will empty arrays")
 //
@@ -165,95 +175,7 @@ var imagess = Images(konstBild: [UIImage()])
 
 //        print("slutat")
 //
-        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
-        guard let url = URL(string: jsonUrlString) else
-        { return }
-
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-
-            guard let data = data else { return }
-//
-//
-            do {
-//
-                //decode data + print namn
-                let konstverkData = try JSONDecoder().decode([KonstverkData5].self, from: data)
-                print(konstverkData[0].namn)
-                print(konstverkData[0].bild)
-//                print(konstverkData[0].texter)
-//                print(konstverkData[0].beaconMinor)
-//
-//
-//
-                for bild in konstverkData{
-                    self.konstName.append(bild.namn)
-                    self.bildUrl.append(URL(string: bild.bild)!)
-                    print("Found \(bild.bild)")
-                    //                    self.bildDictionary[bild.bild] = bild.bild
-                    //                    print(self.bildDictionary)
-                    if let url = URL(string: bild.bild) {
-                        print("kladdkaka")
-                        self.downloadImage(url: url)
-                    }
-                }
-//
-               
-
-            } catch let jsonErr {
-                print(jsonErr)
-                
-            }
-            
-            
-            }.resume()
-        
-        
-
-        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
-        guard let url2 = URL(string: jsonUrlString2) else
-        { return }
-
-        URLSession.shared.dataTask(with: url2) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-
-            guard let data = data else { return }
-
-
-            do {
-
-                //decode data + print namn
-                let konstTextData2 = try JSONDecoder().decode([KonstTextData3].self, from: data)
-                print(konstTextData2[0].IBMkonstsamling)
-                print(konstTextData2[0].temaTexter)
-                print(konstTextData2[0].beaconMajorValues)
-
-                konstverkTexter2 = KonstTexter(IBMKonstsamling: konstTextData2[0].IBMkonstsamling, temaTexter: konstTextData2[0].temaTexter, beaconMajorValues: konstTextData2[0].beaconMajorValues)
-
-                print(konstverkTexter2)
-                print("KONSTTEXTER SPARADE")
-
-
-
-                //                    if let url = URL(string: namn.bild) {
-                //
-                //                        print("kladdkaka2")
-                //                        self.downloadImage(url: url)
-                //
-                //                            }
-
-
-
-
-
-            } catch let jsonErr {
-                print(jsonErr)
-            }
-            }.resume()
-
-
+    
     }
 
     
@@ -265,6 +187,100 @@ var imagess = Images(konstBild: [UIImage()])
         allaButton.addTextSpacing(spacing: 2.5)
         ibmButton.addTextSpacing(spacing: 2.5)
         
+        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            //
+            //
+            do {
+                //
+                //decode data + print namn
+                let konstverkData = try JSONDecoder().decode([KonstverkData5].self, from: data)
+                print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
+                //                print(konstverkData[0].texter)
+                //                print(konstverkData[0].beaconMinor)
+                //
+                //
+                //
+                for bild in konstverkData{
+                    self.konstName.append(bild.namn)
+                    self.bildUrl.append(URL(string: bild.bild)!)
+                    print("Found \(bild.bild)")
+                    //                    self.bildDictionary[bild.bild] = bild.bild
+                    //                    print(self.bildDictionary)
+                    if let url = URL(string: bild.bild) {
+                        print("kladdkaka")
+                        self.downloadImage(url: url)
+                    }
+                }
+                //
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+                
+            }
+            
+            
+            }.resume()
+        
+        
+        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        guard let url2 = URL(string: jsonUrlString2) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url2) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode data + print namn
+                let konstTextData2 = try JSONDecoder().decode([KonstTextData3].self, from: data)
+                print(konstTextData2[0].IBMkonstsamling)
+                print(konstTextData2[0].temaTexter)
+                print(konstTextData2[0].beaconMajorValues)
+                
+                konstverkTexter2 = KonstTexter(IBMKonstsamling: konstTextData2[0].IBMkonstsamling, temaTexter: konstTextData2[0].temaTexter, beaconMajorValues: konstTextData2[0].beaconMajorValues, startBild: nil)
+                
+                
+                if let url2 = URL(string: konstTextData2[0].startBild) {
+                    
+                    self.downloadImage2(url: url2)
+                }
+            
+                
+                print(konstverkTexter2)
+                print("KONSTTEXTER SPARADE")
+                
+                
+                
+                //                    if let url = URL(string: namn.bild) {
+                //
+                //                        print("kladdkaka2")
+                //                        self.downloadImage(url: url)
+                //
+                //                            }
+                
+                
+                
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+
        
        
 //        beaconMinorValues = ["45", "16222", "28909"]
@@ -272,12 +288,14 @@ var imagess = Images(konstBild: [UIImage()])
         
         
         // Do any additional setup after loading the view.
-        
-        
-       
     
 }
-
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            // Stop hiding the navigation bar on the this view controller
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -313,6 +331,34 @@ var imagess = Images(konstBild: [UIImage()])
                 
             }
         }
+        
+        
+        func downloadImage2(url: URL) {
+            print("Started downloading2")
+            
+            getDataFromUrl(url: url) {
+                data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                print(response?.suggestedFilename ?? url.lastPathComponent)
+                print("Finished downloading startimage")
+                
+                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+            
+                
+                DispatchQueue.main.async {
+                self.imageView.image = UIImage(data: imageData!)
+                    konstverkTexter2?.startBild = UIImage(data: imageData!)
+//                startBild.append(UIImage(data: imageData!)!)
+                }
+                
+                
+                print("startimage downloaded and saved")
+                
+            }
+        }
+        
+
 //
     // MARK: - Navigation
 
@@ -327,6 +373,7 @@ var imagess = Images(konstBild: [UIImage()])
             guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
             
             repeat {
                 print("WAIT2")
@@ -428,16 +475,21 @@ var imagess = Images(konstBild: [UIImage()])
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            
+            
             guard konstverkTexter2?.IBMKonstsamling != nil
                 else { print("Inga konstTexter")
                     return
             }
+            
+    
             samlingViewController.konstverkTexterSa = konstverkTexter2
         }
     }
 
     
 }
+
 
 //extension startViewController: KTKBeaconManagerDelegate {
 //    func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
