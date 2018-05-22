@@ -37,7 +37,7 @@ class samlingViewController: UIViewController {
         
         
             self.imageView.image = #imageLiteral(resourceName: "bgImage")
-//            self.activityIndicator.isHidden = true
+            self.activityIndicator.isHidden = true
 //            self.imageView.isHidden = false
         
         
