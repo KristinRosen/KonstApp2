@@ -115,8 +115,12 @@ class ViewController: UIViewController {
             let majorIndex = konstverket!.beaconMajor
             let i4 = konstverkTexter?.beaconMajorValues.index(of: majorIndex)
             
-            self.temaText = (konstverkTexter?.temaTexter[i4!])!
-            print("vån \(temaText!)")
+            if i4 != nil {
+                self.temaText = (konstverkTexter?.temaTexter[i4!])!
+                print("vån \(temaText!)")
+            } else {
+                 self.temaText = "Ingen våning registrerad för konstverket"
+            }
             
             
 //            if konstverket!.beaconMajor == "17261" {

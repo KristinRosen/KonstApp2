@@ -69,7 +69,7 @@ var imagess = Images(konstBild: [UIImage()])
 //    var beaconArray2 = String()
 //
 //
-//    var konstName = [String]()
+    var konstName = [String]()
 //
 //    var konstnarName = [String]()
 //
@@ -122,8 +122,16 @@ var imagess = Images(konstBild: [UIImage()])
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        print("will empty arrays")
 //
+        bildDictionary.removeAll()
+        konstName.removeAll()
+        bildUrl.removeAll()
+        cellArray.removeAll()
 //
+        print("arrays emptied")
+        
 //        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
 //
 //        let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
@@ -180,6 +188,7 @@ var imagess = Images(konstBild: [UIImage()])
 //
 //
                 for bild in konstverkData{
+                    self.konstName.append(bild.namn)
                     self.bildUrl.append(URL(string: bild.bild)!)
                     print("Found \(bild.bild)")
                     //                    self.bildDictionary[bild.bild] = bild.bild
@@ -318,6 +327,14 @@ var imagess = Images(konstBild: [UIImage()])
             guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
+            repeat {
+                print("WAIT2")
+            } while konstName.count != bildUrl.count
+            
+            repeat {
+                print("WAIT3")
+            } while bildDictionary.count != bildUrl.count
             
             for urlen in self.bildUrl {
                 self.myRowKey = urlen
