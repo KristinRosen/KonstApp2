@@ -27,18 +27,16 @@ class samlingViewController: UIViewController {
         // Do any additional setup after loading the view.
         
 //        // start activity indicator + hide image
-//        imageView.isHidden = true
-//        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.startAnimating()
+        imageView.isHidden = true
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         
         //add margins to text views
         text.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
         label.textContainerInset = UIEdgeInsetsMake(16, 10, 5, 10)
         
         
-            self.imageView.image = #imageLiteral(resourceName: "bgImage")
-            self.activityIndicator.isHidden = true
-//            self.imageView.isHidden = false
+
         
         
         
@@ -122,6 +120,9 @@ class samlingViewController: UIViewController {
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             self.imageView.image = UIImage(data: imageData!)
             self.bgImage.image = UIImage(data: imageData!)
+            
+            self.activityIndicator.isHidden = true
+            self.imageView.isHidden = false
             
             print("startimage downloaded and saved")
             
