@@ -202,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0X-a8-5eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1348" y="35.532233883058474"/>
+            <point key="canvasLocation" x="-1343" y="64"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -424,7 +424,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-183.19999999999999" y="35.532233883058474"/>
+            <point key="canvasLocation" x="-97" y="64"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="2Ln-lw-STa">
@@ -613,7 +613,6 @@
                                             <constraint firstAttribute="trailing" secondItem="hky-Uy-sLh" secondAttribute="trailing" id="RKH-V0-B21"/>
                                             <constraint firstItem="vIC-Y3-sN9" firstAttribute="leading" secondItem="ZvS-sP-bLz" secondAttribute="leading" id="ZbP-T5-pRZ"/>
                                             <constraint firstAttribute="trailing" secondItem="vIC-Y3-sN9" secondAttribute="trailing" id="dHk-ro-qFc"/>
-                                            <constraint firstItem="vIC-Y3-sN9" firstAttribute="top" secondItem="hky-Uy-sLh" secondAttribute="bottom" id="e9X-n3-2ir"/>
                                             <constraint firstAttribute="trailing" secondItem="HGw-j2-jsL" secondAttribute="trailing" id="svq-kp-cHG"/>
                                             <constraint firstItem="Zyf-yq-3Yh" firstAttribute="leading" secondItem="ZvS-sP-bLz" secondAttribute="leading" id="vtZ-Hv-Fb5"/>
                                             <constraint firstItem="Zyf-yq-3Yh" firstAttribute="top" secondItem="vIC-Y3-sN9" secondAttribute="bottom" id="wvn-Zh-oD6"/>
