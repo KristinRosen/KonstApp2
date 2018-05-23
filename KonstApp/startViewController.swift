@@ -142,51 +142,6 @@ var imagess = Images(konstBild: [UIImage()])
 //
         print("arrays emptied")
         
-//        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
-//
-//        let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
-//        let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
-//
-//        switch KTKBeaconManager.locationAuthorizationStatus() {
-//        case .notDetermined:
-//            beaconManager.requestLocationAlwaysAuthorization()
-//        case .denied, .restricted: break
-//        // No access to Location Services
-//        case .authorizedWhenInUse: break
-//            // For most iBeacon-based app this type of
-//        // permission is not adequate
-//        case .authorizedAlways:
-//            print("HEJHEJ")
-//
-//
-//            if KTKBeaconManager.isMonitoringAvailable() {
-//
-//                beaconManager.startMonitoring(for: region)
-//
-//                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
-//
-//            }
-//            beaconManager.startRangingBeacons(in: region)
-//            // We will use this later
-//            beaconManager.stopRangingBeacons(in: region)
-//        }
-        
-        
-
-//        print("slutat")
-//
-    
-    }
-
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-        vandrButton.addTextSpacing(spacing: 2.5)
-        allaButton.addTextSpacing(spacing: 2.5)
-        ibmButton.addTextSpacing(spacing: 2.5)
-        
         let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
@@ -258,7 +213,7 @@ var imagess = Images(konstBild: [UIImage()])
                     
                     self.downloadImage2(url: url2)
                 }
-            
+                
                 
                 print(konstverkTexter2)
                 print("KONSTTEXTER SPARADE")
@@ -281,6 +236,53 @@ var imagess = Images(konstBild: [UIImage()])
             }
             }.resume()
 
+        
+//        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
+//
+//        let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
+//        let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
+//
+//        switch KTKBeaconManager.locationAuthorizationStatus() {
+//        case .notDetermined:
+//            beaconManager.requestLocationAlwaysAuthorization()
+//        case .denied, .restricted: break
+//        // No access to Location Services
+//        case .authorizedWhenInUse: break
+//            // For most iBeacon-based app this type of
+//        // permission is not adequate
+//        case .authorizedAlways:
+//            print("HEJHEJ")
+//
+//
+//            if KTKBeaconManager.isMonitoringAvailable() {
+//
+//                beaconManager.startMonitoring(for: region)
+//
+//                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
+//
+//            }
+//            beaconManager.startRangingBeacons(in: region)
+//            // We will use this later
+//            beaconManager.stopRangingBeacons(in: region)
+//        }
+        
+        
+
+//        print("slutat")
+//
+    
+    }
+
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      
+        vandrButton.addTextSpacing(spacing: 2.5)
+        allaButton.addTextSpacing(spacing: 2.5)
+        ibmButton.addTextSpacing(spacing: 2.5)
+        
+        
        
        
 //        beaconMinorValues = ["45", "16222", "28909"]
@@ -374,6 +376,8 @@ var imagess = Images(konstBild: [UIImage()])
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            //prevent segue from happen if all the images have not been saved to the dictionary (function declared below)
+             shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
             
             repeat {
                 print("WAIT2")
@@ -475,6 +479,7 @@ var imagess = Images(konstBild: [UIImage()])
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            //prevent segue from happening if the image has not loaded yet (function declared below)
             shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
             
             
@@ -494,13 +499,16 @@ var imagess = Images(konstBild: [UIImage()])
         
     }
 
+        //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
+        //Segue will happen if this function returns true
         override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
             
-            if konstverkTexter2?.startBild == nil {
+            if konstverkTexter2?.startBild == nil || bildDictionary.count != bildUrl.count {
                 print("------------------------________!segue will not happen!_______-----------------------")
             return false
                 
-                
+//            } else if  imagess?.konstBild.count != konstName.count {
+//                return false
             } else { return true }
         
         }

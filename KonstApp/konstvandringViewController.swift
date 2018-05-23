@@ -113,9 +113,15 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         beaconArray2.removeAll()
         print("BEACONS REMOVED")
         
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        konstBild = (konstBilder?.konstBild)!
+        print("________________???????????????????_______________")
+        print(konstBild)
         
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
@@ -255,10 +261,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         showDetailButton.isHidden = true
         
-        konstBild = (konstBilder?.konstBild)!
-        print("________________???????????????????_______________")
-        print(konstBild)
-        
+       
         //        beaconMinorValues = ["45", "16222", "28909"]
     
         // Do any additional setup after loading the view.
@@ -484,6 +487,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         print(i)
         
         print(konstName[i])
+        
         
         print(konstBild)
         
