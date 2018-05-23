@@ -88,7 +88,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var showDetailLabel: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
-    
+    @IBOutlet weak var stackView: UIStackView!
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
@@ -104,7 +104,12 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         thisIsTheOne = false
         
-        showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 0, 20, 0)
+        //stackView.setCustomSpacing(10, after: showDetailLabel)
+        
+        let verticalSpace = NSLayoutConstraint(item: showDetailLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: showDetailLabel, attribute: .top, multiplier: 1, constant: 20)
+        NSLayoutConstraint.activate([verticalSpace])
+        
+        showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 0, 0, 0)
         
         //nollställ beacon minor- & major-värden
         print("REMOVE BEACONS")
@@ -453,7 +458,13 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             }
             }
             
+            
             beaconDistance.sort { $0 < $1 }
+            
+            guard beaconDistance.first != nil
+                else { print("invalid nearest beacon distance")
+                    return
+            }
             
             let beaconIndex = beaconDistance.first!
             
@@ -503,12 +514,28 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             bgImageView.image = konstBild[i]
         } else { return }
         
-        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
-       
-            showDetailLabel.text = "Du befinner dig vid \(konstName[i])"
+//        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
+//
+            let normalText = "Du befinner dig vid\n"
+        let attribute1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18)]
+            let normalString = NSMutableAttributedString(string: normalText, attributes: attribute1)
+        
+            let boldText = konstName[i]
+            let attribute2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 27)]
+            let boldString = NSMutableAttributedString(string: boldText, attributes: attribute2)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        paragraphStyle.lineSpacing = 4
+        
+        normalString.append(boldString)
+        normalString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, normalString.length))
+        
+        showDetailLabel.attributedText = normalString
+        showDetailLabel.textAlignment = NSTextAlignment.center
             showDetailButton.isHidden = false
-            
-        } else {return}
+//
+//        } else {return}
         
         
         
