@@ -20,7 +20,7 @@ class samlingViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var label: UITextView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     
     override func viewWillAppear(_ animated: Bool) {
         

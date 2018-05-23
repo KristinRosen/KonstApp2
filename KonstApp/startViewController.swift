@@ -470,10 +470,12 @@ var imagess = Images(konstBild: [UIImage()])
                 //return
             //}
            
-        } else if segue.identifier == "ibmKonstsamling" {
+        } else if segue.identifier == "ibmKonstsamling" && konstverkTexter2?.startBild != nil {
             guard let samlingViewController = segue.destination as? samlingViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
+            shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
             
             
             
@@ -485,8 +487,23 @@ var imagess = Images(konstBild: [UIImage()])
     
             samlingViewController.konstverkTexterSa = konstverkTexter2
         }
+//        } else if segue.identifier == "ibmKonstsamling" && konstverkTexter2?.startBild == nil {
+//
+//        }
+            
+        
     }
 
+        override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+            
+            if konstverkTexter2?.startBild == nil {
+                print("------------------------________!segue will not happen!_______-----------------------")
+            return false
+                
+                
+            } else { return true }
+        
+        }
     
 }
 
