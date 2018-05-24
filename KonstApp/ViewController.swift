@@ -150,7 +150,7 @@ class ViewController: UIViewController {
 //            
             
             
-            self.displayString = konstverket!.about[0]
+            self.displayString = konstverket!.about
             self.textView.text = displayString
             
             
@@ -288,7 +288,7 @@ class ViewController: UIViewController {
     /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
     @IBAction func showText1(_ sender: UIButton) {
-        displayString = konstverket!.about[0]
+        displayString = konstverket!.about
         textView.text = displayString
         button1.isSelected = true
         button2.isSelected = false
@@ -326,7 +326,7 @@ class ViewController: UIViewController {
     
     // Change text + select corresponding button when swiping
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == konstverket!.about[0] {
+        if displayString == konstverket!.about {
             displayString = temaText
             textView.leftToRightAnimation()
             textView.text = displayString
@@ -353,7 +353,7 @@ class ViewController: UIViewController {
         }
             
         else {
-            displayString = konstverket!.about[0]
+            displayString = konstverket!.about
             textView.text = displayString
             textView.leftToRightAnimation()
             button1.isSelected = true
@@ -367,7 +367,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
-        if displayString == konstverket!.about[0] {
+        if displayString == konstverket!.about {
             displayString = IBMtext
             textView.rightToLeftAnimation()
             textView.text = displayString
@@ -394,7 +394,7 @@ class ViewController: UIViewController {
         }
             
         else {
-            displayString = konstverket!.about[0]
+            displayString = konstverket!.about
             textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = true

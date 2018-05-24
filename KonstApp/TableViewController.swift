@@ -15,7 +15,7 @@ struct KonstverkData2: Decodable {
     let namn: String
     let konstnar: String
     let bild: String
-    let texter: [String]
+    let texter: String
     let beaconMinor: String
     let beaconMajor: String
 }
@@ -49,7 +49,7 @@ class TableViewController: UITableViewController {
     
     var konstBild = [UIImage()]
     
-    var konstTexter = [[String]]()
+    var konstTexter = [String]()
     
     var MinorValues = [String]()
     

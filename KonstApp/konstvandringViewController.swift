@@ -16,7 +16,7 @@ struct KonstverkData4: Decodable {
     let namn: String
     let konstnar: String
     let bild: String
-    let texter: [String]
+    let texter: String
     let beaconMinor: String
 }
 
@@ -55,9 +55,10 @@ var closestBeaconMinor = String()
 
 class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
+    
     var konstBilder = Images(konstBild: [UIImage()])
     
-    var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: [""], beaconMinor: "", beaconMajor: "")
+    var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: "", beaconMinor: "", beaconMajor: "")
     
     var beaconManager: KTKBeaconManager!
     
@@ -77,7 +78,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     var konstBild = [UIImage()]
     
-    var konstTexter = [[String]]()
+    var konstTexter = [String]()
     
     var beaconMinorValues = [String]()
     
@@ -92,7 +93,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
-    var beaconTexts = [String]()
+    var beaconTexts = String()
     var beaconName = String()
     var beaconArtist = String()
     var beaconBEACON = String()
@@ -103,6 +104,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         thisIsTheOne = false
+        
+        showDetailButton.backgroundColor = .white
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
         
@@ -273,10 +276,17 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    @IBAction func showDetail(_ sender: Any) {
+       
+       showDetailButton.backgroundColor = .lightGray
+    }
+    
+    @IBOutlet weak var showDetail: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in

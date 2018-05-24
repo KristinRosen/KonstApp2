@@ -16,7 +16,7 @@ struct KonstverkData5: Decodable {
     let namn: String
     let konstnar: String
     let bild: String
-    let texter: [String]
+    let texter: String
     let beaconMinor: String
 }
 //
