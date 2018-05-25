@@ -90,6 +90,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var stackView2: UIStackView!
+    
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
@@ -103,6 +106,15 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     var beaconBilden = UIImage()
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        imageView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.color = .gray
+        
+//        if imageView.isHidden == true {
+//            stackView2.centerYAnchor.constraint(equalTo: stackView.centerYAnchor).isActive = true
+//        } else {}
+        
         thisIsTheOne = false
         
         showDetailButton.backgroundColor = .white
@@ -524,6 +536,8 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
         if imageView.image != konstBild[i] {
         imageView.image = konstBild[i]
+            imageView.isHidden = false
+            activityIndicator.isHidden = true
         } else { return }
         
         if bgImageView.image != konstBild[i] {
