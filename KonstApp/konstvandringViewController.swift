@@ -376,9 +376,12 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             }
             print(beaconBEACON)
             
-            repeat {
-                print("FEL KONSTVERK")
-            } while beaconKonstverk?.beaconMinor != closestBeaconMinor
+
+                if beaconKonstverk?.beaconMinor != closestBeaconMinor {
+                    print("FEL KONSTVERK")
+                } else {}
+            
+            
             
             repeat {
                 print("WAIT")
@@ -502,8 +505,11 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         repeat {
             print("har inte hittat alla beaconMinorValues än")
         } while beaconMinorValues.count != konstName.count
+        print(beaconMinorValues)
         
-        i = beaconMinorValues.index(of: closestBeaconMinor)!
+        if beaconMinorValues.contains(closestBeaconMinor) {
+       i = beaconMinorValues.index(of: closestBeaconMinor)!
+        
         
         print(i)
         
@@ -545,7 +551,8 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         showDetailLabel.textAlignment = NSTextAlignment.center
             showDetailButton.isHidden = false
 //
-//        } else {return}
+        } else {print("invalid beacon minor")
+            return}
         
         
         
