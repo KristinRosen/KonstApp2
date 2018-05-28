@@ -108,7 +108,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         imageView.isHidden = true
-        activityIndicator.isHidden = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         activityIndicator.color = .gray
         
 //        if imageView.isHidden == true {
@@ -537,7 +538,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         if imageView.image != konstBild[i] {
         imageView.image = konstBild[i]
             imageView.isHidden = false
-            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
         } else { return }
         
         if bgImageView.image != konstBild[i] {
@@ -546,6 +547,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
 //        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
 //
+           showDetailLabel.textColor = .black
             let normalText = "Du befinner dig vid\n"
         let attribute1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18)]
             let normalString = NSMutableAttributedString(string: normalText, attributes: attribute1)

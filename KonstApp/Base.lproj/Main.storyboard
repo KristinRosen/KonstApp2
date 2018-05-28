@@ -60,6 +60,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="130" id="3XS-Ic-xwq"/>
                                                 </constraints>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
