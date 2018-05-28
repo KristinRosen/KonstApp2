@@ -127,6 +127,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        
+        imageView.image = UIImage.gif(asset: "gif")
+        
         konstBild = (konstBilder?.konstBild)!
         print("________________???????????????????_______________")
         print(konstBild)
@@ -629,3 +632,11 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
     }
 }
 
+extension UIImage {
+    public class func gif(asset: String) -> UIImage? {
+        if let asset = NSDataAsset(name: asset) {
+            return UIImage.gif(asset: asset.data)
+        }
+        return nil
+    }
+}
