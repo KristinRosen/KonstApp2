@@ -14,7 +14,6 @@
 		311CEC51203EF6DB0090C1A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311CEC4F203EF6DB0090C1A7 /* LaunchScreen.storyboard */; };
 		311CEC5C203EF6DB0090C1A7 /* KonstAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */; };
 		315CB502206259DF006CB90E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315CB501206259DF006CB90E /* TableViewController.swift */; };
-		3182B7A220BC2B220025C96E /* KonstApp in Resources */ = {isa = PBXBuildFile; fileRef = 3182B7A120BC2B210025C96E /* KonstApp */; };
 		31C3CC7B20920D3A0043AB99 /* samlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */; };
 		31CE81AF20862F2B00D64A9C /* startViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CE81AE20862F2B00D64A9C /* startViewController.swift */; };
 		391065D520ADAC2600A5867E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391065D420ADAC2500A5867E /* Images.swift */; };
@@ -48,7 +47,6 @@
 		311CEC5B203EF6DB0090C1A7 /* KonstAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstAppTests.swift; sourceTree = "<group>"; };
 		311CEC5D203EF6DB0090C1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315CB501206259DF006CB90E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		3182B7A120BC2B210025C96E /* KonstApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = KonstApp; sourceTree = "<group>"; };
 		31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = samlingViewController.swift; sourceTree = "<group>"; };
 		31CE81AE20862F2B00D64A9C /* startViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startViewController.swift; sourceTree = "<group>"; };
 		391065D420ADAC2500A5867E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */,
 				311CEC4A203EF6DB0090C1A7 /* Main.storyboard */,
 				311CEC4D203EF6DB0090C1A7 /* Assets.xcassets */,
-				3182B7A120BC2B210025C96E /* KonstApp */,
 				311CEC4F203EF6DB0090C1A7 /* LaunchScreen.storyboard */,
 				311CEC52203EF6DB0090C1A7 /* Info.plist */,
 			);
@@ -235,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3182B7A220BC2B220025C96E /* KonstApp in Resources */,
 				311CEC51203EF6DB0090C1A7 /* LaunchScreen.storyboard in Resources */,
 				311CEC4E203EF6DB0090C1A7 /* Assets.xcassets in Resources */,
 				311CEC4C203EF6DB0090C1A7 /* Main.storyboard in Resources */,

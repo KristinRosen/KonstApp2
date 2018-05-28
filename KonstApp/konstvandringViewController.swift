@@ -55,6 +55,7 @@ var closestBeaconMinor = String()
 
 class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
+    let animation = UIImage.animatedImage(with: [#imageLiteral(resourceName: "signal1"), #imageLiteral(resourceName: "signal2"), #imageLiteral(resourceName: "signal3"), #imageLiteral(resourceName: "signal4")], duration: 1.5)
     
     var konstBilder = Images(konstBild: [UIImage()])
     
@@ -105,6 +106,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         thisIsTheOne = false
         
+        imageView.image = nil
+        
+        imageView.contentMode = UIViewContentMode.bottom
+        imageView.image = animation
+        
         showDetailButton.backgroundColor = .white
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
@@ -112,7 +118,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         let verticalSpace = NSLayoutConstraint(item: showDetailLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: showDetailLabel, attribute: .top, multiplier: 1, constant: 20)
         NSLayoutConstraint.activate([verticalSpace])
         
-        showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 10, 0, 10)
         
         //nollställ beacon minor- & major-värden
         print("REMOVE BEACONS")
@@ -127,8 +133,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
+      
+       
         
-        imageView.image = UIImage.gif(asset: "gif")
         
         konstBild = (konstBilder?.konstBild)!
         print("________________???????????????????_______________")
@@ -269,6 +276,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+
         
         showDetailButton.isHidden = true
         
@@ -525,13 +535,14 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             print("beaconbilden är nil")
         } while beaconImage.count < 0
         
-        if imageView.image != konstBild[i] {
+        //if imageView.image != konstBild[i] {
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.image = konstBild[i]
-        } else { return }
+        //} else { return }
         
-        if bgImageView.image != konstBild[i] {
+        //if bgImageView.image != konstBild[i] {
             bgImageView.image = konstBild[i]
-        } else { return }
+       // } else { return }
         
 //        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
 //
@@ -550,6 +561,8 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         normalString.append(boldString)
         normalString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, normalString.length))
         
+        showDetailLabel.textColor = .black
+            
         showDetailLabel.attributedText = normalString
         showDetailLabel.textAlignment = NSTextAlignment.center
             showDetailButton.isHidden = false
@@ -632,11 +645,4 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
     }
 }
 
-extension UIImage {
-    public class func gif(asset: String) -> UIImage? {
-        if let asset = NSDataAsset(name: asset) {
-            return UIImage.gif(asset: asset.data)
-        }
-        return nil
-    }
-}
+
