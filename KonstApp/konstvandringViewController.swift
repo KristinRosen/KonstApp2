@@ -124,6 +124,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         thisIsTheOne = false
         
         imageView.image = nil
+        bgImageView.image = nil
         
         imageView.contentMode = UIViewContentMode.bottom
         imageView.image = animation
