@@ -113,6 +113,14 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         showDetailButton.isHidden = true
         
+        let normalText2 = "Letar efter konstverk..."
+        let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
+        let normalString2 = NSMutableAttributedString(string: normalText2, attributes: attribute3)
+        
+        showDetailLabel.attributedText = normalString2
+        showDetailLabel.textAlignment = NSTextAlignment.center
+        showDetailLabel.textColor = .gray
+        
         thisIsTheOne = false
         
         imageView.image = nil
@@ -149,8 +157,13 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
       
-       
-        
+//        let normalText3 = "Letar efter konstverk..."
+//        let attribute4 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
+//        let normalString3 = NSMutableAttributedString(string: normalText3, attributes: attribute4)
+//
+//        showDetailLabel.text = normalText3
+//        showDetailLabel.textColor = .gray
+//
         
         konstBild = (konstBilder?.konstBild)!
         print("________________???????????????????_______________")
@@ -412,16 +425,23 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             beaconName = konstName[i]
             beaconArtist = konstnarName[i]
             //                    beaconImage = konstBild[i!]
+            beaconBilden = (konstBilder?.konstBild[i])!
             beaconTexts = konstTexter[i]
             beaconBEACON = beaconMinorValues[i]
             beaconBild = bildUrl[i]
             beaconBEACONBEACON = beaconArray2
             
-            if let url = URL(string: beaconBild) {
-                
-                print("kladdkaka2")
-                self.downloadImage(url: url)
-            }
+            if beaconBilden != nil {
+                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
+                print("BEACONKONSTVERK SAVED")
+            } else { print("ingen beaconImage")
+                return}
+//
+//            if let url = URL(string: beaconBild) {
+//
+//                print("kladdkaka2")
+//                self.downloadImage(url: url)
+//            }
             print(beaconBEACON)
             
 
