@@ -103,7 +103,16 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     var beaconBilden = UIImage()
     
+    
+    
+    
+    
+    //MARK: VIEW VILL APPEAR__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!_________!!!!!!!!!
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        showDetailButton.isHidden = true
+        
         thisIsTheOne = false
         
         imageView.image = nil
@@ -130,6 +139,12 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         
     }
+    
+    
+    
+    
+    
+    //MARK: VIEW DID APPEAR__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -274,13 +289,16 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
+    
+    //MARK: VIEW DID LOAD__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
 
         
-        showDetailButton.isHidden = true
+        
         
        
         //        beaconMinorValues = ["45", "16222", "28909"]
@@ -288,6 +306,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         
     }
+    
+    
+    
+    
+    //MARK: ACTIONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     @IBAction func showDetail(_ sender: Any) {
        
@@ -300,6 +323,13 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    
+    
+    
+    
+    //MARK: FUNCTIONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -335,7 +365,12 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - Navigation
+    
+    
+    
+    
+    
+    // MARK: - Navigation__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -419,6 +454,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     
 }
+
+
+
+
+//MARK: BEACONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
 
 extension konstvandringViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
