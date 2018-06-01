@@ -280,15 +280,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-fG-yPC" userLabel="Stack View 1">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="17190.333333333332"/>
                                         <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GOu-3X-X2p">
-                                                <rect key="frame" x="189.66666666666666" y="0.0" width="35" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="2oj-h5-t66"/>
-                                                    <constraint firstAttribute="height" constant="200" id="cci-dn-Y81"/>
-                                                </constraints>
-                                            </activityIndicatorView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-wz-dlL">
-                                                <rect key="frame" x="0.0" y="220" width="0.0" height="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="F1g-wz-dlL" secondAttribute="height" multiplier="1:1" id="deg-VG-hHQ"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="mMy-dd-105"/>
@@ -341,7 +333,6 @@
                                             <constraint firstItem="dXh-f9-fa9" firstAttribute="top" secondItem="Pc8-vY-p9F" secondAttribute="bottom" id="c8g-3u-P08"/>
                                             <constraint firstAttribute="trailing" secondItem="Pc8-vY-p9F" secondAttribute="trailing" id="dfi-0i-HQC"/>
                                             <constraint firstAttribute="trailing" secondItem="dXh-f9-fa9" secondAttribute="trailing" id="i54-zl-y0s"/>
-                                            <constraint firstItem="GOu-3X-X2p" firstAttribute="top" secondItem="S4b-fG-yPC" secondAttribute="top" id="jAs-Tj-O8K"/>
                                             <constraint firstAttribute="trailing" secondItem="AOD-ML-666" secondAttribute="trailing" id="kgy-3g-AjE"/>
                                             <constraint firstItem="Pc8-vY-p9F" firstAttribute="leading" secondItem="S4b-fG-yPC" secondAttribute="leading" id="oPE-me-axa"/>
                                             <constraint firstAttribute="bottom" secondItem="AOD-ML-666" secondAttribute="bottom" id="yUO-eI-FpS"/>
@@ -452,7 +443,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="GOu-3X-X2p" id="Gzg-Xz-kvy"/>
                         <outlet property="bgImageView" destination="vR4-c7-90p" id="DiI-09-uKu"/>
                         <outlet property="button1" destination="eEs-Oh-lOA" id="FqU-67-Jkm"/>
                         <outlet property="button2" destination="2Tn-I7-eD1" id="r7D-kA-ja3"/>

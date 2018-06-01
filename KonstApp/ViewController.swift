@@ -9,7 +9,6 @@
 import UIKit
 import KontaktSDK
 
-
 class ViewController: UIViewController {
     
     struct KonstverkData: Decodable {
@@ -48,7 +47,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bgImageView: UIImageView!
     
     //Activity Indicator
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     
     //Label
     @IBOutlet weak var label: UILabel!
@@ -83,9 +82,9 @@ class ViewController: UIViewController {
         button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         // start activity indicator + hide image
-        imageView.isHidden = true
-        activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.startAnimating()
+//        imageView.isHidden = true
+//        activityIndicatorView.hidesWhenStopped = true
+//        activityIndicatorView.startAnimating()
         
         //add margins to text views
         textView.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
@@ -104,8 +103,8 @@ class ViewController: UIViewController {
             print(konstverket!.photo)
             print([konstverket?.about])
             self.imageView.image = konstverket!.photo
-            self.activityIndicatorView.isHidden = true
-            self.imageView.isHidden = false
+//            self.activityIndicatorView.isHidden = true
+//            self.imageView.isHidden = false
             self.bgImageView.image = konstverket!.photo
             self.title = konstverket!.title
             self.textViewLabel.text = konstverket!.title
