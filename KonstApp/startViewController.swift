@@ -103,6 +103,7 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var ibmButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
         
     var beaconImage = [UIImage]()
 //    var beaconUrl  = String()
@@ -280,6 +281,10 @@ var imagess = Images(konstBild: [UIImage()])
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.isHidden = true
+        activityIndicator.color = UIColor.gray
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
       
         vandrButton.addTextSpacing(spacing: 2.5)
         allaButton.addTextSpacing(spacing: 2.5)
@@ -355,6 +360,8 @@ var imagess = Images(konstBild: [UIImage()])
                 self.imageView.image = UIImage(data: imageData!)
                 self.bgImage.image = UIImage(data: imageData!)
                     konstverkTexter2?.startBild = UIImage(data: imageData!)
+                self.activityIndicator.stopAnimating()
+                self.imageView.isHidden = false
 //                startBild.append(UIImage(data: imageData!)!)
                 }
                 

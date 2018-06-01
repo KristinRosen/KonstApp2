@@ -142,24 +142,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="0tI-MR-yq7">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="270"/>
                             </imageView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqA-Rn-eQd">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="270"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="reW-GG-9ey">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bqd-jK-AUr">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="270"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="JN3-Dx-Vnr">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="402"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                     </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="YMc-Iy-BC9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-nX-G0a" userLabel="Undersök/konstvandring">
-                                        <rect key="frame" x="0.0" y="402" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="0.49531785102739728" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="d4w-nX-G0a" secondAttribute="height" multiplier="4.6:1" id="KZD-5m-aQj"/>
@@ -177,7 +180,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
-                                        <rect key="frame" x="0.0" y="492" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="90" width="414" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="0.80503531678082196" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="C86-Qq-STd" secondAttribute="height" multiplier="4.6:1" id="baM-bf-dr9"/>
@@ -192,7 +195,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4V-O3-s6s">
-                                        <rect key="frame" x="0.0" y="582" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="180" width="414" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="0.94970034246575341" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="t4V-O3-s6s" secondAttribute="height" multiplier="4.6:1" id="c2Y-6G-zcT"/>
@@ -208,8 +211,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="t4V-O3-s6s" secondAttribute="bottom" id="5QD-So-lwP"/>
-                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="JN3-Dx-Vnr" secondAttribute="bottom" constant="3" id="96M-i3-1Py"/>
+                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="JN3-Dx-Vnr" secondAttribute="bottom" id="96M-i3-1Py"/>
+                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="YMc-Iy-BC9" secondAttribute="bottom" id="BKc-dY-h2T"/>
                                     <constraint firstAttribute="trailing" secondItem="d4w-nX-G0a" secondAttribute="trailing" id="FKa-ou-DJd"/>
+                                    <constraint firstAttribute="trailing" secondItem="YMc-Iy-BC9" secondAttribute="trailing" id="GvM-py-X63"/>
+                                    <constraint firstItem="YMc-Iy-BC9" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="N32-h7-6o3"/>
                                     <constraint firstAttribute="trailing" secondItem="JN3-Dx-Vnr" secondAttribute="trailing" id="OhK-DB-tXQ"/>
                                     <constraint firstAttribute="trailing" secondItem="C86-Qq-STd" secondAttribute="trailing" id="R6s-tE-0I9"/>
                                     <constraint firstItem="d4w-nX-G0a" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="SOU-pj-C7m"/>
@@ -218,8 +224,10 @@
                                     <constraint firstItem="t4V-O3-s6s" firstAttribute="top" secondItem="C86-Qq-STd" secondAttribute="bottom" id="d7S-OY-wji"/>
                                     <constraint firstItem="C86-Qq-STd" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="e7f-dP-PJw"/>
                                     <constraint firstAttribute="trailing" secondItem="t4V-O3-s6s" secondAttribute="trailing" id="eJ7-Zp-d0P"/>
+                                    <constraint firstItem="YMc-Iy-BC9" firstAttribute="top" secondItem="Bqd-jK-AUr" secondAttribute="top" id="sC3-gP-aDe"/>
                                     <constraint firstItem="C86-Qq-STd" firstAttribute="top" secondItem="d4w-nX-G0a" secondAttribute="bottom" constant="3" id="sOW-gu-Yu2"/>
                                     <constraint firstItem="JN3-Dx-Vnr" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="x3K-W9-aLu"/>
+                                    <constraint firstItem="YMc-Iy-BC9" firstAttribute="height" secondItem="JN3-Dx-Vnr" secondAttribute="height" id="xVJ-Hu-zlC"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -244,6 +252,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bKG-wU-RLL"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="YMc-Iy-BC9" id="2et-NS-Sot"/>
                         <outlet property="allaButton" destination="C86-Qq-STd" id="2tQ-BC-xdS"/>
                         <outlet property="bgImage" destination="0tI-MR-yq7" id="vuQ-uH-WBr"/>
                         <outlet property="ibmButton" destination="t4V-O3-s6s" id="t2W-85-jUO"/>
