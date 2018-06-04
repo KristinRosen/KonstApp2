@@ -91,6 +91,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var storStackView: UIStackView!
+    @IBOutlet weak var placeholderView: UIView!
+    @IBOutlet weak var animationImageView: UIImageView!
+    @IBOutlet weak var placeholderText: UITextView!
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
@@ -112,6 +116,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         showDetailButton.isHidden = true
+        storStackView.isHidden = true
+        placeholderView.isHidden = false
+        
         
         let normalText2 = "Letar efter konstverk..."
         let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
@@ -126,8 +133,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         imageView.image = nil
         bgImageView.image = nil
         
-        imageView.contentMode = UIViewContentMode.bottom
-        imageView.image = animation
+        //imageView.contentMode = UIViewContentMode.bottom
+        animationImageView.image = animation
         
         showDetailButton.backgroundColor = .white
         
@@ -600,6 +607,10 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         } while beaconImage.count < 0
         
         //if imageView.image != konstBild[i] {
+        placeholderView.isHidden = true
+        storStackView.isHidden = false
+            
+            
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.image = konstBild[i]
         //} else { return }
@@ -635,14 +646,18 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             return}
         
         } else {print("*NO BEACONS*")
-            imageView.image = nil
-            bgImageView.image = nil
             showDetailButton.isHidden = true
-            let normalText4 = "Inga konstverk i närheten"
-            let attribute5 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
-            let normalString4 = NSMutableAttributedString(string: normalText4, attributes: attribute5)
+            storStackView.isHidden = true
+            placeholderView.isHidden = false
             
-            showDetailLabel.attributedText = normalString4
+            animationImageView.image = animation 
+            
+            
+            let normalText2 = "Letar efter konstverk..."
+            let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
+            let normalString2 = NSMutableAttributedString(string: normalText2, attributes: attribute3)
+            
+            showDetailLabel.attributedText = normalString2
             showDetailLabel.textAlignment = NSTextAlignment.center
             showDetailLabel.textColor = .gray
             return

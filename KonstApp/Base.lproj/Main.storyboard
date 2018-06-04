@@ -38,17 +38,29 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hg-KP-Lf3" userLabel="placeholder view">
                                 <rect key="frame" x="20" y="64" width="374" height="672"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="Inga konstverk i närheten" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tiZ-tn-RuR">
-                                        <rect key="frame" x="-20" y="272" width="414" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <stackView opaque="NO" contentMode="center" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4DJ-zy-Ekl">
+                                        <rect key="frame" x="-20" y="-2556" width="0.0" height="5834"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gA3-yI-2tU">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="50"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" text="Letar efter konstverk..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tiZ-tn-RuR">
+                                                <rect key="frame" x="0.0" y="50" width="0.0" height="5784"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="tiZ-tn-RuR" firstAttribute="top" secondItem="gA3-yI-2tU" secondAttribute="bottom" id="RyO-KY-BNs"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="tiZ-tn-RuR" firstAttribute="centerX" secondItem="4hg-KP-Lf3" secondAttribute="centerX" id="JzC-0W-eND"/>
-                                    <constraint firstItem="tiZ-tn-RuR" firstAttribute="centerY" secondItem="4hg-KP-Lf3" secondAttribute="centerY" id="vi2-ni-Va6"/>
+                                    <constraint firstItem="4DJ-zy-Ekl" firstAttribute="centerY" secondItem="4hg-KP-Lf3" secondAttribute="centerY" id="X3L-fz-uJf"/>
+                                    <constraint firstItem="4DJ-zy-Ekl" firstAttribute="centerX" secondItem="4hg-KP-Lf3" secondAttribute="centerX" id="rBS-ds-7Ly"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DyJ-5a-1f8">
@@ -143,12 +155,16 @@
                         <viewLayoutGuide key="safeArea" id="059-nZ-hTD"/>
                     </view>
                     <connections>
+                        <outlet property="animationImageView" destination="gA3-yI-2tU" id="P2E-Lg-rMD"/>
                         <outlet property="bgImageView" destination="vFt-Gg-I2S" id="cZm-HD-PuH"/>
                         <outlet property="imageView" destination="PZ5-Tf-3g8" id="Ryi-qO-7eg"/>
+                        <outlet property="placeholderText" destination="tiZ-tn-RuR" id="QiX-Mx-NON"/>
+                        <outlet property="placeholderView" destination="4hg-KP-Lf3" id="5QC-mB-KGu"/>
                         <outlet property="showDetail" destination="zQc-be-yFs" id="wt6-7L-JEh"/>
                         <outlet property="showDetailButton" destination="zQc-be-yFs" id="2pS-4X-1Fg"/>
                         <outlet property="showDetailLabel" destination="mLm-ux-L02" id="6HC-OL-LpD"/>
                         <outlet property="stackView" destination="A2h-Eg-nc0" id="flF-Jt-8pN"/>
+                        <outlet property="storStackView" destination="DyJ-5a-1f8" id="a7B-H3-BRl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmM-uj-hWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
