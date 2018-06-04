@@ -531,6 +531,9 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
         //        for beacon in beacons {
         
+        
+        if beacons.count > 0 {
+        
         if beacons.first!.rssi != 0 {
             
             validBeacons = beacons
@@ -631,7 +634,19 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         } else {print("invalid beacon minor")
             return}
         
-        
+        } else {print("*NO BEACONS*")
+            imageView.image = nil
+            bgImageView.image = nil
+            showDetailButton.isHidden = true
+            let normalText4 = "Inga konstverk i närheten"
+            let attribute5 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
+            let normalString4 = NSMutableAttributedString(string: normalText4, attributes: attribute5)
+            
+            showDetailLabel.attributedText = normalString4
+            showDetailLabel.textAlignment = NSTextAlignment.center
+            showDetailLabel.textColor = .gray
+            return
+        }
         
         
         
