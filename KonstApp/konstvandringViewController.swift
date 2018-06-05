@@ -143,6 +143,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        //Show the navigation bar in this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         //hide stack view and show placeholder when view appears
@@ -651,7 +653,6 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         //if imageView.image != konstBild[i] {
         placeholderView.isHidden = true
         storStackView.isHidden = false
-            
             
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.image = konstBild[i]

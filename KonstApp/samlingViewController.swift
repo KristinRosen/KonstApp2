@@ -27,6 +27,16 @@ class samlingViewController: UIViewController {
         print("_______________WE WELCOME YOU TO THE KONSTSAMLINGsA_______________")
        print(konstverkTexterSa?.startBild)
         
+        //Show the navigation bar in this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        //make font size adjust to accessibility settings
+        text.font = UIFont.preferredFont(forTextStyle: .body)
+        text.adjustsFontForContentSizeCategory = true
+        
+//        label.font = UIFont.preferredFont(forTextStyle: .body)
+//        label.adjustsFontForContentSizeCategory = true
+        
     }
     
     

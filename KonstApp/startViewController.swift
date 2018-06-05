@@ -72,7 +72,9 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+        @IBOutlet weak var loadingOverlay: UIView!
+        @IBOutlet weak var activityindicator2: UIActivityIndicatorView!
+        
     //VARIABLES
         
     //array of all downloaded titles
@@ -143,6 +145,9 @@ var imagess = Images(konstBild: [UIImage()])
     override func viewWillAppear(_ animated: Bool) {
         
         print("----------------------------Välkommen  ---------------------------------")
+        
+        loadingOverlay.isHidden = true
+        activityindicator2.isHidden = true
         
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -363,7 +368,6 @@ var imagess = Images(konstBild: [UIImage()])
             }
         }
         
-        
         //function to download the front page image from url
         func downloadImage2(url: URL) {
             print("Started downloading2")
@@ -410,18 +414,30 @@ var imagess = Images(konstBild: [UIImage()])
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
                 
-                //prevent segue from happen if all the images have not been saved to the dictionary (function declared below)
-                shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
+//                //prevent segue from happen if all the images have not been saved to the dictionary (function declared below)
+//                shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
+                print("*******SEGUE*******")
+                
+                loadingOverlay.isHidden = false
+                activityindicator2.isHidden = false
                 
                 //wait until all bildUrls have been downloaded
+                
+                repeat {
+                    print("inga bildUrl")
+                } while bildUrl.count < 1
+                
                 repeat {
                     print("WAIT2")
+                    loadingOverlay.isHidden = false
+                    activityindicator2.isHidden = false
                 } while konstName.count != bildUrl.count
-                
                 
                 //wait until alla the images have been added to the "bildDictionary"
                 repeat {
                     print("WAIT3")
+                    loadingOverlay.isHidden = false
+                    activityindicator2.isHidden = false
                 } while bildDictionary.count != bildUrl.count
                 
                 for urlen in self.bildUrl {
@@ -435,15 +451,23 @@ var imagess = Images(konstBild: [UIImage()])
                     print(self.cellArray)
                 }
                 
-                if self.cellArray.count > 0 {
+                repeat {
+                    print("alla konstbilder inte nedladdade än")
+                    loadingOverlay.isHidden = false
+                    activityindicator2.isHidden = false
+                } while cellArray.count != konstName.count
+                
+//                if self.cellArray.count > 0 {
+                    
+                    
                     imagess = Images(konstBild: self.cellArray)
-                } else {print("inga bilder")
-                    return}
+//                } else {print("inga bilder1")
+//                    return}
                 
                 //make sure there are images before continuing
                 guard imagess!.konstBild.count > 0
                     else {
-                        print("inga bilder")
+                        print("inga bilder2")
                         return
                 }
                 
@@ -520,8 +544,8 @@ var imagess = Images(konstBild: [UIImage()])
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
                 
-                //prevent segue from happening if the image has not loaded yet (function declared below)
-                shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
+//                //prevent segue from happening if the image has not loaded yet (function declared below)
+//                shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
                 
                 
                 //make sure the text exists before continuing
@@ -539,19 +563,19 @@ var imagess = Images(konstBild: [UIImage()])
             
         }
 
-        //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
-        //Segue will happen if this function returns true
-        override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-            
-            if konstverkTexter2?.startBild == nil || bildDictionary.count != bildUrl.count {
-                print("------------------------________!segue will not happen!_______-----------------------")
-                return false
-                
-                //            } else if  imagess?.konstBild.count != konstName.count {
-                //                return false
-            } else { return true }
-            
-        }
+//        //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
+//        //Segue will happen if this function returns true
+//        override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//            
+//            if konstverkTexter2?.startBild == nil || bildDictionary.count != bildUrl.count {
+//                print("------------------------________!segue will not happen!_______-----------------------")
+//                return false
+//                
+//                //            } else if  imagess?.konstBild.count != konstName.count {
+//                //                return false
+//            } else { return true }
+//            
+//        }
     
 }//end of class
 

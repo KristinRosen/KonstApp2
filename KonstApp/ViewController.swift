@@ -72,7 +72,20 @@ class ViewController: UIViewController {
     
     var IBMtext: String?
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //make font size adjust to accessibility settings
+        textView.font = UIFont.preferredFont(forTextStyle: .body)
+        textView.adjustsFontForContentSizeCategory = true
+        
+//        textViewLabel.font = UIFont.preferredFont(forTextStyle: .body)
+//        textViewLabel.adjustsFontForContentSizeCategory = true
+//        
+//        textViewlabel2.font = UIFont.preferredFont(forTextStyle: .body)
+//        textViewlabel2.adjustsFontForContentSizeCategory = true
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

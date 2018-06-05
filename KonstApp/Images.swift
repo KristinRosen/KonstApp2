@@ -18,7 +18,6 @@ class Images {
     
     
     //initialization
-    
     init?(konstBild: [UIImage]) {
         
         guard !konstBild.isEmpty else {

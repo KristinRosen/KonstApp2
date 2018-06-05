@@ -85,6 +85,11 @@ class TableViewController: UITableViewController {
     var myRowKey: URL!
     var myRowData = UIImage()
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Show the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -293,10 +298,21 @@ class TableViewController: UITableViewController {
             print(cellArray)
         }
         
+        
         cell.tabelLable.text = self.konstName[indexPath.row]
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
         //        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
         cell.tableImageView.image = cellArray[indexPath.row] as UIImage
+        
+        //make font size adjust to accessibility settings
+        cell.tabelLable.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.tabelLable.adjustsFontForContentSizeCategory = true
+
+        cell.tabelLable2.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.tabelLable2.adjustsFontForContentSizeCategory = true
+
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         
         return cell
@@ -386,3 +402,5 @@ class TableViewController: UITableViewController {
     
     
 }//end of class
+
+
