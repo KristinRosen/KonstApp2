@@ -169,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmM-uj-hWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-788.40579710144937" y="-596.73913043478262"/>
+            <point key="canvasLocation" x="-788" y="-634"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="kAU-aH-QFX">
@@ -577,7 +577,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9j-Mk-WDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1103.2" y="779.46026986506752"/>
+            <point key="canvasLocation" x="-788" y="752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7c3-s1-lus">
@@ -622,7 +622,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-sP-bLz">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="838"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="bgImage" translatesAutoresizingMaskIntoConstraints="NO" id="HGw-j2-jsL">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="315" placeholderIntrinsicHeight="170" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="HGw-j2-jsL">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="399.66666666666669"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="MYa-CD-0go"/>
@@ -701,7 +701,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzv-wW-bnA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184.05797101449278" y="778.53260869565224"/>
+            <point key="canvasLocation" x="-1909" y="779"/>
         </scene>
     </scenes>
     <resources>

@@ -12,6 +12,7 @@ import KontaktSDK
 var isRanging = Bool()
 //var beaconMinor = CLBeaconMinorValue(1)
 
+//structure used to decode json objects "konstverk"
 struct KonstverkData4: Decodable {
     let namn: String
     let konstnar: String
@@ -20,6 +21,7 @@ struct KonstverkData4: Decodable {
     let beaconMinor: String
 }
 
+//structure used to decode json object "konstTexter"
 struct KonstTextData: Decodable {
     let IBMkonstsamling: String
     let temaTexter: [String]
@@ -27,74 +29,100 @@ struct KonstTextData: Decodable {
     let startBild: String
 }
 
-var minorValue = String()
 
+//index value
 var i = Int()
 
-
-
-
+//beacons that don't have 0 as rssi value
 var validBeacons = [CLBeacon]()
 
+//array uset to sort out bacons with 0 as rssi value, and later save the other ones to validBeacons
 var validBeacons2 = [CLBeacon]()
 
-
-var thisIsTheOne = Bool(false)
-
+//KonstTexter class objects used to get pass from previous view
 var konstverkTexter: KonstTexter?
 
-var beaconen = Beacon(minor: "0", major: "0", distance: 0)
-
-var beaconens = [Beacon(minor: "", major: "", distance: 1)]
-
+//array containing rssi values of found beacons
 var beaconDistance = [Int]()
 
-var theOneAndOnly = Beacon(minor: "0", major: "0", distance: 0)
-
+//minor value of the closest beacon
 var closestBeaconMinor = String()
+
+//var theOneAndOnly = Beacon(minor: "0", major: "0", distance: 0)
+//var beaconens = [Beacon(minor: "", major: "", distance: 1)]
+//var beaconen = Beacon(minor: "0", major: "0", distance: 0)
+
 
 class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
+    
+    //MARK: Properties
+    
+    //OUTLETS
+    
+    //stack view containting stackView
+    @IBOutlet weak var storStackView: UIStackView!
+    
+        @IBOutlet weak var stackView: UIStackView!
+    
+            //lable displaying closest artwork name and artist
+            @IBOutlet weak var showDetailLabel: UITextView!
+    
+            @IBOutlet weak var showDetailButton: UIButton!
+    
+            @IBOutlet weak var imageView: UIImageView!
+    
+            @IBOutlet weak var bgImageView: UIImageView!
+    
+  
+    //view containting placeholder animation and text
+    @IBOutlet weak var placeholderView: UIView!
+    @IBOutlet weak var animationImageView: UIImageView!
+    @IBOutlet weak var placeholderText: UITextView!
+    
+    @IBOutlet weak var showDetail: UIButton!
+    
+    
+    //CONSTANTS AND VARIABLES
+    
+    //placeholder animation
     let animation = UIImage.animatedImage(with: [#imageLiteral(resourceName: "signal1"), #imageLiteral(resourceName: "signal2"), #imageLiteral(resourceName: "signal3"), #imageLiteral(resourceName: "signal4")], duration: 1.5)
     
+    //Images class object used to pass images from previous view
     var konstBilder = Images(konstBild: [UIImage()])
     
+    //Konstverk class object used to pass "konstverk" object to the next view
     var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: "", beaconMinor: "", beaconMajor: "")
     
     var beaconManager: KTKBeaconManager!
     
     // minor och major hämtade från beacons
     //minor
-    var beaconArray = [String]()
+    //var beaconArray = [String]()
     
-    //major
+    //major value of closest beacon
     var beaconArray2 = String()
     
-    
+    //aray of downloaded titles
     var konstName = [String]()
     
+    //array of downloaded artist names
     var konstnarName = [String]()
     
+    //array of downloaded image urls
     var bildUrl = [String]()
     
+    //array of downloaded images
     var konstBild = [UIImage()]
     
+    //array of downloaded info texts
     var konstTexter = [String]()
     
+    //array of downloaded minor values
     var beaconMinorValues = [String]()
     
+    //array of downloaded major values
     var beaconMajorValues = [String]()
-    
-    @IBOutlet weak var showDetailButton: UIButton!
-   
-    @IBOutlet weak var showDetailLabel: UITextView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var bgImageView: UIImageView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var storStackView: UIStackView!
-    @IBOutlet weak var placeholderView: UIView!
-    @IBOutlet weak var animationImageView: UIImageView!
-    @IBOutlet weak var placeholderText: UITextView!
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
@@ -115,40 +143,47 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        //hide stack view and show placeholder when view appears
         showDetailButton.isHidden = true
         storStackView.isHidden = true
         placeholderView.isHidden = false
         
-        
+        //set placeholder text + text size
         let normalText2 = "Letar efter konstverk..."
         let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
         let normalString2 = NSMutableAttributedString(string: normalText2, attributes: attribute3)
         
+        //set label text to placeholder text + center label text + set text color
         showDetailLabel.attributedText = normalString2
         showDetailLabel.textAlignment = NSTextAlignment.center
         showDetailLabel.textColor = .gray
         
-        thisIsTheOne = false
-        
+        //remove any images
         imageView.image = nil
         bgImageView.image = nil
         
         //imageView.contentMode = UIViewContentMode.bottom
+        
+        
         animationImageView.image = animation
         
         showDetailButton.backgroundColor = .white
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
         
+        //add vertical space between rows in showDetailLabel
         let verticalSpace = NSLayoutConstraint(item: showDetailLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: showDetailLabel, attribute: .top, multiplier: 1, constant: 20)
         NSLayoutConstraint.activate([verticalSpace])
         
+        //add margins to showDetailLabel
         showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 10, 0, 10)
         
-        //nollställ beacon minor- & major-värden
+        //reset beacon minor & major values
         print("REMOVE BEACONS")
         validBeacons.removeAll()
-        beaconArray.removeAll()
+        //beaconArray.removeAll()
         beaconArray2.removeAll()
         print("BEACONS REMOVED")
         
@@ -178,9 +213,13 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         print(konstBild)
         
         
+        //MARK: Beacon configuration
+        
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
+        //Set UUID string to the UUID of your beacons
         let myProximityUuid = UUID(uuidString: "1b65e4aa-df93-4be7-8054-0308c2587c13")
+        
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
         
         switch KTKBeaconManager.locationAuthorizationStatus() {
@@ -189,12 +228,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         case .denied, .restricted: break
         // No access to Location Services
         case .authorizedWhenInUse: break
-            // For most iBeacon-based app this type of
-        // permission is not adequate
+            // For most iBeacon-based app this type of permission is not adequate
         case .authorizedAlways:
             print("HEJHEJ")
             
-            
+            //search for beacons in the region
             if KTKBeaconManager.isMonitoringAvailable() {
                 
                 beaconManager.startMonitoring(for: region)
@@ -203,7 +241,6 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 
             }
             beaconManager.startRangingBeacons(in: region)
-            // We will use this later
             beaconManager.stopRangingBeacons(in: region)
         }
         
@@ -212,6 +249,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
+        //MARK: Download from ur
+        
+        //download session 1
+        //url which the "konstverk" objects are downloaded from
         let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
@@ -225,7 +266,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             
             do {
                 
-                //decode data + print namn
+                //decode konstverkData
                 let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
                 print(konstverkData[0].namn)
                 print(konstverkData[0].bild)
@@ -233,7 +274,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 print(konstverkData[0].beaconMinor)
                 
                 
-                
+                //add strings to arrays
                 for namn in konstverkData {
                     print("Found \(namn.namn)")
                     print("Found \(namn.konstnar)")
@@ -262,7 +303,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 print(jsonErr)
             }
             }.resume()
+        //end of download session 1
         
+        
+        //download session 2
+        //url which the "konstTexter" object is downloaded from
         let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
@@ -276,12 +321,14 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             
             do {
                 
-                //decode data + print namn
+                //decode konstTextData 
                 let konstverkData2 = try JSONDecoder().decode([KonstTextData].self, from: data)
                 print(konstverkData2[0].IBMkonstsamling)
                 print(konstverkData2[0].temaTexter)
                 print(konstverkData2[0].beaconMajorValues)
                 
+                
+                //add values to KonstTexter class object "konstverkTexter"
                 konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter, beaconMajorValues: konstverkData2[0].beaconMajorValues, startBild: UIImage())
                 
                 print(konstverkTexter)
@@ -304,7 +351,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 print(jsonErr)
             }
             }.resume()
-        
+        //end of download session 2
        
     }
     
@@ -315,12 +362,6 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
-        
-        
-        
        
         //        beaconMinorValues = ["45", "16222", "28909"]
     
@@ -338,7 +379,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
        showDetailButton.backgroundColor = .lightGray
     }
     
-    @IBOutlet weak var showDetail: UIButton!
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

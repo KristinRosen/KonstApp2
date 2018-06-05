@@ -11,6 +11,7 @@ import os.log
 import KontaktSDK
 
 
+//structure used for downloading Json object "konstverk" from url
 struct KonstverkData2: Decodable {
     let namn: String
     let konstnar: String
@@ -20,13 +21,14 @@ struct KonstverkData2: Decodable {
     let beaconMajor: String
 }
 
-struct KonstverkData3 {
-    var name: String
-    var artist: String
-    var image: UIImage
-    var texts: [String]
-}
+//struct KonstverkData3 {
+//    var name: String
+//    var artist: String
+//    var image: UIImage
+//    var texts: [String]
+//}
 
+//structure used for downloading Json object "konstTexter" from url
 struct KonstTextData2: Decodable {
     let IBMkonstsamling: String
     let temaTexter: [String]
@@ -36,24 +38,39 @@ struct KonstTextData2: Decodable {
 
 var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""], startBild: UIImage())
 
-
+//class for table view of all artworks
 class TableViewController: UITableViewController {
     
-    @IBOutlet var konstTableView: UITableView!
     
+    //MARK: Properties
+    
+    //table view
+    @IBOutlet var konstTableView: UITableView!
+  
+    
+    //constants
+    
+    //array of all titles
     var konstName = [String]()
     
+    //array of all artist names
     var konstnarName = [String]()
     
+    //array of all image urls
     var bildUrl = [URL]()
     
+    //array of all downloaded images
     var konstBild = [UIImage()]
     
+    //array of all artworks' texts
     var konstTexter = [String]()
     
+    //array of all artworks' corresponding beacon minor values
     var MinorValues = [String]()
     
+    //array of all artworks' corresponding beacon major values (artworks/beacons on the same floor has the same value here)
     var MajorValues = [String]()
+    
     
     var bildDictionary = [URL: UIImage]()
     
@@ -68,10 +85,12 @@ class TableViewController: UITableViewController {
     var myRowKey: URL!
     var myRowData = UIImage()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("T-J-E-N-A DETTA ÄR TABLEVIEEEEEEEEEEEEEEWNNN-!_!_!_!_!_!_!_!_")
         
+        //configure table view
         func configureTableView() {
             self.konstTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.konstTableView.frame = self.view.bounds
@@ -83,6 +102,9 @@ class TableViewController: UITableViewController {
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
+        //MARK: Download from url
+        
+        //download session 1
         let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
@@ -96,7 +118,7 @@ class TableViewController: UITableViewController {
             
             do {
                 
-                //decode data + print namn
+                //decode konstverkData + print "namn"
                 let konstverkData2 = try JSONDecoder().decode([KonstverkData2].self, from: data)
                 print(konstverkData2[0].namn)
                 print(konstverkData2[0].konstnar)
@@ -142,6 +164,10 @@ class TableViewController: UITableViewController {
                 print(jsonErr)
             }
             }.resume()
+        //end of download session 1
+        
+        
+        //download session 2
         
         let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
@@ -156,7 +182,7 @@ class TableViewController: UITableViewController {
             
             do {
                 
-                //decode data + print namn
+                //decode konstTextData + print "namn"
                 let konstTextData = try JSONDecoder().decode([KonstTextData2].self, from: data)
                 print(konstTextData[0].IBMkonstsamling)
                 print(konstTextData[0].temaTexter)
@@ -184,6 +210,7 @@ class TableViewController: UITableViewController {
                 print(jsonErr)
             }
             }.resume()
+        //end of download session 2
         
     }
     

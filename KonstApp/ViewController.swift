@@ -9,14 +9,15 @@
 import UIKit
 import KontaktSDK
 
+//class for detail view for the artworks
 class ViewController: UIViewController {
     
-    struct KonstverkData: Decodable {
-        let namn: String
-        let bild: String
-        let texter: [String]
-        let beaconMinor: String
-    }
+//    struct KonstverkData: Decodable {
+//        let namn: String
+//        let bild: String
+//        let texter: [String]
+//        let beaconMinor: String
+//    }
     
    var bildUrl = String()
     
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
     //Texts
     @IBOutlet weak var textView: UITextView!
     
+    //Constants
     var konstverket: Konstverk?
     
     var konstverkTexter: KonstTexter?
@@ -70,13 +72,15 @@ class ViewController: UIViewController {
     
     var IBMtext: String?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("!!!!!!!!!!ABC DU E MINA TANKAR!!!!!!!!!!!!!")
+        print("*VIEWCONTROLLER*")
         //print(konstverkTexter?.IBMKonstsamling as! String)
         
-        //set button image views to aspect fit
+        //set button image views content mode to aspect fit
         button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
@@ -95,11 +99,14 @@ class ViewController: UIViewController {
 
         print("!-!-!-!-!-!-!-!-!-!")
         
+        
+        //Make sure konstverket isn't empty
         if konstverket?.title != nil {
 //            if konstverket?.photo.size == CGSize(width: 0, height: 0) {
 //                print("!!!!!!********bilden existerar inte********!!!!!!")
 //                return } else {
             
+            //Load texts and image from konstverket from startViewController
             print(konstverket!.photo)
             print([konstverket?.about])
             self.imageView.image = konstverket!.photo
@@ -111,9 +118,16 @@ class ViewController: UIViewController {
             self.textViewlabel2.text = konstverket!.artistName
             self.IBMtext = (konstverkTexter?.IBMKonstsamling)!
             
+            //set the first page's textView text (that is shown when you enter the viewController)
+            self.displayString = konstverket!.about
+            self.textView.text = displayString
+            
+            //Find index of "konstverket"'s beaconMajor in downloaded list of beacon majors
             let majorIndex = konstverket!.beaconMajor
             let i4 = konstverkTexter?.beaconMajorValues.index(of: majorIndex)
             
+            
+            //find the "temaText" with the same index as beaconMajor in the downloaded array "temaTexter" = "temaText" for the right floor
             if i4 != nil {
                 self.temaText = (konstverkTexter?.temaTexter[i4!])!
                 print("vån \(temaText!)")
@@ -148,9 +162,7 @@ class ViewController: UIViewController {
 //            else { print("okänd beacon major") }
 //            
             
-            
-            self.displayString = konstverket!.about
-            self.textView.text = displayString
+          
             
             
             
@@ -224,6 +236,7 @@ class ViewController: UIViewController {
 //
 //
 //
+        //Make the first button selected and the proper color when you enter the viewController
         button1.isSelected = true
         button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
 
@@ -282,7 +295,7 @@ class ViewController: UIViewController {
   }
  
     
-    //Change text + select corresponding buttons when tapping buttons
+    //Change text + select corresponding buttons when tapping buttons (for all possible cases)
     
     /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
@@ -324,6 +337,7 @@ class ViewController: UIViewController {
     
     
     // Change text + select corresponding button when swiping
+    //...to the right
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = temaText
@@ -365,6 +379,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //...to the left
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = IBMtext
@@ -408,7 +423,7 @@ class ViewController: UIViewController {
     
 }
 
-//Animation
+//Swipe animation
 extension UIView {
     public func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
         // Create a CATransition object
