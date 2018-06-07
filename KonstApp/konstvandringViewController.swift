@@ -88,9 +88,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     //placeholder animation
     let animation = UIImage.animatedImage(with: [#imageLiteral(resourceName: "signal1"), #imageLiteral(resourceName: "signal2"), #imageLiteral(resourceName: "signal3"), #imageLiteral(resourceName: "signal4")], duration: 1.5)
     
-    //Images class object used to pass images from previous view
-    var konstBilder = Images(konstBild: [UIImage()])
-    
+//    //Images class object used to pass images from previous view
+//    var konstBilder = Images(konstBild: [UIImage()])
+//
     //Konstverk class object used to pass "konstverk" object to the next view
     var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: "", beaconMinor: "", beaconMajor: "")
     
@@ -146,7 +146,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     var beaconName = String()
     var beaconArtist = String()
     var beaconBEACON = String()
-    var beaconBild = String()
+    //var beaconBild = String()
     var beaconBEACONBEACON = String()
     
     var beaconBilden = UIImage()
@@ -204,7 +204,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         validBeacons.removeAll()
         //beaconArray.removeAll()
         cellArray.removeAll()
-        beaconArray2.removeAll()
+//        beaconArray2.removeAll()
         print("BEACONS REMOVED")
         
         
@@ -332,11 +332,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         } while self.bildDictionary.count != self.konstName.count
         
         for urlen in self.bildUrl2 {
-            self.myRowKey = urlen
-            self.myRowData = self.bildDictionary[self.myRowKey]!
+//            self.myRowKey = urlen
+            self.myRowData = self.bildDictionary[urlen]!
             
             print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-            print(self.myRowKey)
             print(self.myRowData as Any)
             self.cellArray.append(self.myRowData)
             print("***IMAGE***\(self.cellArray)")
@@ -419,7 +418,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             do {
                 //
                 //decode konstverkData
-                let konstverkData = try JSONDecoder().decode([KonstverkData3].self, from: data)
+                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
                 print(konstverkData[0].namn)
                 print(konstverkData[0].bild)
                 //                print(konstverkData[0].texter)
@@ -578,10 +577,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             ViewController.konstverkTexter = konstverkTexter
             
             guard validBeacons.count > 0
-                else {return //lägg till "placeholder-konstverk"
-            }
+                else {return}
             
-            guard beaconArray2.count > 0
+            guard beaconArray2 != ""
                 else {return}
             
             
@@ -622,6 +620,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
 
                 if beaconKonstverk?.beaconMinor != closestBeaconMinor {
                     print("FEL KONSTVERK")
+                    return
                 } else {}
             
             
@@ -638,7 +637,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
                 print(ViewController.konstverket!)
                 
-            }
+            } else {}
             
             // } else {print("inga beacons i beaconArray")
             //return

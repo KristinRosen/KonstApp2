@@ -12,14 +12,14 @@ import UIKit
 //var isRanging = Bool()
 ////var beaconMinor = CLBeaconMinorValue(1)
 
-//structure used to decode json objects "konstverk"
-struct KonstverkData3: Decodable {
-    let namn: String
-    let konstnar: String
-    let bild: String
-    let texter: String
-    let beaconMinor: String
-}
+////structure used to decode json objects "konstverk"
+//struct KonstverkData3: Decodable {
+//    let namn: String
+//    let konstnar: String
+//    let bild: String
+//    let texter: String
+//    let beaconMinor: String
+//}
 
 //structure used to decode json object "konstTexter"
 struct KonstTextData3: Decodable {
@@ -72,29 +72,28 @@ var imagess = Images(konstBild: [UIImage()])
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-        @IBOutlet weak var loadingOverlay: UIView!
-        @IBOutlet weak var activityindicator2: UIActivityIndicatorView!
+
         
     //VARIABLES
         
-    //array of all downloaded titles
-    var konstName = [String]()
-        
-    //array of all downloaded image urls
-    var bildUrl = [URL]()
-
-        var bildDictionary = [URL: UIImage]()
-        
-        var keyList:[URL] {
-            get{
-                return [URL](self.bildDictionary.keys)
-            }
-        }
-        
-    var cellArray = [UIImage]()
-        
-    var myRowKey: URL!
-    var myRowData = UIImage()
+//    //array of all downloaded titles
+//    var konstName = [String]()
+//
+//    //array of all downloaded image urls
+//    var bildUrl = [URL]()
+//
+//        var bildDictionary = [URL: UIImage]()
+//
+//        var keyList:[URL] {
+//            get{
+//                return [URL](self.bildDictionary.keys)
+//            }
+//        }
+//
+//    var cellArray = [UIImage]()
+//
+//    var myRowKey: URL!
+//    var myRowData = UIImage()
         
 
 //var beaconBilden = UIImage()
@@ -146,21 +145,19 @@ var imagess = Images(konstBild: [UIImage()])
         
         print("----------------------------Välkommen  ---------------------------------")
         
-        loadingOverlay.isHidden = true
-        activityindicator2.isHidden = true
         
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        print("will empty arrays")
-//
-        //empty all arrays
-        bildDictionary.removeAll()
-        konstName.removeAll()
-        bildUrl.removeAll()
-        cellArray.removeAll()
-//
-        print("arrays emptied")
+//        print("will empty arrays")
+////
+//        //empty all arrays
+//        bildDictionary.removeAll()
+//        konstName.removeAll()
+//        bildUrl.removeAll()
+//        cellArray.removeAll()
+////
+//        print("arrays emptied")
         
         
         //MARK: Download from url
@@ -218,54 +215,54 @@ var imagess = Images(konstBild: [UIImage()])
             }.resume()
         //end of download session 1
         
-        //download session 2
-        //url which the "konstverk" objects are downloaded from
-        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
-        guard let url = URL(string: jsonUrlString) else
-        { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
-            guard let data = data else { return }
-            //
-            //
-            do {
-                //
-                //decode konstverkData 
-                let konstverkData = try JSONDecoder().decode([KonstverkData3].self, from: data)
-                print(konstverkData[0].namn)
-                print(konstverkData[0].bild)
-                //                print(konstverkData[0].texter)
-                //                print(konstverkData[0].beaconMinor)
-                //
-                //
-                //
-                
-                //add strings to arrays + download images
-                for bild in konstverkData{
-                    self.konstName.append(bild.namn)
-                    self.bildUrl.append(URL(string: bild.bild)!)
-                    print("Found \(bild.bild)")
-                    //                    self.bildDictionary[bild.bild] = bild.bild
-                    //                    print(self.bildDictionary)
-                    if let url = URL(string: bild.bild) {
-                        print("kladdkaka")
-                        self.downloadImage(url: url)
-                    }
-                }
-                //
-                
-                
-            } catch let jsonErr {
-                print(jsonErr)
-                
-            }
-            
-            
-            }.resume()
-        //end of download session 2
+//        //download session 2
+//        //url which the "konstverk" objects are downloaded from
+//        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+//        guard let url = URL(string: jsonUrlString) else
+//        { return }
+//
+//        URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            //perhaps check err
+//            //also perhaps check response status 200 OK
+//
+//            guard let data = data else { return }
+//            //
+//            //
+//            do {
+//                //
+//                //decode konstverkData
+//                let konstverkData = try JSONDecoder().decode([KonstverkData3].self, from: data)
+//                print(konstverkData[0].namn)
+//                print(konstverkData[0].bild)
+//                //                print(konstverkData[0].texter)
+//                //                print(konstverkData[0].beaconMinor)
+//                //
+//                //
+//                //
+//
+//                //add strings to arrays + download images
+//                for bild in konstverkData{
+//                    self.konstName.append(bild.namn)
+//                    self.bildUrl.append(URL(string: bild.bild)!)
+//                    print("Found \(bild.bild)")
+//                    //                    self.bildDictionary[bild.bild] = bild.bild
+//                    //                    print(self.bildDictionary)
+//                    if let url = URL(string: bild.bild) {
+//                        print("kladdkaka")
+//                        self.downloadImage(url: url)
+//                    }
+//                }
+//                //
+//
+//
+//            } catch let jsonErr {
+//                print(jsonErr)
+//
+//            }
+//
+//
+//            }.resume()
+//        //end of download session 2
         
         
 
@@ -342,31 +339,31 @@ var imagess = Images(konstBild: [UIImage()])
             }.resume()
     }
 
-        //function to download images for all the artworks from url
-        func downloadImage(url: URL) {
-            print("Started downloading")
-            
-            getDataFromUrl(url: url) {
-                data, response, error in
-                guard let data = data, error == nil else { return }
-                
-                print(response?.suggestedFilename ?? url.lastPathComponent)
-                print("Finished downloading")
-                
-                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-                
-                
-                
-                //VAD HÄNDER HÄR????
-                print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
-                self.bildDictionary[url] = UIImage(data: imageData as Data!)!
-                print(self.bildDictionary)
-                
-                
-                print("image downloaded and saved")
-                
-            }
-        }
+//        //function to download images for all the artworks from url
+//        func downloadImage(url: URL) {
+//            print("Started downloading")
+//
+//            getDataFromUrl(url: url) {
+//                data, response, error in
+//                guard let data = data, error == nil else { return }
+//
+//                print(response?.suggestedFilename ?? url.lastPathComponent)
+//                print("Finished downloading")
+//
+//                let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+//
+//
+//
+//                //VAD HÄNDER HÄR????
+//                print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+//                self.bildDictionary[url] = UIImage(data: imageData as Data!)!
+//                print(self.bildDictionary)
+//
+//
+//                print("image downloaded and saved")
+//
+//            }
+//        }
         
         //function to download the front page image from url
         func downloadImage2(url: URL) {
@@ -418,20 +415,16 @@ var imagess = Images(konstBild: [UIImage()])
 //                shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
                 print("*******SEGUE*******")
                 
-                loadingOverlay.isHidden = false
-                activityindicator2.isHidden = false
                 
                 //wait until all bildUrls have been downloaded
                 
-                repeat {
-                    print("inga bildUrl")
-                } while bildUrl.count < 1
-                
-                repeat {
-                    print("WAIT2")
-                    loadingOverlay.isHidden = false
-                    activityindicator2.isHidden = false
-                } while konstName.count != bildUrl.count
+//                repeat {
+//                    print("inga bildUrl")
+//                } while bildUrl.count < 1
+//                
+//                repeat {
+//                    print("WAIT2")
+//                } while konstName.count != bildUrl.count
                 
                 //wait until alla the images have been added to the "bildDictionary"
 //                repeat {
