@@ -434,45 +434,45 @@ var imagess = Images(konstBild: [UIImage()])
                 } while konstName.count != bildUrl.count
                 
                 //wait until alla the images have been added to the "bildDictionary"
-                repeat {
-                    print("WAIT3")
-                    loadingOverlay.isHidden = false
-                    activityindicator2.isHidden = false
-                } while bildDictionary.count != bildUrl.count
+//                repeat {
+//                    print("WAIT3")
+//                    loadingOverlay.isHidden = false
+//                    activityindicator2.isHidden = false
+//                } while bildDictionary.count != bildUrl.count
                 
-                for urlen in self.bildUrl {
-                    self.myRowKey = urlen
-                    self.myRowData = self.bildDictionary[self.myRowKey]!
-                    
-                    print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-                    print(self.myRowKey)
-                    print(self.myRowData as Any)
-                    self.cellArray.append(self.myRowData)
-                    print(self.cellArray)
-                }
+//                for urlen in self.bildUrl {
+//                    self.myRowKey = urlen
+//                    self.myRowData = self.bildDictionary[self.myRowKey]!
+//
+//                    print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+//                    print(self.myRowKey)
+//                    print(self.myRowData as Any)
+//                    self.cellArray.append(self.myRowData)
+//                    print(self.cellArray)
+//                }
                 
-                repeat {
-                    print("alla konstbilder inte nedladdade än")
-                    loadingOverlay.isHidden = false
-                    activityindicator2.isHidden = false
-                } while cellArray.count != konstName.count
+//                repeat {
+//                    print("alla konstbilder inte nedladdade än")
+//                    loadingOverlay.isHidden = false
+//                    activityindicator2.isHidden = false
+//                } while cellArray.count != konstName.count
                 
 //                if self.cellArray.count > 0 {
                     
                     
-                    imagess = Images(konstBild: self.cellArray)
+                    //imagess = Images(konstBild: self.cellArray)
 //                } else {print("inga bilder1")
 //                    return}
                 
                 //make sure there are images before continuing
-                guard imagess!.konstBild.count > 0
-                    else {
-                        print("inga bilder2")
-                        return
-                }
+//                guard imagess!.konstBild.count > 0
+//                    else {
+//                        print("inga bilder2")
+//                        return
+//                }
                 
                 // Pass the downloaded images for all artworks to the new view controller
-                konstvandringViewController.konstBilder = imagess
+//                konstvandringViewController.konstBilder = imagess
                 
                 
                 //            guard konstverkTexter?.IBMKonstsamling != nil

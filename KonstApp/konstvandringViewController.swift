@@ -124,6 +124,22 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     //array of downloaded major values
     var beaconMajorValues = [String]()
     
+    //array of all downloaded image urls
+    var bildUrl2 = [URL]()
+    
+    var bildDictionary = [URL: UIImage]()
+    
+    var keyList:[URL] {
+        get{
+            return [URL](self.bildDictionary.keys)
+        }
+    }
+    
+    var cellArray = [UIImage]()
+    
+    var myRowKey: URL!
+    var myRowData = UIImage()
+    
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
     var beaconTexts = String()
@@ -172,6 +188,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         animationImageView.image = animation
         
         showDetailButton.backgroundColor = .white
+        showDetailButton.layer.cornerRadius = 4
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
         
@@ -186,8 +203,117 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         print("REMOVE BEACONS")
         validBeacons.removeAll()
         //beaconArray.removeAll()
+        cellArray.removeAll()
         beaconArray2.removeAll()
         print("BEACONS REMOVED")
+        
+        
+        
+        //MARK: Download from url
+        
+        
+        
+        //        //download session 1
+        //        //url which the "konstverk" objects are downloaded from
+        //        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        //        guard let url = URL(string: jsonUrlString) else
+        //        { return }
+        //
+        //        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        //            //perhaps check err
+        //            //also perhaps check response status 200 OK
+        //
+        //            guard let data = data else { return }
+        //
+        //
+        //            do {
+        //
+        //                //decode konstverkData
+        //                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
+        //                print(konstverkData[0].namn)
+        //                print(konstverkData[0].bild)
+        //                print(konstverkData[0].texter)
+        //                print(konstverkData[0].beaconMinor)
+        //
+        //
+        //                //add strings to arrays
+        //                for namn in konstverkData {
+        //                    print("Found \(namn.namn)")
+        //                    print("Found \(namn.konstnar)")
+        //                    print("Found \(namn.texter)")
+        //                    print("Found \(namn.beaconMinor)")
+        //                    self.konstName.append(namn.namn)
+        //                    self.konstnarName.append(namn.konstnar)
+        //                    self.konstTexter.append(namn.texter)
+        //                    self.beaconMinorValues.append(namn.beaconMinor)
+        //                    self.bildUrl.append(namn.bild)
+        //
+        //
+        //
+        //                    //                    if let url = URL(string: namn.bild) {
+        //                    //
+        //                    //                        print("kladdkaka2")
+        //                    //                        self.downloadImage(url: url)
+        //                    //
+        //                    //                            }
+        //                }
+        //
+        //
+        //
+        //
+        //            } catch let jsonErr {
+        //                print(jsonErr)
+        //            }
+        //            }.resume()
+        //        //end of download session 1
+        
+        
+        //download session 2
+        //url which the "konstTexter" object is downloaded from
+        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        guard let url2 = URL(string: jsonUrlString2) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url2) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            
+            
+            do {
+                
+                //decode konstTextData
+                let konstverkData2 = try JSONDecoder().decode([KonstTextData].self, from: data)
+                print(konstverkData2[0].IBMkonstsamling)
+                print(konstverkData2[0].temaTexter)
+                print(konstverkData2[0].beaconMajorValues)
+                
+                
+                //add values to KonstTexter class object "konstverkTexter"
+                konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter, beaconMajorValues: konstverkData2[0].beaconMajorValues, startBild: UIImage())
+                
+                print(konstverkTexter)
+                print("KONSTTEXTER SPARADE")
+                
+                
+                
+                //                    if let url = URL(string: namn.bild) {
+                //
+                //                        print("kladdkaka2")
+                //                        self.downloadImage(url: url)
+                //
+                //                            }
+                
+                
+                
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+        //end of download session 2
         
         
         
@@ -201,7 +327,21 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-      
+        repeat {
+            print("hejdå")
+        } while self.bildDictionary.count != self.konstName.count
+        
+        for urlen in self.bildUrl2 {
+            self.myRowKey = urlen
+            self.myRowData = self.bildDictionary[self.myRowKey]!
+            
+            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+            print(self.myRowKey)
+            print(self.myRowData as Any)
+            self.cellArray.append(self.myRowData)
+            print("***IMAGE***\(self.cellArray)")
+        }
+        
 //        let normalText3 = "Letar efter konstverk..."
 //        let attribute4 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
 //        let normalString3 = NSMutableAttributedString(string: normalText3, attributes: attribute4)
@@ -210,10 +350,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
 //        showDetailLabel.textColor = .gray
 //
         
-        konstBild = (konstBilder?.konstBild)!
-        print("________________???????????????????_______________")
-        print(konstBild)
-        
+//        konstBild = (konstBilder?.konstBild)!
+//        print("________________???????????????????_______________")
+//        print(konstBild)
+//
         
         //MARK: Beacon configuration
         
@@ -251,110 +391,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         print("slutat")
         
-        //MARK: Download from ur
-        
-        //download session 1
-        //url which the "konstverk" objects are downloaded from
-        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
-        guard let url = URL(string: jsonUrlString) else
-        { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
-            guard let data = data else { return }
-            
-            
-            do {
-                
-                //decode konstverkData
-                let konstverkData = try JSONDecoder().decode([KonstverkData4].self, from: data)
-                print(konstverkData[0].namn)
-                print(konstverkData[0].bild)
-                print(konstverkData[0].texter)
-                print(konstverkData[0].beaconMinor)
-                
-                
-                //add strings to arrays
-                for namn in konstverkData {
-                    print("Found \(namn.namn)")
-                    print("Found \(namn.konstnar)")
-                    print("Found \(namn.texter)")
-                    print("Found \(namn.beaconMinor)")
-                    self.konstName.append(namn.namn)
-                    self.konstnarName.append(namn.konstnar)
-                    self.konstTexter.append(namn.texter)
-                    self.beaconMinorValues.append(namn.beaconMinor)
-                    self.bildUrl.append(namn.bild)
-                    
-                    
-                    
-                    //                    if let url = URL(string: namn.bild) {
-                    //
-                    //                        print("kladdkaka2")
-                    //                        self.downloadImage(url: url)
-                    //
-                    //                            }
-                }
-                
-                
-                
-                
-            } catch let jsonErr {
-                print(jsonErr)
-            }
-            }.resume()
-        //end of download session 1
         
         
-        //download session 2
-        //url which the "konstTexter" object is downloaded from
-        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
-        guard let url2 = URL(string: jsonUrlString2) else
-        { return }
-        
-        URLSession.shared.dataTask(with: url2) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
-            guard let data = data else { return }
-            
-            
-            do {
-                
-                //decode konstTextData 
-                let konstverkData2 = try JSONDecoder().decode([KonstTextData].self, from: data)
-                print(konstverkData2[0].IBMkonstsamling)
-                print(konstverkData2[0].temaTexter)
-                print(konstverkData2[0].beaconMajorValues)
-                
-                
-                //add values to KonstTexter class object "konstverkTexter"
-                konstverkTexter = KonstTexter(IBMKonstsamling: konstverkData2[0].IBMkonstsamling, temaTexter: konstverkData2[0].temaTexter, beaconMajorValues: konstverkData2[0].beaconMajorValues, startBild: UIImage())
-                
-                print(konstverkTexter)
-                print("KONSTTEXTER SPARADE")
-                
-                
-                
-                //                    if let url = URL(string: namn.bild) {
-                //
-                //                        print("kladdkaka2")
-                //                        self.downloadImage(url: url)
-                //
-                //                            }
-                
-                
-                
-                
-                
-            } catch let jsonErr {
-                print(jsonErr)
-            }
-            }.resume()
-        //end of download session 2
-       
     }
     
     
@@ -365,9 +403,66 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        //download session 2
+        //url which the "konstverk" objects are downloaded from
+        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        guard let url = URL(string: jsonUrlString) else
+        { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //perhaps check err
+            //also perhaps check response status 200 OK
+            
+            guard let data = data else { return }
+            //
+            //
+            do {
+                //
+                //decode konstverkData
+                let konstverkData = try JSONDecoder().decode([KonstverkData3].self, from: data)
+                print(konstverkData[0].namn)
+                print(konstverkData[0].bild)
+                //                print(konstverkData[0].texter)
+                //                print(konstverkData[0].beaconMinor)
+                //
+                //
+                //
+                
+                //add strings to arrays + download images
+                for bild in konstverkData{
+                    self.konstName.append(bild.namn)
+                    self.beaconMinorValues.append(bild.beaconMinor)
+                    self.konstnarName.append(bild.konstnar)
+                    self.konstTexter.append(bild.texter)
+                    self.bildUrl2.append(URL(string: bild.bild)!)
+                    print("Found \(bild.bild)")
+                    //                    self.bildDictionary[bild.bild] = bild.bild
+                    //                    print(self.bildDictionary)
+                    if let url = URL(string: bild.bild) {
+                        print("kladdkaka!")
+                        self.downloadImage(url: url)
+                    }
+                }
+                
+               
+                //
+                
+                
+            } catch let jsonErr {
+                print(jsonErr)
+                
+            }
+            
+            
+            }.resume()
+        //end of download session 2
+        
         //        beaconMinorValues = ["45", "16222", "28909"]
     
         // Do any additional setup after loading the view.
+        
+       
+
         
     }
     
@@ -402,9 +497,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             }.resume()
     }
     
+    
+    //function to download images for all the artworks from url
     func downloadImage(url: URL) {
         print("Started downloading")
-        
         
         getDataFromUrl(url: url) {
             data, response, error in
@@ -415,20 +511,46 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             
-            self.beaconImage = [(UIImage(data: imageData as Data!)!)]
             
-            self.beaconBilden = self.beaconImage[0]
             
-            print(self.beaconBilden)
+            //VAD HÄNDER HÄR????
+            print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+            self.bildDictionary[url] = UIImage(data: imageData as Data!)!
+            print(self.bildDictionary)
+            
+            
             print("image downloaded and saved")
             
-            if self.beaconImage.count > 0 {
-                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
-                print("BEACONKONSTVERK SAVED")
-            } else { print("ingen beaconImage")
-                return}
         }
     }
+    
+//    func downloadImage(url: URL) {
+//        print("Started downloading")
+//
+//
+//        getDataFromUrl(url: url) {
+//            data, response, error in
+//            guard let data = data, error == nil else { return }
+//
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Finished downloading")
+//
+//            let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
+//
+//            self.beaconImage = [(UIImage(data: imageData as Data!)!)]
+//
+//            self.beaconBilden = self.beaconImage[0]
+//
+//            print(self.beaconBilden)
+//            print("image downloaded and saved")
+//
+//            if self.beaconImage.count > 0 {
+//                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
+//                print("BEACONKONSTVERK SAVED")
+//            } else { print("ingen beaconImage")
+//                return}
+//        }
+//    }
     
     
     
@@ -477,10 +599,11 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             beaconName = konstName[i]
             beaconArtist = konstnarName[i]
             //                    beaconImage = konstBild[i!]
-            beaconBilden = (konstBilder?.konstBild[i])!
+            //beaconBilden = (konstBilder?.konstBild[i])!
+            beaconBilden = cellArray[i]
             beaconTexts = konstTexter[i]
             beaconBEACON = beaconMinorValues[i]
-            beaconBild = bildUrl[i]
+            //beaconBild = bildUrl[i]
             beaconBEACONBEACON = beaconArray2
             
             if beaconBilden != nil {
@@ -645,21 +768,21 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
         
         print(konstBild)
+            
+            
+            if cellArray.count == konstName.count {
         
-        repeat {
-            print("beaconbilden är nil")
-        } while beaconImage.count < 0
         
         //if imageView.image != konstBild[i] {
         placeholderView.isHidden = true
         storStackView.isHidden = false
             
         imageView.contentMode = UIViewContentMode.scaleAspectFill
-        imageView.image = konstBild[i]
+        imageView.image = cellArray[i]
         //} else { return }
         
         //if bgImageView.image != konstBild[i] {
-            bgImageView.image = konstBild[i]
+            bgImageView.image = cellArray[i]
        // } else { return }
         
 //        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
@@ -684,6 +807,10 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         showDetailLabel.attributedText = normalString
         showDetailLabel.textAlignment = NSTextAlignment.center
             showDetailButton.isHidden = false
+                
+            } else {print("inte laddat ner alla bilder än \(cellArray)")
+                return
+            }
 //
         } else {print("invalid beacon minor")
             return}
