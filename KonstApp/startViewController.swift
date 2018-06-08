@@ -310,7 +310,7 @@ var imagess = Images(konstBild: [UIImage()])
         
         //setup for when the view loads
         imageView.isHidden = true
-        activityIndicator.color = UIColor.gray
+        activityIndicator.color = UIColor.white
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
       

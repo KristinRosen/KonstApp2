@@ -17,6 +17,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var tableImageView: UIImageView!
     @IBOutlet weak var tabelLable: UILabel!
     @IBOutlet weak var tabelLable2: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 
     override func awakeFromNib() {

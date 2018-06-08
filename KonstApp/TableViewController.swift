@@ -304,6 +304,10 @@ class TableViewController: UITableViewController {
             tableView.estimatedRowHeight = 100
             tableView.rowHeight = UITableViewAutomaticDimension
             
+            cell.activityIndicator.color = UIColor.white
+            cell.activityIndicator.hidesWhenStopped = true
+            cell.activityIndicator.startAnimating()
+            
             
             return cell
         }
@@ -324,6 +328,8 @@ class TableViewController: UITableViewController {
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
         //        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
         cell.tableImageView.image = cellArray[indexPath.row] as UIImage
+        
+        cell.activityIndicator.stopAnimating()
         
         //make font size adjust to accessibility settings
         cell.tabelLable.font = UIFont.preferredFont(forTextStyle: .body)
