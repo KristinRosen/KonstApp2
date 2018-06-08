@@ -68,7 +68,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             //lable displaying closest artwork name and artist
             @IBOutlet weak var showDetailLabel: UITextView!
     
-            @IBOutlet weak var showDetailButton: UIButton!
+//            @IBOutlet weak var showDetailButton: UIButton!
     
             @IBOutlet weak var imageView: UIImageView!
     
@@ -164,7 +164,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         //hide stack view and show placeholder when view appears
-        showDetailButton.isHidden = true
+//        showDetailButton.isHidden = true
         storStackView.isHidden = true
         placeholderView.isHidden = false
         
@@ -187,8 +187,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         animationImageView.image = animation
         
-        showDetailButton.backgroundColor = .white
-        showDetailButton.layer.cornerRadius = 4
+//        showDetailButton.backgroundColor = .white
+//        showDetailButton.layer.cornerRadius = 4
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
         
@@ -470,10 +470,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: ACTIONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
-    @IBAction func showDetail(_ sender: Any) {
-       
-       showDetailButton.backgroundColor = .lightGray
-    }
+//    @IBAction func showDetail(_ sender: Any) {
+//
+////       showDetailButton.backgroundColor = .lightGray
+//    }
     
     
     
@@ -805,7 +805,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             
         showDetailLabel.attributedText = normalString
         showDetailLabel.textAlignment = NSTextAlignment.center
-            showDetailButton.isHidden = false
+//            showDetailButton.isHidden = false
                 
             } else {print("inte laddat ner alla bilder än \(cellArray)")
                 return
@@ -815,7 +815,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             return}
         
         } else {print("*NO BEACONS*")
-            showDetailButton.isHidden = true
+//            showDetailButton.isHidden = true
             storStackView.isHidden = true
             placeholderView.isHidden = false
             
