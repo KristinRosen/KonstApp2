@@ -38,6 +38,8 @@ struct KonstTextData2: Decodable {
 
 var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""], startBild: UIImage())
 
+var i2 = 5
+
 //class for table view of all artworks
 class TableViewController: UITableViewController {
     
@@ -49,6 +51,12 @@ class TableViewController: UITableViewController {
   
     
     //constants
+    
+    //placeholders
+    
+    var placeholderBilder = Array(repeating: #imageLiteral(resourceName: "defaultPicture"), count: i2)
+    var placeholderText1 = Array(repeating: "", count: i2)
+    var placeholderText2 = Array(repeating: "", count: i2)
     
     //array of all titles
     var konstName = [String]()
@@ -144,6 +152,7 @@ class TableViewController: UITableViewController {
                     self.MinorValues.append(namn.beaconMinor)
                     self.MajorValues.append(namn.beaconMajor)
                     self.bildUrl.append(URL(string: namn.bild)!)
+                    i2 = self.konstName.count
                 }
                 
                 print(self.konstName)
@@ -274,9 +283,9 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if bildDictionary.count == konstName.count {
+//        if bildDictionary.count == konstName.count {
             return konstName.count
-        } else {print("AAAAASAVENJAAABABABISHIMAMA"); return 0}
+//        } else {print("AAAAASAVENJAAABABABISHIMAMA"); return 0}
         
     }
     
@@ -287,17 +296,29 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        while self.bildDictionary.count != self.konstName.count {
+            cell.tabelLable.text = placeholderText1[indexPath.row]
+            cell.tabelLable2.text = placeholderText2[indexPath.row]
+            cell.tableImageView.image = placeholderBilder[indexPath.row] as UIImage
+            print("Inte laddat än")
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableViewAutomaticDimension
+            
+            
+            return cell
+        }
+        
+        
         for urlen in bildUrl {
-            self.myRowKey = urlen
-            self.myRowData = self.bildDictionary[myRowKey]!
+//            self.myRowKey = urlen
+            self.myRowData = self.bildDictionary[urlen]!
             
             print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-            print(myRowKey)
+//            print(myRowKey)
             print(myRowData as Any)
             cellArray.append(myRowData)
             print(cellArray)
         }
-        
         
         cell.tabelLable.text = self.konstName[indexPath.row]
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
