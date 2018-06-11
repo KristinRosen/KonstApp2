@@ -19,6 +19,7 @@ struct KonstverkData4: Decodable {
     let bild: String
     let texter: String
     let beaconMinor: String
+    let beaconMajor: String
 }
 
 //structure used to decode json object "konstTexter"
@@ -48,6 +49,14 @@ var beaconDistance = [Int]()
 //minor value of the closest beacon
 var closestBeaconMinor = String()
 
+var displayString: String?
+
+var verkText: String?
+
+var temaText: String?
+
+var IBMtext: String?
+
 //var theOneAndOnly = Beacon(minor: "0", major: "0", distance: 0)
 //var beaconens = [Beacon(minor: "", major: "", distance: 1)]
 //var beaconen = Beacon(minor: "0", major: "0", distance: 0)
@@ -61,12 +70,15 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     //OUTLETS
     
     //stack view containting stackView
-    @IBOutlet weak var storStackView: UIStackView!
+  //  @IBOutlet weak var storStackView: UIStackView!
     
         @IBOutlet weak var stackView: UIStackView!
     
-            //lable displaying closest artwork name and artist
-            @IBOutlet weak var showDetailLabel: UITextView!
+            //lable displaying closest artwork name
+    @IBOutlet weak var titelLabel: UITextView!
+    @IBOutlet weak var konstnarLabel: UITextView!
+    
+    @IBOutlet weak var textView: UITextView!
     
 //            @IBOutlet weak var showDetailButton: UIButton!
     
@@ -80,7 +92,17 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var animationImageView: UIImageView!
     @IBOutlet weak var placeholderText: UITextView!
     
-    @IBOutlet weak var showDetail: UIButton!
+    //scroll view
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    //stack view with buttons
+    @IBOutlet weak var buttonStackView: UIStackView!
+    
+    //Buttons
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    
     
     
     //CONSTANTS AND VARIABLES
@@ -165,7 +187,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         //hide stack view and show placeholder when view appears
 //        showDetailButton.isHidden = true
-        storStackView.isHidden = true
+//        storStackView.isHidden = true
+        scrollView.isHidden = true
+        buttonStackView.isHidden = true
         placeholderView.isHidden = false
         
         //set placeholder text + text size
@@ -174,9 +198,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         let normalString2 = NSMutableAttributedString(string: normalText2, attributes: attribute3)
         
         //set label text to placeholder text + center label text + set text color
-        showDetailLabel.attributedText = normalString2
-        showDetailLabel.textAlignment = NSTextAlignment.center
-        showDetailLabel.textColor = .gray
+        placeholderText.attributedText = normalString2
+        placeholderText.textAlignment = NSTextAlignment.center
+        placeholderText.textColor = .gray
         
         //remove any images
         imageView.image = nil
@@ -192,12 +216,16 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         //stackView.setCustomSpacing(10, after: showDetailLabel)
         
-        //add vertical space between rows in showDetailLabel
-        let verticalSpace = NSLayoutConstraint(item: showDetailLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: showDetailLabel, attribute: .top, multiplier: 1, constant: 20)
-        NSLayoutConstraint.activate([verticalSpace])
+//        //add vertical space between rows in showDetailLabel
+//        let verticalSpace = NSLayoutConstraint(item: showDetailLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: showDetailLabel, attribute: .top, multiplier: 1, constant: 20)
+//        NSLayoutConstraint.activate([verticalSpace])
         
-        //add margins to showDetailLabel
-        showDetailLabel.textContainerInset = UIEdgeInsetsMake(20, 10, 0, 10)
+        //add margins to text views
+        textView.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
+        
+        titelLabel.textContainerInset = UIEdgeInsetsMake(16, 10, 0, 10)
+        
+        konstnarLabel.textContainerInset = UIEdgeInsetsMake(0, 10, 5, 10)
         
         //reset beacon minor & major values
         print("REMOVE BEACONS")
@@ -207,6 +235,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
 //        beaconArray2.removeAll()
         print("BEACONS REMOVED")
         
+       
         
         
         //MARK: Download from url
@@ -331,6 +360,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             print("hejdå")
         } while self.bildDictionary.count != self.konstName.count
         
+        
         for urlen in self.bildUrl2 {
 //            self.myRowKey = urlen
             self.myRowData = self.bildDictionary[urlen]!
@@ -431,6 +461,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                 for bild in konstverkData{
                     self.konstName.append(bild.namn)
                     self.beaconMinorValues.append(bild.beaconMinor)
+                    self.beaconMajorValues.append(bild.beaconMajor)
                     self.konstnarName.append(bild.konstnar)
                     self.konstTexter.append(bild.texter)
                     self.bildUrl2.append(URL(string: bild.bild)!)
@@ -460,7 +491,19 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
         // Do any additional setup after loading the view.
         
-       
+        button1.isSelected = true
+        button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+        button2.backgroundColor = .white
+        button3.backgroundColor = .white
+        
+        
+        //set button image views content mode to aspect fit
+        button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        button1.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
+        button2.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
+        button3.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
 
         
     }
@@ -646,6 +689,128 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func showText1(_ sender: UIButton) {
+        displayString = verkText
+        textView.text = displayString
+        button1.isSelected = true
+        button2.isSelected = false
+        button3.isSelected = false
+        
+        button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+        button2.backgroundColor = .white
+        button3.backgroundColor = .white
+        
+    }
+    
+    @IBAction func showText2(_ sender: UIButton) {
+        displayString = temaText
+        textView.text = displayString
+        button1.isSelected = false
+        button2.isSelected = true
+        button3.isSelected = false
+        
+        button1.backgroundColor = .white
+        button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+        button3.backgroundColor = .white
+    }
+    
+    @IBAction func showText3(_ sender: UIButton) {
+        displayString = IBMtext
+        textView.text = displayString
+        button1.isSelected = false
+        button2.isSelected = false
+        button3.isSelected = true
+        
+        button1.backgroundColor = .white
+        button2.backgroundColor = .white
+        button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+    }
+    
+     // Change text + select corresponding button when swiping
+    //...to the left
+    @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
+        if displayString == verkText {
+            displayString = temaText
+            textView.leftToRightAnimation()
+            textView.text = displayString
+            button1.isSelected = false
+            button2.isSelected = true
+            button3.isSelected = false
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+            button3.backgroundColor = .white
+            
+        }
+        else if displayString == temaText {
+            displayString = IBMtext
+            textView.leftToRightAnimation()
+            textView.text = displayString
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = true
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = .white
+            button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0)
+        }
+            
+        else {
+            displayString = verkText
+            textView.text = displayString
+            textView.leftToRightAnimation()
+            button1.isSelected = true
+            button2.isSelected = false
+            button3.isSelected = false
+            
+            button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+            button2.backgroundColor = .white
+            button3.backgroundColor = .white
+        }
+    }
+    
+    //...to the right
+    @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
+        if displayString == verkText {
+            displayString = IBMtext
+            textView.rightToLeftAnimation()
+            textView.text = displayString
+            button1.isSelected = false
+            button2.isSelected = false
+            button3.isSelected = true
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = .white
+            button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+        }
+        else if displayString == IBMtext {
+            displayString = temaText
+            textView.rightToLeftAnimation()
+            textView.text = displayString
+            button1.isSelected = false
+            button2.isSelected = true
+            button3.isSelected = false
+            
+            button1.backgroundColor = .white
+            button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+            button3.backgroundColor = .white
+            
+        }
+            
+        else {
+            displayString = verkText
+            textView.rightToLeftAnimation()
+            textView.text = displayString
+            button1.isSelected = true
+            button2.isSelected = false
+            button3.isSelected = false
+            
+            button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
+            button2.backgroundColor = .white
+            button3.backgroundColor = .white
+        }
+    }
+    
     
 }
 
@@ -771,10 +936,45 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             
             if cellArray.count == konstName.count {
         
+                //Find index of "konstverket"'s beaconMajor in downloaded list of beacon majors
+                let majorIndex = beaconMajorValues[i]
+                let i4 = konstverkTexter?.beaconMajorValues.index(of: majorIndex)
+                
+                
+                //find the "temaText" with the same index as beaconMajor in the downloaded array "temaTexter" = "temaText" for the right floor
+                if i4 != nil {
+                    temaText = (konstverkTexter?.temaTexter[i4!])!
+                    print("vån \(temaText!)")
+                } else {
+                    temaText = "Ingen våning registrerad för konstverket"
+                }
+                
+                titelLabel.text = konstName[i]
+                konstnarLabel.text = konstnarName[i]
+                verkText = konstTexter[i]
+                //TESTA ATT SÄTTA IF STATEMENTS FÖR OM TEXTRUTAN VISAR RÄTT TEXT FÖR KNAPPEN SOM ÄR VALD OCH TESTA!!!
+                print("TJOLAHOPP")
+                if displayString != konstTexter[i]  && textView.text != konstTexter [i] && titelLabel.text == konstName[i] && button1.isSelected == true {
+                    verkText = konstTexter[i]
+                    displayString = verkText
+                    textView.text = displayString
+                } else if displayString != konstverkTexter?.temaTexter[i4!]  && textView.text != konstverkTexter?.temaTexter[i4!] && button2.isSelected == true {
+                    temaText = konstverkTexter?.temaTexter[i4!]
+                    displayString = temaText
+                    textView.text = displayString
+                    
+                } else {}
+                    
+                
+                
+                verkText = konstTexter[i]
+                IBMtext = konstverkTexter?.IBMKonstsamling
         
         //if imageView.image != konstBild[i] {
         placeholderView.isHidden = true
-        storStackView.isHidden = false
+       // storStackView.isHidden = false
+            scrollView.isHidden = false
+            buttonStackView.isHidden = false
             
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.image = cellArray[i]
@@ -786,27 +986,28 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
 //        if showDetailLabel.text != "Du befinner dig vid \(konstName[i])" {
 //
-            let normalText = "Du befinner dig vid\n"
-        let attribute1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18)]
-            let normalString = NSMutableAttributedString(string: normalText, attributes: attribute1)
-        
-            let boldText = konstName[i]
-            let attribute2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 27)]
-            let boldString = NSMutableAttributedString(string: boldText, attributes: attribute2)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = 4
-        
-        normalString.append(boldString)
-        normalString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, normalString.length))
-        
-        showDetailLabel.textColor = .black
-            
-        showDetailLabel.attributedText = normalString
-        showDetailLabel.textAlignment = NSTextAlignment.center
+//            let normalText = "Du befinner dig vid\n"
+//        let attribute1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18)]
+//            let normalString = NSMutableAttributedString(string: normalText, attributes: attribute1)
+//
+//            let boldText = konstName[i]
+//            let attribute2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 27)]
+//            let boldString = NSMutableAttributedString(string: boldText, attributes: attribute2)
+//
+//        let paragraphStyle = NSMutableParagraphStyle()
+//
+//        paragraphStyle.lineSpacing = 4
+//
+//        normalString.append(boldString)
+//        normalString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, normalString.length))
+//
+////        showDetailLabel.textColor = .black
+//
+//        showDetailLabel.attributedText = normalString
+//        showDetailLabel.textAlignment = NSTextAlignment.center
 //            showDetailButton.isHidden = false
                 
+            
             } else {print("inte laddat ner alla bilder än \(cellArray)")
                 return
             }
@@ -816,7 +1017,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
         } else {print("*NO BEACONS*")
 //            showDetailButton.isHidden = true
-            storStackView.isHidden = true
+           // storStackView.isHidden = true
             placeholderView.isHidden = false
             
             animationImageView.image = animation 
@@ -826,9 +1027,9 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
             let normalString2 = NSMutableAttributedString(string: normalText2, attributes: attribute3)
             
-            showDetailLabel.attributedText = normalString2
-            showDetailLabel.textAlignment = NSTextAlignment.center
-            showDetailLabel.textColor = .gray
+            placeholderText.attributedText = normalString2
+            placeholderText.textAlignment = NSTextAlignment.center
+            placeholderText.textColor = .gray
             return
         }
         
@@ -903,6 +1104,78 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         
         
     }
+    
 }
+
+////Swipe animation
+//extension UIView {
+//    public func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
+//        // Create a CATransition object
+//        let leftToRightTransition = CATransition()
+//
+//        // Set its callback delegate to the completionDelegate that was provided
+//        if let delegate: AnyObject = completionDelegate {
+//            leftToRightTransition.delegate = delegate as? CAAnimationDelegate
+//
+//        }
+//
+//        leftToRightTransition.type = kCATransitionPush
+//        leftToRightTransition.subtype = kCATransitionFromRight
+//        leftToRightTransition.duration = duration
+//        leftToRightTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        leftToRightTransition.fillMode = kCAFillModeRemoved
+//
+//        // Add the animation to the View's layernäm
+//        self.layer.add(leftToRightTransition, forKey: "leftToRightTransition")
+//
+//    }
+//
+//}
+//
+//extension UIView {
+//    public func rightToLeftAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
+//        // Create a CATransition object
+//        let rightToLeftTransition = CATransition()
+//
+//        // Set its callback delegate to the completionDelegate that was provided
+//        if let delegate: AnyObject = completionDelegate {
+//            rightToLeftTransition.delegate = delegate as? CAAnimationDelegate
+//
+//        }
+//
+//        rightToLeftTransition.type = kCATransitionPush
+//        rightToLeftTransition.subtype = kCATransitionFromLeft
+//        rightToLeftTransition.duration = duration
+//        rightToLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        rightToLeftTransition.fillMode = kCAFillModeRemoved
+//
+//        // Add the animation to the View's layer
+//        self.layer.add(rightToLeftTransition, forKey: "rightToLeftTransition")
+//
+//    }
+//
+//}
+//
+//
+//extension UIButton {
+//
+//    public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
+//        let border = CALayer()
+//        border.backgroundColor = color.cgColor
+//
+//        switch side {
+//        case .Top:
+//            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
+//        case .Bottom:
+//            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width)
+//        case .Left:
+//            border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
+//        case .Right:
+//            border.frame = CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height)
+//        }
+//
+//        self.layer.addSublayer(border)
+//    }
+//}
 
 

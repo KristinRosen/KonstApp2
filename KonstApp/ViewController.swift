@@ -101,9 +101,9 @@ class ViewController: UIViewController {
         button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        button1.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.2)
-        button2.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.2)
-        button3.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.2)
+        button1.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
+        button2.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
+        button3.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
         
         // start activity indicator + hide image
 //        imageView.isHidden = true
