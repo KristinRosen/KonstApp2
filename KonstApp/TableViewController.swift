@@ -404,6 +404,9 @@ class TableViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
+            //prevent segue from happening if the image has not loaded yet (function declared below)
+            shouldPerformSegue(withIdentifier: "ShowDetail", sender: TableViewController.self)
+            
             let selectedKonstverkName = konstName[indexPath.row]
             print(selectedKonstverkName)
             let selectedKonstnarName = konstnarName[indexPath.row]
@@ -422,11 +425,26 @@ class TableViewController: UITableViewController {
             
             
             
+        } else {
+            
         }
         
         
     }
     
+            //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
+            //Segue will happen if this function returns true
+            override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    
+                if cellArray.count < konstName.count  {
+                    print("------------------------________!segue will not happen!_______-----------------------")
+                    return false
+    
+                    //            } else if  imagess?.konstBild.count != konstName.count {
+                    //                return false
+                } else { return true }
+    
+            }
     
 }//end of class
 
