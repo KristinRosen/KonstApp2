@@ -40,6 +40,8 @@ var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaco
 
 var i2 = 5
 
+var theCell = UITableViewCell()
+
 //class for table view of all artworks
 class TableViewController: UITableViewController {
     
@@ -97,6 +99,9 @@ class TableViewController: UITableViewController {
         
         // Show the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        theCell.isHighlighted = false
+        theCell.isSelected = false
     }
     
     override func viewDidLoad() {
@@ -389,20 +394,31 @@ class TableViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
+        theCell = (sender as? TableViewCell)!
+        theCell.isSelected = false
+        theCell.setHighlighted(true, animated: true)
         
         if segue.identifier == "ShowDetail" {
+            
             
             guard let ViewController = segue.destination as? ViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
+            
+            
+            
             guard let selectedCell = sender as? TableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
+            selectedCell.isSelected = false
+           
+            
             guard let indexPath = tableView.indexPath(for: selectedCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
+            
             
             //prevent segue from happening if the image has not loaded yet (function declared below)
             shouldPerformSegue(withIdentifier: "ShowDetail", sender: TableViewController.self)
@@ -437,6 +453,7 @@ class TableViewController: UITableViewController {
             override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
     
                 if cellArray.count < konstName.count  {
+                    theCell.isSelected = false
                     print("------------------------________!segue will not happen!_______-----------------------")
                     return false
     
