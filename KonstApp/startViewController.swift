@@ -145,6 +145,9 @@ var imagess = Images(konstBild: [UIImage()])
         
         print("----------------------------Välkommen  ---------------------------------")
         
+        vandrButton.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        allaButton.backgroundColor = UIColor(white: 1, alpha: 0.81)
+        ibmButton.backgroundColor = UIColor(white: 1, alpha: 0.95)
         
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -396,76 +399,79 @@ var imagess = Images(konstBild: [UIImage()])
         
 
 //
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+        // MARK: - Navigation
+        
+        // In a storyboard-based application, you will often want to do a little preparation before navigation
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             //
             //
             //
             super.prepare(for: segue, sender: sender)
             
-            //if the "konstvandring" button has been tapped
+            //if the "konstvandring" button has been selected
             if segue.identifier == "konstvandring" {
+                
+                vandrButton.backgroundColor = UIColor(white: 0.7, alpha:0.5)
+                
                 guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
                 
-//                //prevent segue from happen if all the images have not been saved to the dictionary (function declared below)
-//                shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
+                //                //prevent segue from happen if all the images have not been saved to the dictionary (function declared below)
+                //                shouldPerformSegue(withIdentifier: "konstvandring", sender: startViewController.self)
                 print("*******SEGUE*******")
                 
                 
                 //wait until all bildUrls have been downloaded
                 
-//                repeat {
-//                    print("inga bildUrl")
-//                } while bildUrl.count < 1
-//                
-//                repeat {
-//                    print("WAIT2")
-//                } while konstName.count != bildUrl.count
+                //                repeat {
+                //                    print("inga bildUrl")
+                //                } while bildUrl.count < 1
+                //
+                //                repeat {
+                //                    print("WAIT2")
+                //                } while konstName.count != bildUrl.count
                 
                 //wait until alla the images have been added to the "bildDictionary"
-//                repeat {
-//                    print("WAIT3")
-//                    loadingOverlay.isHidden = false
-//                    activityindicator2.isHidden = false
-//                } while bildDictionary.count != bildUrl.count
+                //                repeat {
+                //                    print("WAIT3")
+                //                    loadingOverlay.isHidden = false
+                //                    activityindicator2.isHidden = false
+                //                } while bildDictionary.count != bildUrl.count
                 
-//                for urlen in self.bildUrl {
-//                    self.myRowKey = urlen
-//                    self.myRowData = self.bildDictionary[self.myRowKey]!
-//
-//                    print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-//                    print(self.myRowKey)
-//                    print(self.myRowData as Any)
-//                    self.cellArray.append(self.myRowData)
-//                    print(self.cellArray)
-//                }
+                //                for urlen in self.bildUrl {
+                //                    self.myRowKey = urlen
+                //                    self.myRowData = self.bildDictionary[self.myRowKey]!
+                //
+                //                    print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+                //                    print(self.myRowKey)
+                //                    print(self.myRowData as Any)
+                //                    self.cellArray.append(self.myRowData)
+                //                    print(self.cellArray)
+                //                }
                 
-//                repeat {
-//                    print("alla konstbilder inte nedladdade än")
-//                    loadingOverlay.isHidden = false
-//                    activityindicator2.isHidden = false
-//                } while cellArray.count != konstName.count
+                //                repeat {
+                //                    print("alla konstbilder inte nedladdade än")
+                //                    loadingOverlay.isHidden = false
+                //                    activityindicator2.isHidden = false
+                //                } while cellArray.count != konstName.count
                 
-//                if self.cellArray.count > 0 {
-                    
-                    
-                    //imagess = Images(konstBild: self.cellArray)
-//                } else {print("inga bilder1")
-//                    return}
+                //                if self.cellArray.count > 0 {
+                
+                
+                //imagess = Images(konstBild: self.cellArray)
+                //                } else {print("inga bilder1")
+                //                    return}
                 
                 //make sure there are images before continuing
-//                guard imagess!.konstBild.count > 0
-//                    else {
-//                        print("inga bilder2")
-//                        return
-//                }
+                //                guard imagess!.konstBild.count > 0
+                //                    else {
+                //                        print("inga bilder2")
+                //                        return
+                //                }
                 
                 // Pass the downloaded images for all artworks to the new view controller
-//                konstvandringViewController.konstBilder = imagess
+                //                konstvandringViewController.konstBilder = imagess
                 
                 
                 //            guard konstverkTexter?.IBMKonstsamling != nil
@@ -530,15 +536,26 @@ var imagess = Images(konstBild: [UIImage()])
                 // } else {print("inga beacons i beaconArray")
                 //return
                 //}
+                //if the "Alla konstverk" button has been selected
+            } else if segue.identifier == "allaKonstverk" {
                 
-                //if the "IBMs konstsamling" button has been tapped
+                allaButton.backgroundColor = UIColor(white: 0.7, alpha:0.81)
+                
+                guard let TableViewController = segue.destination as? TableViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                
+                //if the "IBMs konstsamling" button has been selected
             } else if segue.identifier == "ibmKonstsamling" && konstverkTexter2?.startBild != nil {
+                
+                ibmButton.backgroundColor = UIColor(white: 0.7, alpha:0.95)
+                
                 guard let samlingViewController = segue.destination as? samlingViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
                 
-//                //prevent segue from happening if the image has not loaded yet (function declared below)
-//                shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
+                //                //prevent segue from happening if the image has not loaded yet (function declared below)
+                //                shouldPerformSegue(withIdentifier: "ibmKonstsamling", sender: startViewController.self)
                 
                 
                 //make sure the text exists before continuing
@@ -550,6 +567,9 @@ var imagess = Images(konstBild: [UIImage()])
                 //pass the text "IBMs konstsamling" to the new view controller
                 samlingViewController.konstverkTexterSa = konstverkTexter2
             }
+            
+            
+            
             //        } else if segue.identifier == "ibmKonstsamling" && konstverkTexter2?.startBild == nil {
             //
             //        }
