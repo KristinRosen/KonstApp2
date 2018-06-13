@@ -112,6 +112,30 @@ class TableViewController: UITableViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("************\(bildUrl)")
+        doesArraysMatch = arraysMatch()
+        if arraysMatch() == true {
+        cellArray = loadKonstBild()!
+        } else {
+            while self.bildDictionary.count != self.konstName.count {
+            print("wait for it...")}
+            for urlen in bildUrl {
+                        self.myRowKey = urlen
+            //self.myRowData = self.bildDictionary[bildUrl[indexPath.row]]!
+            
+            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
+            //            print(myRowKey)
+            print(myRowData as Any)
+            cellArray.append(myRowData)
+            print(cellArray)
+            }
+            
+            saveImages()
+            saveUrls()}
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("T-J-E-N-A DETTA ÄR TABLEVIEEEEEEEEEEEEEEWNNN-!_!_!_!_!_!_!_!_")
@@ -238,7 +262,7 @@ class TableViewController: UITableViewController {
             }
             }.resume()
         //end of download session 2
-        
+    
     }
     
     
@@ -309,7 +333,6 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        doesArraysMatch = arraysMatch()
             
         if doesArraysMatch == false {
             print("*images not yet downloaded*")
@@ -330,19 +353,7 @@ class TableViewController: UITableViewController {
             return cell
         }
         
-//        for urlen in bildUrl {
-//            self.myRowKey = urlen
-            self.myRowData = self.bildDictionary[bildUrl[indexPath.row]]!
-            
-            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-//            print(myRowKey)
-            print(myRowData as Any)
-            cellArray.append(myRowData)
-            print(cellArray)
-        //}
-            
-            saveImages()
-            saveUrls()
+
             
         
         cell.tabelLable.text = self.konstName[indexPath.row]
@@ -367,7 +378,7 @@ class TableViewController: UITableViewController {
         } else {
             print("*Images previousy downloaded*")
             
-            cellArray = loadKonstBild()!
+            
             
             cell.tabelLable.text = self.konstName[indexPath.row]
             cell.tabelLable2.text = self.konstnarName[indexPath.row]
@@ -555,9 +566,11 @@ class TableViewController: UITableViewController {
     
     func arraysMatch() -> Bool {
         if loadKonstBild() != nil && loadUrl() != nil {
+            if (loadKonstBild()?.count)! > 0 && (loadUrl()?.count)! > 0 {
             if loadUrl() == bildUrl {
                 return true
-            } else { return false }
+            } else {return false}
+            } else {return false}
             
         } else {return false}
     }
