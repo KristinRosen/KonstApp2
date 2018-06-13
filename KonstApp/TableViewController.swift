@@ -48,6 +48,11 @@ class TableViewController: UITableViewController {
     
     //MARK: Properties
     
+    var imagez = Images(konstBild: [#imageLiteral(resourceName: "defaultPicture")])
+    
+    var doesArraysMatch = Bool()
+
+    
     //table view
     @IBOutlet var konstTableView: UITableView!
   
@@ -90,6 +95,8 @@ class TableViewController: UITableViewController {
         }
     }
     
+    var tempCellArray = [UIImage]()
+    
     var cellArray = [UIImage]()
     
     var myRowKey: URL!
@@ -102,6 +109,7 @@ class TableViewController: UITableViewController {
         
         theCell.isHighlighted = false
         theCell.isSelected = false
+        
     }
     
     override func viewDidLoad() {
@@ -301,6 +309,11 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        doesArraysMatch = arraysMatch()
+            
+        if doesArraysMatch == false {
+            print("*images not yet downloaded*")
+        
         while self.bildDictionary.count != self.konstName.count {
             cell.tabelLable.text = placeholderText1[indexPath.row]
             cell.tabelLable2.text = placeholderText2[indexPath.row]
@@ -317,17 +330,20 @@ class TableViewController: UITableViewController {
             return cell
         }
         
-        
-        for urlen in bildUrl {
+//        for urlen in bildUrl {
 //            self.myRowKey = urlen
-            self.myRowData = self.bildDictionary[urlen]!
+            self.myRowData = self.bildDictionary[bildUrl[indexPath.row]]!
             
             print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
 //            print(myRowKey)
             print(myRowData as Any)
             cellArray.append(myRowData)
             print(cellArray)
-        }
+        //}
+            
+            saveImages()
+            saveUrls()
+            
         
         cell.tabelLable.text = self.konstName[indexPath.row]
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
@@ -348,6 +364,30 @@ class TableViewController: UITableViewController {
         
         
         return cell
+        } else {
+            print("*Images previousy downloaded*")
+            
+            cellArray = loadKonstBild()!
+            
+            cell.tabelLable.text = self.konstName[indexPath.row]
+            cell.tabelLable2.text = self.konstnarName[indexPath.row]
+            //        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
+            cell.tableImageView.image = cellArray[indexPath.row] as UIImage
+            
+            cell.activityIndicator.stopAnimating()
+            
+            //make font size adjust to accessibility settings
+            cell.tabelLable.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.tabelLable.adjustsFontForContentSizeCategory = true
+            
+            cell.tabelLable2.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.tabelLable2.adjustsFontForContentSizeCategory = true
+            
+            tableView.estimatedRowHeight = 100
+            tableView.rowHeight = UITableViewAutomaticDimension
+            
+            return cell
+        }
     }
     
     
@@ -441,13 +481,15 @@ class TableViewController: UITableViewController {
             
             
             
-        } else {
-            
+        } else {}
+        
+
         }
-        
-        
-    }
     
+        
+        
+        
+        
             //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
             //Segue will happen if this function returns true
             override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -462,7 +504,64 @@ class TableViewController: UITableViewController {
                 } else { return true }
     
             }
+        
+        func saveImages() {
+            let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(cellArray, toFile: Images.ArchiveURL.path)
+            
+            
+            if isSuccessfulSave {
+                os_log("Images successfully saved.", log: OSLog.default, type: .debug)
+            } else {
+                os_log("Failed to save images...", log: OSLog.default, type: .error)
+            }
+            
+        }
     
-}//end of class
+    func saveUrls() {
+        let isSuccessfulSave2 = NSKeyedArchiver.archiveRootObject(bildUrl, toFile: Urls.ArchiveURL2.path)
+        
+        
+        if isSuccessfulSave2 {
+            os_log("Urls successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save urls...", log: OSLog.default, type: .error)
+        }
+        
+    }
+        
+        
+        func loadKonstBild() -> [UIImage]? {
+            let isSuccessfulLoad = NSKeyedUnarchiver.unarchiveObject(withFile: Images.ArchiveURL.path) as! [UIImage]?
+            if isSuccessfulLoad != nil {
+                print("images loaded")
+                return isSuccessfulLoad
+            } else {
+                print("no images saved")
+                return nil
+            }
+        }
+    
+    func loadUrl() -> [URL]? {
+        let isSuccessfulLoad2 = NSKeyedUnarchiver.unarchiveObject(withFile: Urls.ArchiveURL2.path) as! [URL]?
+        if isSuccessfulLoad2 != nil {
+            print("urls loaded")
+            return isSuccessfulLoad2
+        } else {
+            print("no urls saved")
+            return nil
+        }
+    }
+    
+    
+    func arraysMatch() -> Bool {
+        if loadKonstBild() != nil && loadUrl() != nil {
+            if loadUrl() == bildUrl {
+                return true
+            } else { return false }
+            
+        } else {return false}
+    }
+    
 
+}//end of class
 

@@ -1,5 +1,5 @@
 //
-//  Images.swift
+//  Urls.swift
 //  KonstApp
 //
 //  Created by Fanny Erkhammar on 2018-05-17.
@@ -10,50 +10,51 @@ import UIKit
 import KontaktSDK
 
 
-class Images {
+class Urls {
     
-    var konstBild: [UIImage]
+    var url: [URL]
     
     //MARK: Archiving Paths
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("images")
+    static let DocumentsDirectory2 = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL2 = DocumentsDirectory2.appendingPathComponent("urls")
     
     //MARK: Types
     
     struct PropertyKey {
-        static let konstBild = "konstBild"
+        static let url = "url"
     }
     
     
     //initialization
-    init?(konstBild: [UIImage]) {
+    init?(url: [URL]) {
         
-        guard !konstBild.isEmpty else {
-            print("noImage")
+        guard !url.isEmpty else {
+            print("noUrl")
             return nil
         }
         
-        self.konstBild = konstBild
+        self.url = url
+        
     }
     
     //MARK: NSCoding
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(konstBild, forKey: PropertyKey.konstBild)
+        aCoder.encode(url, forKey: PropertyKey.url)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         
         // The name is required. If we cannot decode a name string, the initializer should fail.
-        guard let konstBild = aDecoder.decodeObject(forKey: PropertyKey.konstBild) as? [UIImage] else {
-            print("Unable to decode the image array for a Images object.")
+        guard let url = aDecoder.decodeObject(forKey: PropertyKey.url) as? [URL] else {
+            print("Unable to decode the url array for a Urls object.")
             return nil
         }
+
         
         // Must call designated initializer.
-        self.init(konstBild: konstBild)
+        self.init(url: url)
         
     }
     
 }//end of class
-

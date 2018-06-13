@@ -19,6 +19,7 @@
 		391065D520ADAC2600A5867E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391065D420ADAC2500A5867E /* Images.swift */; };
 		3929832F207366DC009C2632 /* Konstverk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929832E207366DC009C2632 /* Konstverk.swift */; };
 		392C3E4420A338A600E5456C /* beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C3E4320A338A600E5456C /* beacon.swift */; };
+		3975EEEF20D116D9002B7BD5 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975EEEE20D116D9002B7BD5 /* Urls.swift */; };
 		39897AE72062953E00B2A82C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39897AE62062953E00B2A82C /* TableViewCell.swift */; };
 		39C2CC1C20A073DC00392C3A /* KonstTexter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2CC1B20A073DB00392C3A /* KonstTexter.swift */; };
 		39C54B5A20AC22AA00764947 /* konstvandringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C54B5920AC22A900764947 /* konstvandringViewController.swift */; };
@@ -52,6 +53,7 @@
 		391065D420ADAC2500A5867E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		3929832E207366DC009C2632 /* Konstverk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Konstverk.swift; sourceTree = "<group>"; };
 		392C3E4320A338A600E5456C /* beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beacon.swift; sourceTree = "<group>"; };
+		3975EEEE20D116D9002B7BD5 /* Urls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		39897AE62062953E00B2A82C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39C2CC1B20A073DB00392C3A /* KonstTexter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonstTexter.swift; sourceTree = "<group>"; };
 		39C54B5920AC22A900764947 /* konstvandringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = konstvandringViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				31CE81AE20862F2B00D64A9C /* startViewController.swift */,
 				39C54B5920AC22A900764947 /* konstvandringViewController.swift */,
 				391065D420ADAC2500A5867E /* Images.swift */,
+				3975EEEE20D116D9002B7BD5 /* Urls.swift */,
 				392C3E4320A338A600E5456C /* beacon.swift */,
 				39897AE62062953E00B2A82C /* TableViewCell.swift */,
 				31C3CC7A20920D3A0043AB99 /* samlingViewController.swift */,
@@ -294,6 +297,7 @@
 				392C3E4420A338A600E5456C /* beacon.swift in Sources */,
 				31C3CC7B20920D3A0043AB99 /* samlingViewController.swift in Sources */,
 				311CEC49203EF6DB0090C1A7 /* ViewController.swift in Sources */,
+				3975EEEF20D116D9002B7BD5 /* Urls.swift in Sources */,
 				391065D520ADAC2600A5867E /* Images.swift in Sources */,
 				31CE81AF20862F2B00D64A9C /* startViewController.swift in Sources */,
 				3929832F207366DC009C2632 /* Konstverk.swift in Sources */,
