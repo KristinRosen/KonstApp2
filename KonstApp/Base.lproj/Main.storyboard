@@ -277,7 +277,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
-                                        <rect key="frame" x="103.66666666666669" y="45" width="207" height="45"/>
+                                        <rect key="frame" x="126" y="45" width="162" height="579.33333333333337"/>
                                         <color key="backgroundColor" white="1" alpha="0.80503531678082196" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="C86-Qq-STd" secondAttribute="height" multiplier="4.6:1" id="baM-bf-dr9"/>
@@ -291,38 +291,41 @@
                                             <segue destination="PIW-3o-8Bx" kind="show" identifier="allaKonstverk" id="Pxz-Xw-Djh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4V-O3-s6s">
-                                        <rect key="frame" x="97.666666666666686" y="90" width="219" height="582"/>
-                                        <color key="backgroundColor" white="1" alpha="0.94970034246575341" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="t4V-O3-s6s" secondAttribute="height" multiplier="4.6:1" id="c2Y-6G-zcT"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okj-si-Mq2" userLabel="IBM button">
+                                        <rect key="frame" x="97.666666666666686" y="624.33333333333337" width="219" height="47.666666666666629"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.95248287671232879" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <size key="titleShadowOffset" width="-20" height="-20"/>
                                         <state key="normal" title="IBMs konstsamling">
-                                            <color key="titleColor" white="0.0" alpha="0.75088291952054798" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.0" alpha="0.75026755140000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="vgY-Yf-GSk" kind="show" identifier="ibmKonstsamling" id="g25-5k-vxY"/>
+                                            <segue destination="vgY-Yf-GSk" kind="show" identifier="ibmKonstsamling" id="KKM-wi-sHx"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="t4V-O3-s6s" secondAttribute="bottom" id="5QD-So-lwP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Okj-si-Mq2" secondAttribute="trailing" id="8qX-YG-TRN"/>
                                     <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="JN3-Dx-Vnr" secondAttribute="bottom" id="96M-i3-1Py"/>
                                     <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="YMc-Iy-BC9" secondAttribute="bottom" id="BKc-dY-h2T"/>
+                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="width" secondItem="Okj-si-Mq2" secondAttribute="height" multiplier="4.6:1" id="EKe-UB-pwZ"/>
+                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="F8h-P8-way"/>
                                     <constraint firstAttribute="trailing" secondItem="d4w-nX-G0a" secondAttribute="trailing" id="FKa-ou-DJd"/>
                                     <constraint firstAttribute="trailing" secondItem="YMc-Iy-BC9" secondAttribute="trailing" id="GvM-py-X63"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="N32-h7-6o3"/>
                                     <constraint firstAttribute="trailing" secondItem="JN3-Dx-Vnr" secondAttribute="trailing" id="OhK-DB-tXQ"/>
                                     <constraint firstAttribute="trailing" secondItem="C86-Qq-STd" secondAttribute="trailing" id="R6s-tE-0I9"/>
                                     <constraint firstItem="d4w-nX-G0a" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="SOU-pj-C7m"/>
-                                    <constraint firstItem="t4V-O3-s6s" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="Ubv-BF-h2l"/>
+                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="UBa-tX-jww"/>
                                     <constraint firstItem="JN3-Dx-Vnr" firstAttribute="top" secondItem="Bqd-jK-AUr" secondAttribute="top" id="Vcc-dy-RQr"/>
-                                    <constraint firstItem="t4V-O3-s6s" firstAttribute="top" secondItem="C86-Qq-STd" secondAttribute="bottom" id="d7S-OY-wji"/>
+                                    <constraint firstAttribute="bottom" secondItem="Okj-si-Mq2" secondAttribute="bottom" id="Zlf-CS-KHn"/>
                                     <constraint firstItem="C86-Qq-STd" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="e7f-dP-PJw"/>
-                                    <constraint firstAttribute="trailing" secondItem="t4V-O3-s6s" secondAttribute="trailing" id="eJ7-Zp-d0P"/>
+                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="top" secondItem="C86-Qq-STd" secondAttribute="bottom" id="k41-4e-cpX"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="top" secondItem="Bqd-jK-AUr" secondAttribute="top" id="sC3-gP-aDe"/>
-                                    <constraint firstItem="C86-Qq-STd" firstAttribute="top" secondItem="d4w-nX-G0a" secondAttribute="bottom" constant="3" id="sOW-gu-Yu2"/>
+                                    <constraint firstItem="C86-Qq-STd" firstAttribute="top" secondItem="d4w-nX-G0a" secondAttribute="bottom" id="sOW-gu-Yu2"/>
                                     <constraint firstItem="JN3-Dx-Vnr" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="x3K-W9-aLu"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="height" secondItem="JN3-Dx-Vnr" secondAttribute="height" id="xVJ-Hu-zlC"/>
                                 </constraints>
@@ -352,7 +355,7 @@
                         <outlet property="activityIndicator" destination="YMc-Iy-BC9" id="2et-NS-Sot"/>
                         <outlet property="allaButton" destination="C86-Qq-STd" id="2tQ-BC-xdS"/>
                         <outlet property="bgImage" destination="0tI-MR-yq7" id="vuQ-uH-WBr"/>
-                        <outlet property="ibmButton" destination="t4V-O3-s6s" id="t2W-85-jUO"/>
+                        <outlet property="ibmButton" destination="Okj-si-Mq2" id="iYw-TG-iba"/>
                         <outlet property="imageView" destination="JN3-Dx-Vnr" id="Dl8-NW-1AB"/>
                         <outlet property="vandrButton" destination="d4w-nX-G0a" id="P4a-pQ-L1W"/>
                     </connections>
