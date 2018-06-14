@@ -18,24 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaaaa" translatesAutoresizingMaskIntoConstraints="NO" id="fLt-Ff-0Uv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="NRh-9i-Mrs">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEJ!!!!!! :) !!!!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNP-UC-lEa">
-                                <rect key="frame" x="109" y="180" width="157.5" height="30.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fLt-Ff-0Uv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6h2-5z-0sr"/>
-                            <constraint firstItem="lNP-UC-lEa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="160" id="A4m-2a-EDn"/>
-                            <constraint firstItem="fLt-Ff-0Uv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="EFL-Xw-JJf"/>
-                            <constraint firstItem="fLt-Ff-0Uv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hG6-ni-7P2"/>
-                            <constraint firstItem="fLt-Ff-0Uv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="idW-rf-lgE"/>
-                            <constraint firstItem="lNP-UC-lEa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zd1-kX-k8s"/>
+                            <constraint firstItem="NRh-9i-Mrs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1d4-Ee-IqD"/>
+                            <constraint firstItem="NRh-9i-Mrs" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="772-jp-iOw"/>
+                            <constraint firstItem="NRh-9i-Mrs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Qf0-hh-8CY"/>
+                            <constraint firstItem="NRh-9i-Mrs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bQh-OF-E4G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -46,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aaaaa" width="125" height="182"/>
+        <image name="launchscreen" width="472" height="630"/>
     </resources>
 </document>
