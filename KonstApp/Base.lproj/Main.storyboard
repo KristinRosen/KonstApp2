@@ -63,10 +63,10 @@
                                 <rect key="frame" x="0.0" y="64" width="3372.6666666666665" height="621.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A2h-Eg-nc0">
-                                        <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3794.6666666666665"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3795"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-Tf-3g8">
-                                                <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3371.6666666666665"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3372"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="hvc-Kw-zQS"/>
@@ -74,13 +74,13 @@
                                                 </constraints>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="Letar efter konstverk..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLm-ux-L02" userLabel="titelLabel">
-                                                <rect key="frame" x="0.0" y="3371.6666666666665" width="3372.6666666666665" height="40"/>
+                                                <rect key="frame" x="0.0" y="3372" width="3372.6666666666665" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiB-HT-byG" userLabel="konstnarlabel">
-                                                <rect key="frame" x="0.0" y="3411.6666666666665" width="3372.6666666666665" height="33"/>
+                                                <rect key="frame" x="0.0" y="3412" width="3372.6666666666665" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content=" ">
@@ -94,7 +94,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98D-U6-IAG">
-                                                <rect key="frame" x="0.0" y="3444.6666666666665" width="3372.6666666666665" height="350"/>
+                                                <rect key="frame" x="0.0" y="3445" width="3372.6666666666665" height="350"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="Vko-Cq-BoM"/>
@@ -258,76 +258,70 @@
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="YMc-Iy-BC9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                     </activityIndicatorView>
-                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-nX-G0a" userLabel="Undersök/konstvandring">
-                                        <rect key="frame" x="103.66666666666669" y="0.0" width="207" height="45"/>
-                                        <color key="backgroundColor" white="1" alpha="0.49531785102739728" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-re-MtX" userLabel="Undersök/konstvandring">
+                                        <rect key="frame" x="103.66666666666667" y="0.0" width="206.66666666666663" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="d4w-nX-G0a" secondAttribute="height" multiplier="4.6:1" id="KZD-5m-aQj"/>
+                                            <constraint firstAttribute="width" secondItem="cbC-re-MtX" secondAttribute="height" multiplier="4.6:1" id="qex-3K-dXU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <size key="titleShadowOffset" width="-20" height="-20"/>
-                                        <state key="normal" title=" Konstvandring">
-                                            <color key="titleColor" white="0.0" alpha="0.75026755136986301" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Konstvandring">
+                                            <color key="titleColor" white="0.0" alpha="0.75053510270000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="bXE-pj-AGF" kind="show" identifier="konstvandring" id="HNP-Zj-Guj"/>
+                                            <segue destination="bXE-pj-AGF" kind="show" identifier="konstvandring" id="FeC-bJ-ru8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C86-Qq-STd">
-                                        <rect key="frame" x="126" y="45" width="162" height="579.33333333333337"/>
-                                        <color key="backgroundColor" white="1" alpha="0.80503531678082196" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwk-hL-A9R" userLabel="Alla Button">
+                                        <rect key="frame" x="103.66666666666669" y="45" width="207" height="45"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8124464897260274" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="C86-Qq-STd" secondAttribute="height" multiplier="4.6:1" id="baM-bf-dr9"/>
+                                            <constraint firstAttribute="width" secondItem="Gwk-hL-A9R" secondAttribute="height" multiplier="4.6:1" id="0ab-pV-h15"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <size key="titleShadowOffset" width="-20" height="-20"/>
                                         <state key="normal" title="Alla konstverk">
-                                            <color key="titleColor" white="0.0" alpha="0.75187285958904104" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="PIW-3o-8Bx" kind="show" identifier="allaKonstverk" id="Pxz-Xw-Djh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okj-si-Mq2" userLabel="IBM button">
-                                        <rect key="frame" x="97.666666666666686" y="624.33333333333337" width="219" height="47.666666666666629"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.95248287671232879" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <size key="titleShadowOffset" width="-20" height="-20"/>
-                                        <state key="normal" title="IBMs konstsamling">
                                             <color key="titleColor" white="0.0" alpha="0.75026755140000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="vgY-Yf-GSk" kind="show" identifier="ibmKonstsamling" id="KKM-wi-sHx"/>
+                                            <segue destination="PIW-3o-8Bx" kind="show" identifier="allaKonstverk" id="uwZ-my-q3p"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="de0-4r-YI5" userLabel="IBM Button">
+                                        <rect key="frame" x="85.666666666666686" y="90" width="243" height="582"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.95315175513698636" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="de0-4r-YI5" secondAttribute="height" multiplier="4.6:1" id="kl0-Xu-IZa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="IBMs konstsamling">
+                                            <color key="titleColor" white="0.0" alpha="0.75053510270000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="vgY-Yf-GSk" kind="show" identifier="ibmKonstsamling" id="eIi-FL-XDD"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Okj-si-Mq2" secondAttribute="trailing" id="8qX-YG-TRN"/>
-                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="JN3-Dx-Vnr" secondAttribute="bottom" id="96M-i3-1Py"/>
-                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="top" secondItem="YMc-Iy-BC9" secondAttribute="bottom" id="BKc-dY-h2T"/>
-                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="width" secondItem="Okj-si-Mq2" secondAttribute="height" multiplier="4.6:1" id="EKe-UB-pwZ"/>
-                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="F8h-P8-way"/>
-                                    <constraint firstAttribute="trailing" secondItem="d4w-nX-G0a" secondAttribute="trailing" id="FKa-ou-DJd"/>
+                                    <constraint firstAttribute="bottom" secondItem="de0-4r-YI5" secondAttribute="bottom" id="5uk-zV-uos"/>
+                                    <constraint firstItem="Gwk-hL-A9R" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="B4l-AC-NTP"/>
+                                    <constraint firstAttribute="trailing" secondItem="cbC-re-MtX" secondAttribute="trailing" id="F5P-eN-bzK"/>
                                     <constraint firstAttribute="trailing" secondItem="YMc-Iy-BC9" secondAttribute="trailing" id="GvM-py-X63"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="N32-h7-6o3"/>
                                     <constraint firstAttribute="trailing" secondItem="JN3-Dx-Vnr" secondAttribute="trailing" id="OhK-DB-tXQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="C86-Qq-STd" secondAttribute="trailing" id="R6s-tE-0I9"/>
-                                    <constraint firstItem="d4w-nX-G0a" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="SOU-pj-C7m"/>
-                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="UBa-tX-jww"/>
                                     <constraint firstItem="JN3-Dx-Vnr" firstAttribute="top" secondItem="Bqd-jK-AUr" secondAttribute="top" id="Vcc-dy-RQr"/>
-                                    <constraint firstAttribute="bottom" secondItem="Okj-si-Mq2" secondAttribute="bottom" id="Zlf-CS-KHn"/>
-                                    <constraint firstItem="C86-Qq-STd" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="e7f-dP-PJw"/>
-                                    <constraint firstItem="Okj-si-Mq2" firstAttribute="top" secondItem="C86-Qq-STd" secondAttribute="bottom" id="k41-4e-cpX"/>
+                                    <constraint firstItem="de0-4r-YI5" firstAttribute="top" secondItem="Gwk-hL-A9R" secondAttribute="bottom" id="Wd1-4B-9kx"/>
+                                    <constraint firstItem="de0-4r-YI5" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="WdH-7d-Ndb"/>
+                                    <constraint firstAttribute="trailing" secondItem="de0-4r-YI5" secondAttribute="trailing" id="cCE-Nr-OwZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gwk-hL-A9R" secondAttribute="trailing" id="fAg-Zr-1V7"/>
+                                    <constraint firstItem="cbC-re-MtX" firstAttribute="top" secondItem="YMc-Iy-BC9" secondAttribute="bottom" id="m5B-Wi-Aku"/>
+                                    <constraint firstItem="cbC-re-MtX" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="p2E-bL-n9X"/>
+                                    <constraint firstItem="de0-4r-YI5" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="pN8-FA-NQb"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="top" secondItem="Bqd-jK-AUr" secondAttribute="top" id="sC3-gP-aDe"/>
-                                    <constraint firstItem="C86-Qq-STd" firstAttribute="top" secondItem="d4w-nX-G0a" secondAttribute="bottom" id="sOW-gu-Yu2"/>
+                                    <constraint firstItem="Gwk-hL-A9R" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="uKV-na-4bX"/>
+                                    <constraint firstItem="cbC-re-MtX" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="wBe-eh-pFv"/>
                                     <constraint firstItem="JN3-Dx-Vnr" firstAttribute="leading" secondItem="Bqd-jK-AUr" secondAttribute="leading" id="x3K-W9-aLu"/>
                                     <constraint firstItem="YMc-Iy-BC9" firstAttribute="height" secondItem="JN3-Dx-Vnr" secondAttribute="height" id="xVJ-Hu-zlC"/>
+                                    <constraint firstItem="cbC-re-MtX" firstAttribute="top" secondItem="JN3-Dx-Vnr" secondAttribute="bottom" id="xp6-rN-nVf"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -337,9 +331,7 @@
                             <constraint firstItem="fqA-Rn-eQd" firstAttribute="top" secondItem="CZa-0D-KPZ" secondAttribute="top" id="8T0-mk-hbr"/>
                             <constraint firstItem="Bqd-jK-AUr" firstAttribute="leading" secondItem="cVC-hG-6qg" secondAttribute="leading" id="Fe4-iv-nmW"/>
                             <constraint firstItem="fqA-Rn-eQd" firstAttribute="leading" secondItem="CZa-0D-KPZ" secondAttribute="leading" id="Kya-AX-Qfi"/>
-                            <constraint firstItem="d4w-nX-G0a" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="P7U-MM-SVW"/>
                             <constraint firstAttribute="bottom" secondItem="Bqd-jK-AUr" secondAttribute="bottom" id="TYA-i3-oFQ"/>
-                            <constraint firstItem="C86-Qq-STd" firstAttribute="width" secondItem="Bqd-jK-AUr" secondAttribute="width" id="Uyt-Ut-Aj8"/>
                             <constraint firstItem="CZa-0D-KPZ" firstAttribute="trailing" secondItem="0tI-MR-yq7" secondAttribute="trailing" id="Xkb-nc-OEy"/>
                             <constraint firstItem="CZa-0D-KPZ" firstAttribute="bottom" secondItem="0tI-MR-yq7" secondAttribute="bottom" id="Yb8-u4-nXK"/>
                             <constraint firstAttribute="trailing" secondItem="Bqd-jK-AUr" secondAttribute="trailing" id="feR-wP-dLw"/>
@@ -353,11 +345,11 @@
                     <navigationItem key="navigationItem" id="bKG-wU-RLL"/>
                     <connections>
                         <outlet property="activityIndicator" destination="YMc-Iy-BC9" id="2et-NS-Sot"/>
-                        <outlet property="allaButton" destination="C86-Qq-STd" id="2tQ-BC-xdS"/>
+                        <outlet property="allaButton" destination="Gwk-hL-A9R" id="sRL-gd-tXJ"/>
                         <outlet property="bgImage" destination="0tI-MR-yq7" id="vuQ-uH-WBr"/>
-                        <outlet property="ibmButton" destination="Okj-si-Mq2" id="iYw-TG-iba"/>
+                        <outlet property="ibmButton" destination="de0-4r-YI5" id="LN7-yx-UBK"/>
                         <outlet property="imageView" destination="JN3-Dx-Vnr" id="Dl8-NW-1AB"/>
-                        <outlet property="vandrButton" destination="d4w-nX-G0a" id="P4a-pQ-L1W"/>
+                        <outlet property="vandrButton" destination="cbC-re-MtX" id="Vlp-xl-0lA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0X-a8-5eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
