@@ -398,10 +398,22 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             beaconManager.requestLocationAlwaysAuthorization()
         case .denied, .restricted: break
         // No access to Location Services
-        case .authorizedWhenInUse: break
-            // For most iBeacon-based app this type of permission is not adequate
+        case .authorizedWhenInUse:
+            print("authorizedWhenInUse")
+            
+            //search for beacons in the region
+            if KTKBeaconManager.isMonitoringAvailable() {
+                
+                beaconManager.startMonitoring(for: region)
+                
+                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER 2")
+                
+            }
+            beaconManager.startRangingBeacons(in: region)
+            beaconManager.stopRangingBeacons(in: region)
+            
         case .authorizedAlways:
-            print("HEJHEJ")
+            print("authorizedAlways")
             
             //search for beacons in the region
             if KTKBeaconManager.isMonitoringAvailable() {

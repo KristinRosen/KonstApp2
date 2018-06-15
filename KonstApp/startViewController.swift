@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import KontaktSDK
+import KontaktSDK
 
 //var isRanging = Bool()
 ////var beaconMinor = CLBeaconMinorValue(1)
@@ -36,6 +36,8 @@ var konstverkTexter2: KonstTexter?
 var imagess = Images(konstBild: [UIImage()])
 
 
+
+
 //var minorValue = String()
 
 //var i = Int()
@@ -60,7 +62,7 @@ var imagess = Images(konstBild: [UIImage()])
 
     class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
 
-
+ var beaconManager: KTKBeaconManager!
         
     //MARK: Properties
         
@@ -325,6 +327,20 @@ var imagess = Images(konstBild: [UIImage()])
 //        beaconMinorValues = ["45", "16222", "28909"]
         
         // Do any additional setup after loading the view.
+        
+        beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
+        
+        switch KTKBeaconManager.locationAuthorizationStatus() {
+        case .notDetermined:
+            beaconManager.requestLocationAlwaysAuthorization()
+        case .denied, .restricted:
+        print("access to location denied")
+        case .authorizedWhenInUse:
+            print("location authorizedWhenInUse")
+        case .authorizedAlways:
+            print("location authorizedAlways")
+            
+        }
     
     }
      
