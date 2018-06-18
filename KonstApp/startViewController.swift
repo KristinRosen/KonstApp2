@@ -317,15 +317,15 @@ var imagess = Images(konstBild: [UIImage()])
         func catchNotification(notification:Notification) -> Void {
             print("Catch notification")
             
-            guard let userInfo = notification.userInfo,
-                let message  = userInfo["message"] as? String,
-                let date     = userInfo["date"]    as? Date else {
-                    print("No userInfo found in notification")
-                    return
-            }
+//            guard let userInfo = notification.userInfo,
+//                let message  = userInfo["message"] as? String,
+//                let date     = userInfo["date"]    as? Date else {
+//                    print("No userInfo found in notification")
+//                    return
+//            }
             
-            let alert = UIAlertController(title: "Notification!",
-                                          message:"\(message) received at \(date)",
+            let alert = UIAlertController(title: "Appen behöver tillgång till platstjänster",
+                                          message:"Ändra inställningar för appen under integritetsskydd för kunna använda konstvandringsläget",
                 preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -364,7 +364,7 @@ var imagess = Images(konstBild: [UIImage()])
         let nc = NotificationCenter.default
         nc.post(name:myNotification,
                 object: nil,
-                userInfo:["message":"Hello there!", "date":Date()])
+                userInfo:[:])
         case .authorizedWhenInUse:
             print("location authorizedWhenInUse")
         case .authorizedAlways:
