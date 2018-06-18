@@ -63,10 +63,10 @@
                                 <rect key="frame" x="0.0" y="64" width="3372.6666666666665" height="621.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A2h-Eg-nc0">
-                                        <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3795"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3794.6666666666665"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-Tf-3g8">
-                                                <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3372"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="3372.6666666666665" height="3371.6666666666665"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="hvc-Kw-zQS"/>
@@ -74,13 +74,13 @@
                                                 </constraints>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="Letar efter konstverk..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLm-ux-L02" userLabel="titelLabel">
-                                                <rect key="frame" x="0.0" y="3372" width="3372.6666666666665" height="40"/>
+                                                <rect key="frame" x="0.0" y="3371.6666666666665" width="3372.6666666666665" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiB-HT-byG" userLabel="konstnarlabel">
-                                                <rect key="frame" x="0.0" y="3412" width="3372.6666666666665" height="33"/>
+                                                <rect key="frame" x="0.0" y="3411.6666666666665" width="3372.6666666666665" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content=" ">
@@ -94,7 +94,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98D-U6-IAG">
-                                                <rect key="frame" x="0.0" y="3445" width="3372.6666666666665" height="350"/>
+                                                <rect key="frame" x="0.0" y="3444.6666666666665" width="3372.6666666666665" height="350"/>
                                                 <color key="backgroundColor" white="1" alpha="0.88" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="Vko-Cq-BoM"/>
@@ -259,7 +259,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-re-MtX" userLabel="Undersök/konstvandring">
-                                        <rect key="frame" x="103.66666666666667" y="0.0" width="206.66666666666663" height="45"/>
+                                        <rect key="frame" x="103.66666666666669" y="0.0" width="207" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cbC-re-MtX" secondAttribute="height" multiplier="4.6:1" id="qex-3K-dXU"/>
@@ -273,7 +273,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gwk-hL-A9R" userLabel="Alla Button">
-                                        <rect key="frame" x="103.66666666666669" y="45" width="207" height="45"/>
+                                        <rect key="frame" x="126" y="45" width="162" height="579.33333333333337"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8124464897260274" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Gwk-hL-A9R" secondAttribute="height" multiplier="4.6:1" id="0ab-pV-h15"/>
@@ -287,12 +287,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="de0-4r-YI5" userLabel="IBM Button">
-                                        <rect key="frame" x="85.666666666666686" y="90" width="243" height="582"/>
+                                        <rect key="frame" x="97.666666666666686" y="624.33333333333337" width="219" height="47.666666666666629"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.95315175513698636" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="de0-4r-YI5" secondAttribute="height" multiplier="4.6:1" id="kl0-Xu-IZa"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <state key="normal" title="IBMs konstsamling">
                                             <color key="titleColor" white="0.0" alpha="0.75053510270000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
