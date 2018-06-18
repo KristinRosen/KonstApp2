@@ -314,6 +314,7 @@ var imagess = Images(konstBild: [UIImage()])
 //
 //        }
 
+        // Notification instructing user to change settings, send if access to location is denied
         func catchNotification(notification:Notification) -> Void {
             print("Catch notification")
             
@@ -356,6 +357,7 @@ var imagess = Images(konstBild: [UIImage()])
         
         beaconManager = KTKBeaconManager(delegate: self as? KTKBeaconManagerDelegate)
         
+        // Check access to location. Ask for access if the app has not asked before, send notification if it is denied.
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
@@ -374,8 +376,6 @@ var imagess = Images(konstBild: [UIImage()])
     
     }
 
-        
-        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
