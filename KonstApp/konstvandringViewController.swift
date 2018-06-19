@@ -611,95 +611,95 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
-    // MARK: - Navigation__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        // Get the new view controller using segue.destinationViewController.
-        //        // Pass the selected object to the new view controller.
-        //
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == "konstvandringDetail" {
-            guard let ViewController = segue.destination as? ViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard konstverkTexter?.IBMKonstsamling != nil
-                else { print("Inga konstTexter")
-                    return
-            }
-            ViewController.konstverkTexter = konstverkTexter
-            
-            guard validBeacons.count > 0
-                else {return}
-            
-            guard beaconArray2 != ""
-                else {return}
-            
-            
-            
-            //if beaconArray.count > 0 {
-            
-            guard i >= 0
-                else {print("error: i är nil")
-                    return}
-            
-            print("OOOOOOOOOOOOOO")
-            print(i)
-            //                    print(beaconArray[i!])
-            
-            beaconName = konstName[i]
-            beaconArtist = konstnarName[i]
-            //                    beaconImage = konstBild[i!]
-            //beaconBilden = (konstBilder?.konstBild[i])!
-            beaconBilden = cellArray[i]
-            beaconTexts = konstTexter[i]
-            beaconBEACON = beaconMinorValues[i]
-            //beaconBild = bildUrl[i]
-            beaconBEACONBEACON = beaconArray2
-            
-            if beaconBilden != nil {
-                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
-                print("BEACONKONSTVERK SAVED")
-            } else { print("ingen beaconImage")
-                return}
+//    // MARK: - Navigation__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
+//    
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //        // Get the new view controller using segue.destinationViewController.
+//        //        // Pass the selected object to the new view controller.
+//        //
+//        super.prepare(for: segue, sender: sender)
 //
-//            if let url = URL(string: beaconBild) {
-//
-//                print("kladdkaka2")
-//                self.downloadImage(url: url)
+//        if segue.identifier == "konstvandringDetail" {
+//            guard let ViewController = segue.destination as? ViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
 //            }
-            print(beaconBEACON)
-            
-
-                if beaconKonstverk?.beaconMinor != closestBeaconMinor {
-                    print("FEL KONSTVERK")
-                    return
-                } else {}
-            
-            
-            
-            repeat {
-                print("WAIT")
-            }  while beaconKonstverk?.photo == nil
-            
-            if beaconKonstverk?.photo !== nil {
-                
-                
-               
-                ViewController.konstverket = beaconKonstverk
-                print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
-                print(ViewController.konstverket!)
-                
-            } else {}
-            
-            // } else {print("inga beacons i beaconArray")
-            //return
-            //}
-            
-        }
-    }
+//
+//            guard konstverkTexter?.IBMKonstsamling != nil
+//                else { print("Inga konstTexter")
+//                    return
+//            }
+//            ViewController.konstverkTexter = konstverkTexter
+//
+//            guard validBeacons.count > 0
+//                else {return}
+//
+//            guard beaconArray2 != ""
+//                else {return}
+//
+//
+//
+//            //if beaconArray.count > 0 {
+//
+//            guard i >= 0
+//                else {print("error: i är nil")
+//                    return}
+//            
+//            print("OOOOOOOOOOOOOO")
+//            print(i)
+//            //                    print(beaconArray[i!])
+//
+//            beaconName = konstName[i]
+//            beaconArtist = konstnarName[i]
+//            //                    beaconImage = konstBild[i!]
+//            //beaconBilden = (konstBilder?.konstBild[i])!
+//            beaconBilden = cellArray[i]
+//            beaconTexts = konstTexter[i]
+//            beaconBEACON = beaconMinorValues[i]
+//            //beaconBild = bildUrl[i]
+//            beaconBEACONBEACON = beaconArray2
+//
+//            if beaconBilden != nil {
+//                self.beaconKonstverk = Konstverk(title: self.beaconName, artistName: self.beaconArtist, photo: self.beaconBilden, about: self.beaconTexts, beaconMinor: self.beaconBEACON, beaconMajor: self.beaconBEACONBEACON)
+//                print("BEACONKONSTVERK SAVED")
+//            } else { print("ingen beaconImage")
+//                return}
+////
+////            if let url = URL(string: beaconBild) {
+////
+////                print("kladdkaka2")
+////                self.downloadImage(url: url)
+////            }
+//            print(beaconBEACON)
+//
+//
+//                if beaconKonstverk?.beaconMinor != closestBeaconMinor {
+//                    print("FEL KONSTVERK")
+//                    return
+//                } else {}
+//
+//
+//
+//            repeat {
+//                print("WAIT")
+//            }  while beaconKonstverk?.photo == nil
+//
+//            if beaconKonstverk?.photo !== nil {
+//
+//
+//
+//                ViewController.konstverket = beaconKonstverk
+//                print("BEACONKONSTVERK : \(self.beaconKonstverk?.title, self.beaconKonstverk?.beaconMinor)")
+//                print(ViewController.konstverket!)
+//
+//            } else {}
+//
+//            // } else {print("inga beacons i beaconArray")
+//            //return
+//            //}
+//
+//        }
+//    }
     
     @IBAction func showText1(_ sender: UIButton) {
         displayString = verkText
@@ -743,7 +743,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == verkText {
             displayString = temaText
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = true
@@ -756,7 +756,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         }
         else if displayString == temaText {
             displayString = IBMtext
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = false
@@ -770,7 +770,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         else {
             displayString = verkText
             textView.text = displayString
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             button1.isSelected = true
             button2.isSelected = false
             button3.isSelected = false
@@ -785,7 +785,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
         if displayString == verkText {
             displayString = IBMtext
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = false
@@ -797,7 +797,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         }
         else if displayString == IBMtext {
             displayString = temaText
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = true
@@ -811,7 +811,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             
         else {
             displayString = verkText
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = true
             button2.isSelected = false
