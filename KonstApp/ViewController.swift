@@ -361,7 +361,7 @@ class ViewController: UIViewController {
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = temaText
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = true
@@ -374,7 +374,7 @@ class ViewController: UIViewController {
         }
         else if displayString == temaText {
             displayString = IBMtext
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = false
@@ -388,7 +388,7 @@ class ViewController: UIViewController {
         else {
             displayString = konstverket!.about
             textView.text = displayString
-            textView.leftToRightAnimation()
+            textView.rightToLeftAnimation()
             button1.isSelected = true
             button2.isSelected = false
             button3.isSelected = false
@@ -403,7 +403,7 @@ class ViewController: UIViewController {
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = IBMtext
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = false
@@ -415,7 +415,7 @@ class ViewController: UIViewController {
         }
             else if displayString == IBMtext {
             displayString = temaText
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = false
             button2.isSelected = true
@@ -429,7 +429,7 @@ class ViewController: UIViewController {
             
         else {
             displayString = konstverket!.about
-            textView.rightToLeftAnimation()
+            textView.leftToRightAnimation()
             textView.text = displayString
             button1.isSelected = true
             button2.isSelected = false
@@ -445,30 +445,6 @@ class ViewController: UIViewController {
 
 //Swipe animation
 extension UIView {
-    public func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
-        // Create a CATransition object
-        let leftToRightTransition = CATransition()
-        
-        // Set its callback delegate to the completionDelegate that was provided
-        if let delegate: AnyObject = completionDelegate {
-            leftToRightTransition.delegate = delegate as? CAAnimationDelegate
-            
-        }
-        
-        leftToRightTransition.type = kCATransitionPush
-        leftToRightTransition.subtype = kCATransitionFromRight
-        leftToRightTransition.duration = duration
-        leftToRightTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        leftToRightTransition.fillMode = kCAFillModeRemoved
-        
-        // Add the animation to the View's layernäm
-        self.layer.add(leftToRightTransition, forKey: "leftToRightTransition")
-        
-    }
-    
-}
-
-extension UIView {
     public func rightToLeftAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
         // Create a CATransition object
         let rightToLeftTransition = CATransition()
@@ -480,13 +456,37 @@ extension UIView {
         }
         
         rightToLeftTransition.type = kCATransitionPush
-        rightToLeftTransition.subtype = kCATransitionFromLeft
+        rightToLeftTransition.subtype = kCATransitionFromRight
         rightToLeftTransition.duration = duration
         rightToLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         rightToLeftTransition.fillMode = kCAFillModeRemoved
         
-        // Add the animation to the View's layer
+        // Add the animation to the View's layernäm
         self.layer.add(rightToLeftTransition, forKey: "rightToLeftTransition")
+        
+    }
+    
+}
+
+extension UIView {
+    public func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
+        // Create a CATransition object
+        let leftToRightTransition = CATransition()
+        
+        // Set its callback delegate to the completionDelegate that was provided
+        if let delegate: AnyObject = completionDelegate {
+            leftToRightTransition.delegate = delegate as? CAAnimationDelegate
+            
+        }
+        
+        leftToRightTransition.type = kCATransitionPush
+        leftToRightTransition.subtype = kCATransitionFromLeft
+        leftToRightTransition.duration = duration
+        leftToRightTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        leftToRightTransition.fillMode = kCAFillModeRemoved
+        
+        // Add the animation to the View's layer
+        self.layer.add(leftToRightTransition, forKey: "leftToRightTransition")
         
     }
     
