@@ -70,7 +70,7 @@ class TableViewController: UITableViewController {
     var bildUrl = [URL]()
     
     //array of all downloaded images
-    var konstBild = [UIImage()]
+//    var konstBild = [UIImage()]
     
     //array of all artworks' texts
     var konstTexter = [String]()
@@ -166,9 +166,9 @@ class TableViewController: UITableViewController {
                 print("________________________________________U-R-L--L-I-S-T-A___________________________________")
                 print(self.bildUrl)
                 
-                //ta bort överflödig bild som skapas av mystisk anledning
-                self.konstBild.remove(at: 0)
-                print("superfluous image removed")
+//                //ta bort överflödig bild som skapas av mystisk anledning
+//                self.konstBild.remove(at: 0)
+//                print("superfluous image removed")
                 
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
@@ -267,9 +267,9 @@ class TableViewController: UITableViewController {
             
             
             
-            self.konstBild.append(UIImage(data: imageData as Data!)!)
+//            self.konstBild.append(UIImage(data: imageData as Data!)!)
             
-            print(self.konstBild)
+//            print(self.konstBild)
             print("image downloaded and saved")
             
             DispatchQueue.main.async {
