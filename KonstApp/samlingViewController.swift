@@ -16,15 +16,19 @@ class samlingViewController: UIViewController {
     
     var IBMtext: String?
     
+    //text view
     @IBOutlet weak var text: UITextView!
+    
+    //image view
     @IBOutlet weak var imageView: UIImageView!
+    
+    //background image
     @IBOutlet weak var bgImageView: UIImageView!
+    
+    //label
     @IBOutlet weak var label: UITextView!
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        print("_______________WE WELCOME YOU TO THE KONSTSAMLINGsA_______________")
-        print(konstverkTexterSa?.startBild)
         
         //Show the navigation bar in this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -37,13 +41,14 @@ class samlingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        //check that image from previous view controller is not nil
         guard konstverkTexterSa?.startBild != nil
-            else {print("ingen start-bild")
+            else {print("no startBild-image")
                 return
         }
         
+        //set image views to startBild
         imageView.image = konstverkTexterSa?.startBild
         bgImageView.image = konstverkTexterSa?.startBild
         
@@ -51,6 +56,7 @@ class samlingViewController: UIViewController {
         text.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
         label.textContainerInset = UIEdgeInsetsMake(16, 10, 5, 10)
         
+        //set text and labels
         text.text = konstverkTexterSa!.IBMKonstsamling
         label.text = "IBM's konstsamling"
         self.title = "IBM's konstsamling"
@@ -59,12 +65,6 @@ class samlingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
     }
     
 }
