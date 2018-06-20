@@ -23,7 +23,7 @@ var konstverkTexter2: KonstTexter?
 //Images class object for passing downloaded images to the next view
 var imagess = Images(konstBild: [UIImage()])
 
-class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
+class startViewController: UIViewController {
     
     var beaconManager: KTKBeaconManager!
     let myNotification = Notification.Name(rawValue:"MyNotification")
@@ -43,7 +43,6 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        print("----------------------------Välkommen  ---------------------------------")
         
         vandrButton.backgroundColor = UIColor(white: 1, alpha: 0.5)
         allaButton.backgroundColor = UIColor(white: 1, alpha: 0.81)
@@ -104,10 +103,9 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Viewdidloaddd------------------------------------------------")
         
         //setup for when the view loads
         imageView.isHidden = true
@@ -120,6 +118,7 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
         allaButton.addTextSpacing(spacing: 2.5)
         ibmButton.addTextSpacing(spacing: 2.5)
         
+        //needed for notification
         let nc = NotificationCenter.default
         nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
         
@@ -139,7 +138,6 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
             print("location authorizedWhenInUse")
         case .authorizedAlways:
             print("location authorizedAlways")
-            
         }
         
     }
@@ -165,7 +163,7 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
             guard let data = data, error == nil else { return }
             
             print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Finished downloading startimage")
+            print("Finished downloading start image")
             
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             
@@ -176,15 +174,12 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
                 konstverkTexter2?.startBild = UIImage(data: imageData!)
                 self.activityIndicator.stopAnimating()
                 self.imageView.isHidden = false
-                //                startBild.append(UIImage(data: imageData!)!)
             }
-            
-            print("startimage downloaded and saved")
             
         }
     }
     
-    // MARK: - Navigation
+    // MARK: Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,17 +191,17 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
         //if the "konstvandring" button has been selected
         if segue.identifier == "konstvandring" {
             
+            //change the background color of the selected button
             vandrButton.backgroundColor = UIColor(white: 0.7, alpha:0.5)
             
             guard let konstvandringViewController = segue.destination as? konstvandringViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            print("*******SEGUE*******")
-            
             //if the "Alla konstverk" button has been selected
         } else if segue.identifier == "allaKonstverk" {
             
+            //change the background color of the selected button
             allaButton.backgroundColor = UIColor(white: 0.7, alpha:0.81)
             
             guard let TableViewController = segue.destination as? TableViewController else {
@@ -216,6 +211,7 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
             //if the "IBMs konstsamling" button has been selected
         } else if segue.identifier == "ibmKonstsamling" && konstverkTexter2?.startBild != nil {
             
+            //change the background color of the selected button
             ibmButton.backgroundColor = UIColor(white: 0.7, alpha:0.95)
             
             guard let samlingViewController = segue.destination as? samlingViewController else {
