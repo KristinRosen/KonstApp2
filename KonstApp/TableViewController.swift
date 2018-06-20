@@ -32,9 +32,10 @@ struct KonstTextData2: Decodable {
 //konstTexter class object for passing information to the next view
 var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""], startBild: UIImage())
 
-//int describing number of rows in tableView (default value can be any number over 0)
+//int describing number of objects in tableView (default value can be any number over 0)
 var i2 = 5
 
+//the selected cell in the TableView
 var theCell = UITableViewCell()
 
 //class for table view of all artworks
@@ -73,18 +74,13 @@ class TableViewController: UITableViewController {
     //array of all artworks' corresponding beacon major values (artworks/beacons on the same floor has the same value here)
     var MajorValues = [String]()
     
-    
+    //Dictionary where the images will be added with their url as key
     var bildDictionary = [URL: UIImage]()
     
-    var keyList:[URL] {
-        get{
-            return [URL](self.bildDictionary.keys)
-        }
-    }
-    
+    //All the images in the right order
     var cellArray = [UIImage]()
     
-    var myRowKey: URL!
+    //Image fetched from bildDictionary
     var myRowData = UIImage()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +88,7 @@ class TableViewController: UITableViewController {
         // Show the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
+        //make sure none of the cells are selected
         theCell.isHighlighted = false
         theCell.isSelected = false
     }
@@ -107,8 +104,10 @@ class TableViewController: UITableViewController {
             self.view.addSubview(self.konstTableView)
         }
         
+        //set table view delegate and data source
         konstTableView.delegate = self
         konstTableView.dataSource = self
+        
         
         //MARK: Download from url
         
@@ -171,7 +170,7 @@ class TableViewController: UITableViewController {
         { return }
         
         URLSession.shared.dataTask(with: url2) { (data, response, err) in
-
+            
             guard let data = data else { return }
             
             do {
@@ -290,10 +289,6 @@ class TableViewController: UITableViewController {
         cell.tabelLable2.font = UIFont.preferredFont(forTextStyle: .body)
         cell.tabelLable2.adjustsFontForContentSizeCategory = true
         
-        //enable automatic dimention
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
         return cell
     }
     
@@ -305,13 +300,14 @@ class TableViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
+        //make cell highlighted when tapped
         theCell = (sender as? TableViewCell)!
         theCell.isSelected = false
         theCell.setHighlighted(true, animated: true)
         
         if segue.identifier == "ShowDetail" {
             
-        
+            
             guard let ViewController = segue.destination as? ViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }

@@ -238,7 +238,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         for urlen in self.bildUrl2 {
             self.myRowData = self.bildDictionary[urlen]!
             self.cellArray.append(self.myRowData)
-    
+            
         }
         
         //MARK: Beacon configuration
@@ -280,7 +280,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             beaconManager.startRangingBeacons(in: region)
             beaconManager.stopRangingBeacons(in: region)
             
-            }
+        }
         
     }
     
@@ -320,19 +320,14 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
                     self.konstTexter.append(bild.texter)
                     self.bildUrl2.append(URL(string: bild.bild)!)
                     print("Found \(bild.bild)")
-                    //                    self.bildDictionary[bild.bild] = bild.bild
-                    //                    print(self.bildDictionary)
                     if let url = URL(string: bild.bild) {
-                        print("kladdkaka!")
                         self.downloadImage(url: url)
                     }
                 }
                 
             } catch let jsonErr {
                 print(jsonErr)
-                
             }
-            
             
             }.resume()
         //end of download session 2
@@ -572,11 +567,11 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         
-    //following code will be executed every time the app has recieved signals from a beacon
+        //following code will be executed every time the app has recieved signals from a beacon
         
         if beacons.count > 0 {
             
-    //sort out the beacons with rssi = 0 (those beacons are out of range)
+            //sort out the beacons with rssi = 0 (those beacons are out of range)
             if beacons.first!.rssi != 0 {
                 
                 validBeacons = beacons
@@ -666,7 +661,7 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
                         displayString = verkText
                         textView.text = displayString
                         
-                    //update the second text if the beacon changes and button2 is selected
+                        //update the second text if the beacon changes and button2 is selected
                     } else if displayString != konstverkTexter?.temaTexter[i4!]  && textView.text != konstverkTexter?.temaTexter[i4!] && button2.isSelected == true {
                         temaText = konstverkTexter?.temaTexter[i4!]
                         displayString = temaText
