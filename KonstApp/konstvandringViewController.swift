@@ -8,6 +8,7 @@
 
 import UIKit
 import KontaktSDK
+import CoreBluetooth
 
 var isRanging = Bool()
 
@@ -28,7 +29,6 @@ struct KonstTextData: Decodable {
     let beaconMajorValues: [String]
     let startBild: String
 }
-
 
 //index value
 var i = Int()
@@ -98,6 +98,10 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
     //CONSTANTS AND VARIABLES
     
+    let myNotification2 = Notification.Name(rawValue:"MyNotification2")
+    
+    var centralManager: CBCentralManager!
+    
     //placeholder animation
     let animation = UIImage.animatedImage(with: [#imageLiteral(resourceName: "signal1"), #imageLiteral(resourceName: "signal2"), #imageLiteral(resourceName: "signal3"), #imageLiteral(resourceName: "signal4")], duration: 1.5)
     
@@ -108,9 +112,9 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     var beaconManager: KTKBeaconManager!
     
     //major value of closest beacon
-    var beaconArray2 = String()
+    var closestBeaconMajor = String()
     
-    //aray of downloaded titles
+    //array of downloaded titles
     var konstName = [String]()
     
     //array of downloaded artist names
@@ -144,18 +148,6 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     var myRowData = UIImage()
     
     
-    var beaconImage = [UIImage]()
-    var beaconUrl  = String()
-    var beaconTexts = String()
-    var beaconName = String()
-    var beaconArtist = String()
-    var beaconBEACON = String()
-    var beaconBEACONBEACON = String()
-    
-    var beaconBilden = UIImage()
-    
-    //MARK: VIEW VILL APPEAR__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!_________!!!!!!!!!
-    
     override func viewWillAppear(_ animated: Bool) {
         
         //Show the navigation bar in this view controller
@@ -180,6 +172,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         imageView.image = nil
         bgImageView.image = nil
         
+        //display the animation while searching for beacons
         animationImageView.image = animation
         
         //add margins to text views
@@ -195,11 +188,12 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         cellArray.removeAll()
         print("BEACONS REMOVED")
         
+        
         //MARK: Download from url
         
-        //download session 2
+        //download session 1
         //url which the "konstTexter" object is downloaded from
-        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        let jsonUrlString2 = "https://konst.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
         
@@ -232,21 +226,19 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    //MARK: VIEW DID APPEAR__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     override func viewDidAppear(_ animated: Bool) {
         
+        //wait until all the images have been added to bildDictionary
         repeat {
-            print("hejdå")
+            print("loading bildDictionary")
         } while self.bildDictionary.count != self.konstName.count
         
+        //get the images from bildDictionary and add to cellArray in the same order as the urls
         for urlen in self.bildUrl2 {
             self.myRowData = self.bildDictionary[urlen]!
-            
-            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-            print(self.myRowData as Any)
             self.cellArray.append(self.myRowData)
-            print("***IMAGE***\(self.cellArray)")
+    
         }
         
         //MARK: Beacon configuration
@@ -258,6 +250,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
         
+        //check location authorization status and start looking for beacons if access is allowed
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
@@ -270,10 +263,8 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             if KTKBeaconManager.isMonitoringAvailable() {
                 
                 beaconManager.startMonitoring(for: region)
-                
-                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER 2")
-                
             }
+            
             beaconManager.startRangingBeacons(in: region)
             beaconManager.stopRangingBeacons(in: region)
             
@@ -284,26 +275,28 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             if KTKBeaconManager.isMonitoringAvailable() {
                 
                 beaconManager.startMonitoring(for: region)
-                
-                print("TACK FÖR ÅTGÅNG TILL PLATSTJÄNSTER")
-                
             }
+            
             beaconManager.startRangingBeacons(in: region)
             beaconManager.stopRangingBeacons(in: region)
-        }
-        
-        print("slutat")
+            
+            }
         
     }
     
-    //MARK: VIEW DID LOAD__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        //needed for notification
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:myNotification2, object:nil, queue:nil, using:catchNotification)
+        
         //download session 2
         //url which the "konstverk" objects are downloaded from
-        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        let jsonUrlString = "https://konst.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
@@ -344,7 +337,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             }.resume()
         //end of download session 2
         
-        
+        //make the first button selected when the view appears
         button1.isSelected = true
         button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         button2.backgroundColor = .white
@@ -362,22 +355,33 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    //MARK: ACTIONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: FUNCTIONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
     
+    //MARK: FUNCTIONS
+    
+    //notification to send if Bluetooth is turned off
+    func catchNotification(notification:Notification) -> Void {
+        print("Catch notification")
+        
+        let alert = UIAlertController(title: "Appen behöver Bluetooth",
+                                      message:"Slå på Bluetooth för kunna använda konstvandringsläget",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //function that gets data from the urls
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
             }.resume()
     }
     
-    //function to download images for all the artworks from url
+    //function to download images from url
     func downloadImage(url: URL) {
         print("Started downloading")
         
@@ -390,16 +394,18 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
             
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             
-            //VAD HÄNDER HÄR????
-            print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+            //add the image data to bildDictionary
             self.bildDictionary[url] = UIImage(data: imageData as Data!)!
-            print(self.bildDictionary)
-            
-            print("image downloaded and saved")
+            print("image added to dictionary")
             
         }
     }
     
+    //MARK: ACTIONS
+    
+    //Change text + select corresponding buttons when tapping buttons (for all possible cases)
+    
+    //Button 1 is tapped
     @IBAction func showText1(_ sender: UIButton) {
         displayString = verkText
         textView.text = displayString
@@ -413,6 +419,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    //Button 2
     @IBAction func showText2(_ sender: UIButton) {
         displayString = temaText
         textView.text = displayString
@@ -425,6 +432,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
         button3.backgroundColor = .white
     }
     
+    //Button 3
     @IBAction func showText3(_ sender: UIButton) {
         displayString = IBMtext
         textView.text = displayString
@@ -525,7 +533,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
-//MARK: BEACONS__________!!!!!!!!!___________!!!!!!!!!_________!!!!!!!!__________!!!!!!!!!!
+//MARK: Beacons
 
 extension konstvandringViewController: KTKBeaconManagerDelegate {
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
@@ -564,9 +572,11 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         
+    //following code will be executed every time the app has recieved signals from a beacon
         
         if beacons.count > 0 {
             
+    //sort out the beacons with rssi = 0 (those beacons are out of range)
             if beacons.first!.rssi != 0 {
                 
                 validBeacons = beacons
@@ -579,9 +589,10 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
                     beaconDistance.append(beacon.rssi)
                     
                 }
+                
                 }
                 
-                
+                //sort the beacons by distance by sorting their rssi values by size
                 beaconDistance.sort { $0 < $1 }
                 
                 guard beaconDistance.first != nil
@@ -589,15 +600,18 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
                         return
                 }
                 
-                let beaconIndex = beaconDistance.first!
+                //get the closest beacons rssi value
+                let closestBeaconRssi = beaconDistance.first!
                 
+                //add the valid beacon(s) with the closest rssi to a new array
                 for beacon2 in validBeacons {
                     
-                    if beaconIndex == beacon2.rssi {
+                    if closestBeaconRssi == beacon2.rssi {
                         validBeacons2.append(beacon2)
                     }
                 }
                 
+                //make validBeacons the closest beacon(s)
                 validBeacons = validBeacons2
                 
             }
@@ -605,28 +619,27 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
             
             print("beacons in range: \(validBeacons)")
             
-            beaconArray2 = validBeacons.first!.major.stringValue
+            //set closestBeaconMajor to the closest beacons major value
+            closestBeaconMajor = validBeacons.first!.major.stringValue
             
+            //set closestBeaconMinor to the closest beacons minor value
             closestBeaconMinor = validBeacons.first!.minor.stringValue
             
             print(closestBeaconMinor)
             
             repeat {
-                print("har inte hittat alla beaconMinorValues än")
+                print("looking for beacon minor values")
             } while beaconMinorValues.count != konstName.count
             print(beaconMinorValues)
             
             if beaconMinorValues.contains(closestBeaconMinor) {
+                //get the index of the closest beacons minor value in beaconMinorValues
                 i = beaconMinorValues.index(of: closestBeaconMinor)!
-                
                 
                 print(i)
                 
+                //print closest konstverk title
                 print(konstName[i])
-                
-                
-                print(konstBild)
-                
                 
                 if cellArray.count == konstName.count {
                     
@@ -638,19 +651,22 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
                     //find the "temaText" with the same index as beaconMajor in the downloaded array "temaTexter" = "temaText" for the right floor
                     if i4 != nil {
                         temaText = (konstverkTexter?.temaTexter[i4!])!
-                        print("vån \(temaText!)")
                     } else {
                         temaText = "Ingen våning registrerad för konstverket"
                     }
                     
+                    //set textviews texts to the approperiate texts
                     titelLabel.text = konstName[i]
                     konstnarLabel.text = konstnarName[i]
                     verkText = konstTexter[i]
-                    print("TJOLAHOPP")
+                    
+                    //update the first text if the beacon changes and button1 is selected
                     if displayString != konstTexter[i]  && textView.text != konstTexter [i] && titelLabel.text == konstName[i] && button1.isSelected == true {
                         verkText = konstTexter[i]
                         displayString = verkText
                         textView.text = displayString
+                        
+                    //update the second text if the beacon changes and button2 is selected
                     } else if displayString != konstverkTexter?.temaTexter[i4!]  && textView.text != konstverkTexter?.temaTexter[i4!] && button2.isSelected == true {
                         temaText = konstverkTexter?.temaTexter[i4!]
                         displayString = temaText
@@ -658,33 +674,34 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
                         
                     } else {}
                     
-                    
-                    
                     verkText = konstTexter[i]
                     IBMtext = konstverkTexter?.IBMKonstsamling
                     
+                    //hide the placeholder views
                     placeholderView.isHidden = true
                     scrollView.isHidden = false
                     buttonStackView.isHidden = false
                     
                     imageView.contentMode = UIViewContentMode.scaleAspectFill
+                    
+                    //set image views to the right image
                     imageView.image = cellArray[i]
                     
                     bgImageView.image = cellArray[i]
                     
-                } else {print("inte laddat ner alla bilder än \(cellArray)")
+                } else {print("cellArray not done yet \(cellArray)")
                     return
                 }
                 
             } else {print("invalid beacon minor")
                 return}
             
-        } else {print("*NO BEACONS*")
+        } else {print("NO BEACONS")
             
+            //show placeholder view if no beacons are found
             placeholderView.isHidden = false
             
             animationImageView.image = animation 
-            
             
             let normalText2 = "Letar efter konstverk..."
             let attribute3 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20)]
@@ -697,5 +714,33 @@ extension konstvandringViewController: KTKBeaconManagerDelegate {
         }
         
     }
+    
+}
+
+//Function that checks if Bluetooth is on, sends notification saying it needs to be turned on if it is turned off
+extension konstvandringViewController: CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+            
+        case .unknown:
+            print("central.state is .unknown")
+        case .resetting:
+            print("central.state is .resetting")
+        case .unsupported:
+            print("central.state is .unsupported")
+            
+        case .unauthorized:
+            print("central.state is .unauthorized")
+        case .poweredOff:
+            print("central.state is .poweredOff")
+            let nc = NotificationCenter.default
+            nc.post(name:myNotification2,
+                    object: nil,
+                    userInfo:[:])
+        case .poweredOn:
+            print("central.state is .poweredOn")
+        }
+    }
+    
     
 }

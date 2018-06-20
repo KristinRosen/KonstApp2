@@ -29,8 +29,10 @@ struct KonstTextData2: Decodable {
     let startBild: String
 }
 
+//konstTexter class object for passing information to the next view
 var konstverketTexter = KonstTexter(IBMKonstsamling: "", temaTexter: [""], beaconMajorValues: [""], startBild: UIImage())
 
+//int describing number of rows in tableView (default value can be any number over 0)
 var i2 = 5
 
 var theCell = UITableViewCell()
@@ -45,7 +47,7 @@ class TableViewController: UITableViewController {
     @IBOutlet var konstTableView: UITableView!
     
     
-    //constants
+    //Variables
     
     //placeholders
     
@@ -112,13 +114,11 @@ class TableViewController: UITableViewController {
         //MARK: Download from url
         
         //download session 1
-        let jsonUrlString = "https://konstapptest.eu-gb.mybluemix.net/konstverk"
+        let jsonUrlString = "https://konst.eu-gb.mybluemix.net/konstverk"
         guard let url = URL(string: jsonUrlString) else
         { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
             
             guard let data = data else { return }
             
@@ -131,8 +131,8 @@ class TableViewController: UITableViewController {
                 print(konstverkData2[0].texter)
                 print(konstverkData2[0].beaconMinor)
                 print(konstverkData2[0].beaconMajor)
-                print("Tjolahopp!!!!!")
                 
+                //add strings to arrays
                 for namn in konstverkData2{
                     print("Found \(namn.namn)")
                     print("Found \(namn.konstnar)")
@@ -149,15 +149,13 @@ class TableViewController: UITableViewController {
                 }
                 
                 print(self.konstName)
-                print("UGAYGYAFYUFAYUFAYUA")
                 print(self.MinorValues)
-                print("________________________________________U-R-L--L-I-S-T-A___________________________________")
                 print(self.bildUrl)
                 
+                //download images
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
                     if let url = URL(string: bild.bild) {
-                        print("kladdkaka")
                         self.downloadImage(url: url)
                     }
                 }
@@ -165,20 +163,17 @@ class TableViewController: UITableViewController {
                 print(jsonErr)
             }
             }.resume()
+        
         //end of download session 1
         
         //download session 2
-        
-        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        let jsonUrlString2 = "https://konst.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
         
         URLSession.shared.dataTask(with: url2) { (data, response, err) in
-            //perhaps check err
-            //also perhaps check response status 200 OK
-            
+
             guard let data = data else { return }
-            
             
             do {
                 
@@ -188,15 +183,16 @@ class TableViewController: UITableViewController {
                 print(konstTextData[0].temaTexter)
                 print(konstTextData[0].beaconMajorValues)
                 
+                //add values to KonstTexter class object "konstverkTexter"
                 konstverketTexter = KonstTexter(IBMKonstsamling: konstTextData[0].IBMkonstsamling, temaTexter: konstTextData[0].temaTexter, beaconMajorValues: konstTextData[0].beaconMajorValues, startBild: UIImage())
                 
-                print(konstverketTexter!)
-                print("KONSTTEXTER SPARADE")
+                print("konstTexter downloaded")
                 
             } catch let jsonErr {
                 print(jsonErr)
             }
             }.resume()
+        
         //end of download session 2
         
     }
@@ -206,12 +202,16 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: FUNCTIONS
+    
+    //function that gets data from the urls
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
             }.resume()
     }
     
+    //function to download images from url
     func downloadImage(url: URL) {
         print("Started downloading")
         
@@ -224,18 +224,19 @@ class TableViewController: UITableViewController {
             
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             
-            print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
+            //add the image data to bildDictionary
             self.bildDictionary[url] = UIImage(data: imageData as Data!)!
-            print(self.bildDictionary)
+            print("image added to dictionary")
             
-            print("image downloaded and saved")
-            
+            //reload the tableView data
             DispatchQueue.main.async {
                 self.konstTableView.reloadData()
             }
         }
     }
-    // MARK: - Table view data source
+    
+    
+    // MARK: Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -253,7 +254,9 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        //set placeholder images with activity indicators while the data is being downloaded
         while self.bildDictionary.count != self.konstName.count {
+            
             cell.tabelLable.text = placeholderText1[indexPath.row]
             cell.tabelLable2.text = placeholderText2[indexPath.row]
             cell.tableImageView.image = placeholderBilder[indexPath.row] as UIImage
@@ -269,21 +272,18 @@ class TableViewController: UITableViewController {
             return cell
         }
         
-        
+        //get the images from bildDictionary by their url and add to cellArray in the right order
         for urlen in bildUrl {
             self.myRowData = self.bildDictionary[urlen]!
-            
-            print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-            print(myRowData as Any)
             cellArray.append(myRowData)
-            print(cellArray)
         }
         
+        //add the approperiate data to the table view cell
         cell.tabelLable.text = self.konstName[indexPath.row]
         cell.tabelLable2.text = self.konstnarName[indexPath.row]
-        //        cell.tableImageView.image = self.konstBild[indexPath.row] as UIImage
         cell.tableImageView.image = cellArray[indexPath.row] as UIImage
         
+        //stop the activity indicator
         cell.activityIndicator.stopAnimating()
         
         //make font size adjust to accessibility settings
@@ -293,49 +293,16 @@ class TableViewController: UITableViewController {
         cell.tabelLable2.font = UIFont.preferredFont(forTextStyle: .body)
         cell.tabelLable2.adjustsFontForContentSizeCategory = true
         
+        //enable automatic dimention
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
         return cell
     }
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+
     
     
-    // MARK: - Navigation
+    // MARK: Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -348,13 +315,10 @@ class TableViewController: UITableViewController {
         
         if segue.identifier == "ShowDetail" {
             
-            
+        
             guard let ViewController = segue.destination as? ViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            
-            
-            
             
             guard let selectedCell = sender as? TableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
@@ -370,6 +334,7 @@ class TableViewController: UITableViewController {
             //prevent segue from happening if the image has not loaded yet (function declared below)
             shouldPerformSegue(withIdentifier: "ShowDetail", sender: TableViewController.self)
             
+            //add the data from the selected table view cell to a "Konstverk" class object in order to pass the data to the next viewController
             let selectedKonstverkName = konstName[indexPath.row]
             print(selectedKonstverkName)
             let selectedKonstnarName = konstnarName[indexPath.row]
@@ -385,9 +350,7 @@ class TableViewController: UITableViewController {
             ViewController.konstverket = selectedKonstverk
             ViewController.konstverkTexter = konstverketTexter
             
-        } else {
-            
-        }
+        } else {}
         
     }
     
@@ -397,7 +360,7 @@ class TableViewController: UITableViewController {
         
         if cellArray.count < konstName.count  {
             theCell.isSelected = false
-            print("------------------------________!segue will not happen!_______-----------------------")
+            print("!segue will not happen")
             return false
             
         } else { return true }

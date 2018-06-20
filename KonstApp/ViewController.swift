@@ -121,6 +121,7 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: ACTIONS
     
     //Change text + select corresponding buttons when tapping buttons (for all possible cases)
     

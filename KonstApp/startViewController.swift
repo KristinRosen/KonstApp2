@@ -56,7 +56,7 @@ class startViewController: UIViewController/*, CLLocationManagerDelegate*/ {
         
         //download session 1
         //url which the "konstTexter" object is downloaded from
-        let jsonUrlString2 = "https://konstapptest.eu-gb.mybluemix.net/konstTexter"
+        let jsonUrlString2 = "https://konst.eu-gb.mybluemix.net/konstTexter"
         guard let url2 = URL(string: jsonUrlString2) else
         { return }
         
