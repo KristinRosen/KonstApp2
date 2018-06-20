@@ -15,17 +15,16 @@ class samlingViewController: UIViewController {
     var temaText: String?
     
     var IBMtext: String?
-
+    
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var label: UITextView!
-
     
     override func viewWillAppear(_ animated: Bool) {
         
         print("_______________WE WELCOME YOU TO THE KONSTSAMLINGsA_______________")
-       print(konstverkTexterSa?.startBild)
+        print(konstverkTexterSa?.startBild)
         
         //Show the navigation bar in this view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -34,11 +33,7 @@ class samlingViewController: UIViewController {
         text.font = UIFont.preferredFont(forTextStyle: .body)
         text.adjustsFontForContentSizeCategory = true
         
-//        label.font = UIFont.preferredFont(forTextStyle: .body)
-//        label.adjustsFontForContentSizeCategory = true
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,27 +47,15 @@ class samlingViewController: UIViewController {
         imageView.image = konstverkTexterSa?.startBild
         bgImageView.image = konstverkTexterSa?.startBild
         
-//        // start activity indicator + hide image
-//        imageView.isHidden = true
-//        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.startAnimating()
-        
         //add margins to text views
         text.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
         label.textContainerInset = UIEdgeInsetsMake(16, 10, 5, 10)
-        
-        
-           
-//            self.activityIndicator.isHidden = true
-//            self.imageView.isHidden = false
         
         text.text = konstverkTexterSa!.IBMKonstsamling
         label.text = "IBM's konstsamling"
         self.title = "IBM's konstsamling"
     }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,17 +67,4 @@ class samlingViewController: UIViewController {
             }.resume()
     }
     
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,39 +9,17 @@
 import UIKit
 import KontaktSDK
 
+//enables making extension for giving UIButton borders
 public enum UIButtonBorderSide {
     case Top, Bottom, Left, Right
 }
 
 //class for detail view for the artworks
 class ViewController: UIViewController {
-    
-//    struct KonstverkData: Decodable {
-//        let namn: String
-//        let bild: String
-//        let texter: [String]
-//        let beaconMinor: String
-//    }
-    
-   var bildUrl = String()
-    
-    //Check if image has been downloaded earlier during the same session
-    var didDownload = Bool()
-    
-    //check if image named "image.jpeg" has previosly been saved to UserDefaults
-    func checkIfDownloaded() -> Bool {
-        if (UserDefaults.standard.object(forKey: "image.jpeg") != nil) {
-            print("image has previously been downloaded")
-            return true
-        } else {
-            print("image not yet downloaded")
-            return false
-        }
-    }
-    
+
     
     //MARK: Properties
- 
+    
     //Buttons
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -50,31 +28,33 @@ class ViewController: UIViewController {
     //ImageView
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgImageView: UIImageView!
-    
-    //Activity Indicator
-    
-    
-    //Label
-    @IBOutlet weak var label: UILabel!
-    
+  
+    //text view labels
     @IBOutlet weak var textViewLabel: UITextView!
     
     @IBOutlet weak var textViewlabel2: UITextView!
     
-    //Texts
+    //TextView
     @IBOutlet weak var textView: UITextView!
     
-    //Constants
+    
+    //Variables
+    
+    //Konstverk class object used to pass data from previous view
     var konstverket: Konstverk?
     
+    //KonstTexter class object used to pass data from previous view
     var konstverkTexter: KonstTexter?
     
+    //the text which is currently displayed in the textView
     var displayString: String?
-//    var infoTexts = [String]()
     
+    //the "temaText" for the currently displayed artwork
     var temaText: String?
     
+    //text about the art collection (same text for all artworks)
     var IBMtext: String?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -82,22 +62,12 @@ class ViewController: UIViewController {
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.adjustsFontForContentSizeCategory = true
         
-//        textViewLabel.font = UIFont.preferredFont(forTextStyle: .body)
-//        textViewLabel.adjustsFontForContentSizeCategory = true
-//        
-//        textViewlabel2.font = UIFont.preferredFont(forTextStyle: .body)
-//        textViewlabel2.adjustsFontForContentSizeCategory = true
-        
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print("*VIEWCONTROLLER*")
-        //print(konstverkTexter?.IBMKonstsamling as! String)
         
-        //set button image views content mode to aspect fit
+        //set button image views content mode to aspect fit and add top borders
         button1.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button2.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         button3.imageView?.contentMode = UIViewContentMode.scaleAspectFit
@@ -105,33 +75,21 @@ class ViewController: UIViewController {
         button2.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
         button3.addBorder(side: UIButtonBorderSide.Top, color: UIColor.lightGray, width: 0.5)
         
-        // start activity indicator + hide image
-//        imageView.isHidden = true
-//        activityIndicatorView.hidesWhenStopped = true
-//        activityIndicatorView.startAnimating()
-        
         //add margins to text views
         textView.textContainerInset = UIEdgeInsetsMake(10, 10, 15, 10)
         
         textViewLabel.textContainerInset = UIEdgeInsetsMake(16, 10, 0, 10)
         
         textViewlabel2.textContainerInset = UIEdgeInsetsMake(0, 10, 5, 10)
-
-        print("!-!-!-!-!-!-!-!-!-!")
-        
         
         //Make sure konstverket isn't empty
         if konstverket?.title != nil {
-//            if konstverket?.photo.size == CGSize(width: 0, height: 0) {
-//                print("!!!!!!********bilden existerar inte********!!!!!!")
-//                return } else {
             
             //Load texts and image from konstverket from startViewController
             print(konstverket!.photo)
             print([konstverket?.about])
             self.imageView.image = konstverket!.photo
-//            self.activityIndicatorView.isHidden = true
-//            self.imageView.isHidden = false
+            
             self.bgImageView.image = konstverket!.photo
             self.title = konstverket!.title
             self.textViewLabel.text = konstverket!.title
@@ -152,172 +110,19 @@ class ViewController: UIViewController {
                 self.temaText = (konstverkTexter?.temaTexter[i4!])!
                 print("vån \(temaText!)")
             } else {
-                 self.temaText = "Ingen våning registrerad för konstverket"
+                self.temaText = "Ingen våning registrerad för konstverket"
             }
-            
-            
-//            if konstverket!.beaconMajor == "17261" {
-//                
-//                self.temaText = (konstverkTexter?.temaTexter[0])!
-//                print("vån \(temaText!)")
-//                
-//            } else if konstverket!.beaconMajor == "40314" {
-//                
-//                self.temaText = (konstverkTexter?.temaTexter[1])!
-//                print("vån \(temaText!)")
-//                
-//            } else if konstverket!.beaconMajor == "40203" {
-//                
-//                self.temaText = (konstverkTexter?.temaTexter[2])!
-//                print("vån \(temaText!)")
-//                
-//            }
-//                
-////             else if konstverket!.beaconMajor == "aaa" || konstverket!.beaconMajor == "4" {
-////
-////                self.temaText = (konstverkTexter?.temaTexter[3])!
-////                print("vån \(temaText)")
-////
-////            }
-//            else { print("okänd beacon major") }
-//            
-            
-          
-            
-            
-            
-            print("!-!-!-!-!-!-!-!-!-!")
-                
-//            }
-        } else {print("error")}
         
-//    //Fetching JSONobject from url
-//
-//        let jsonUrlString = "http://localhost:6001/konstverk"
-//        guard let url = URL(string: jsonUrlString) else
-//        { return }
-//
-//        URLSession.shared.dataTask(with: url) { (data, response, err) in
-//            //perhaps check err
-//            //also perhaps check response status 200 OK
-//
-//            guard let data = data else { return }
-//
-//
-//           do {
-//
-//            //decode data + print namn
-//            let konstverkData = try JSONDecoder().decode([KonstverkData].self, from: data)
-//                print(konstverkData[0].namn)
-//                print(konstverkData[0].bild)
-//                print(konstverkData[0].texter)
-//
-//            DispatchQueue.main.async {
-//                self.textViewLabel.text = konstverkData[0].namn
-//                self.infoTexts = konstverkData[0].texter
-//                self.displayString = self.infoTexts[0]
-//                self.textView.text = self.displayString
-//
-//            }
-//                self.bildUrl = konstverkData[0].bild
-//
-//
-//
-//
-//            //Set url for image
-//
-//                if let url = URL(string: self.bildUrl) {
-//
-//                //if image has previously been downloaded during the same session or previous session, load image from Userdefaults
-//                //            if didDownload == true || checkIfDownloaded() == true {
-//                //
-//                //                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
-//                //
-//                //                self.imageView.image = UIImage(data: newData as Data)
-//                //                self.bgImageView.image = UIImage(data: newData as Data)
-//                //                self.activityIndicatorView.stopAnimating()
-//                //                self.imageView.isHidden = false
-//                //
-//                //                print("image loaded from memory")
-//                //
-//                //            //Otherwise download and save image to UserDefaults
-//                //            } else {
-//                //
-//                print("Hej")
-//                self.downloadImage(url: url)
-//                //            }
-//            }
-//
-//            } catch let jsonErr {
-//                print(jsonErr)
-//            }
-//        }.resume()
-//
-//
-//
-//
+        } else {print("temaText error")}
+        
         //Make the first button selected and the proper color when you enter the viewController
         button1.isSelected = true
         button1.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
-
-
         
-//
-//
-//    }
-//
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//
-//    //MARK: Actions
-//
-//    //Get image from url + stop activity indicator + show image
-//    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            completion(data, response, error)
-//            }.resume()
-//    }
-//
-//    func downloadImage(url: URL) {
-//        print("Started downloading")
-//
-//        getDataFromUrl(url: url) {
-//            data, response, error in
-//            guard let data = data, error == nil else { return }
-//
-//            print(response?.suggestedFilename ?? url.lastPathComponent)
-//            print("Finished downloading")
-//            DispatchQueue.main.async() {
-//
-//                let dataREP = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
-//
-//                UserDefaults.standard.set(dataREP, forKey: "image.jpeg")
-//
-//                let newData = UserDefaults.standard.object(forKey: "image.jpeg") as! NSData
-//
-//                self.imageView.image = UIImage(data: newData as Data)
-//                self.bgImageView.image = UIImage(data: newData as Data)
-//                self.activityIndicatorView.stopAnimating()
-//                self.imageView.isHidden = false
-//
-//                self.didDownload = true
-//
-//                print("image downloaded and saved")
-//
-//            }
-//        }
-//
-        
-        
-  }
- 
+    }
+    
     
     //Change text + select corresponding buttons when tapping buttons (for all possible cases)
-    
-    /* LÄGG TILL SWIPEANIMATION vid knapptryck NÄR VI VET HUR MÅNGA KNAPPAR */
     
     @IBAction func showText1(_ sender: UIButton) {
         displayString = konstverket!.about
@@ -413,7 +218,7 @@ class ViewController: UIViewController {
             button2.backgroundColor = .white
             button3.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         }
-            else if displayString == IBMtext {
+        else if displayString == IBMtext {
             displayString = temaText
             textView.leftToRightAnimation()
             textView.text = displayString
@@ -491,7 +296,6 @@ extension UIView {
     }
     
 }
-
 
 extension UIButton {
     

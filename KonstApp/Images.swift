@@ -14,9 +14,6 @@ class Images {
     
     var konstBild: [UIImage]
     
-    
-    
-    
     //initialization
     init?(konstBild: [UIImage]) {
         

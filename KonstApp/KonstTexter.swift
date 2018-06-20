@@ -19,7 +19,7 @@ class KonstTexter {
     
     var startBild: UIImage?
     
-
+    
     //initialization
     
     init?(IBMKonstsamling: String, temaTexter: [String], beaconMajorValues: [String], startBild: UIImage?) {

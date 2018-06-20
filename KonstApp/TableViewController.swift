@@ -21,13 +21,6 @@ struct KonstverkData2: Decodable {
     let beaconMajor: String
 }
 
-//struct KonstverkData3 {
-//    var name: String
-//    var artist: String
-//    var image: UIImage
-//    var texts: [String]
-//}
-
 //structure used for downloading Json object "konstTexter" from url
 struct KonstTextData2: Decodable {
     let IBMkonstsamling: String
@@ -50,7 +43,7 @@ class TableViewController: UITableViewController {
     
     //table view
     @IBOutlet var konstTableView: UITableView!
-  
+    
     
     //constants
     
@@ -68,9 +61,6 @@ class TableViewController: UITableViewController {
     
     //array of all image urls
     var bildUrl = [URL]()
-    
-    //array of all downloaded images
-//    var konstBild = [UIImage()]
     
     //array of all artworks' texts
     var konstTexter = [String]()
@@ -116,7 +106,6 @@ class TableViewController: UITableViewController {
             self.view.addSubview(self.konstTableView)
         }
         
-        
         konstTableView.delegate = self
         konstTableView.dataSource = self
         
@@ -132,7 +121,6 @@ class TableViewController: UITableViewController {
             //also perhaps check response status 200 OK
             
             guard let data = data else { return }
-            
             
             do {
                 
@@ -166,14 +154,8 @@ class TableViewController: UITableViewController {
                 print("________________________________________U-R-L--L-I-S-T-A___________________________________")
                 print(self.bildUrl)
                 
-//                //ta bort överflödig bild som skapas av mystisk anledning
-//                self.konstBild.remove(at: 0)
-//                print("superfluous image removed")
-                
                 for bild in konstverkData2{
                     print("Found \(bild.bild)")
-                    //                    self.bildDictionary[bild.bild] = bild.bild
-                    //                    print(self.bildDictionary)
                     if let url = URL(string: bild.bild) {
                         print("kladdkaka")
                         self.downloadImage(url: url)
@@ -184,7 +166,6 @@ class TableViewController: UITableViewController {
             }
             }.resume()
         //end of download session 1
-        
         
         //download session 2
         
@@ -212,19 +193,6 @@ class TableViewController: UITableViewController {
                 print(konstverketTexter!)
                 print("KONSTTEXTER SPARADE")
                 
-                
-                
-                //                    if let url = URL(string: namn.bild) {
-                //
-                //                        print("kladdkaka2")
-                //                        self.downloadImage(url: url)
-                //
-                //                            }
-                
-                
-                
-                
-                
             } catch let jsonErr {
                 print(jsonErr)
             }
@@ -232,7 +200,6 @@ class TableViewController: UITableViewController {
         //end of download session 2
         
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -257,19 +224,10 @@ class TableViewController: UITableViewController {
             
             let imageData = UIImageJPEGRepresentation(UIImage(data: data)!, 1.0)
             
-            
-            
-            
             print("d-i-c-t-i-o-n-a-r-y-------------t-e-s-t---------!!!!!!!!_!_!_!_!_")
             self.bildDictionary[url] = UIImage(data: imageData as Data!)!
             print(self.bildDictionary)
             
-            
-            
-            
-//            self.konstBild.append(UIImage(data: imageData as Data!)!)
-            
-//            print(self.konstBild)
             print("image downloaded and saved")
             
             DispatchQueue.main.async {
@@ -279,18 +237,12 @@ class TableViewController: UITableViewController {
     }
     // MARK: - Table view data source
     
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        if bildDictionary.count == konstName.count {
-            return konstName.count
-//        } else {print("AAAAASAVENJAAABABABISHIMAMA"); return 0}
+        return konstName.count
         
     }
     
@@ -319,11 +271,9 @@ class TableViewController: UITableViewController {
         
         
         for urlen in bildUrl {
-//            self.myRowKey = urlen
             self.myRowData = self.bildDictionary[urlen]!
             
             print("-----myrowkeyyyyyyyyyyeyeyeyyeyeyyeyeyeyyeyyyeeeeeeyeyeyeyeyyyyy-----------------------------------------")
-//            print(myRowKey)
             print(myRowData as Any)
             cellArray.append(myRowData)
             print(cellArray)
@@ -339,17 +289,15 @@ class TableViewController: UITableViewController {
         //make font size adjust to accessibility settings
         cell.tabelLable.font = UIFont.preferredFont(forTextStyle: .body)
         cell.tabelLable.adjustsFontForContentSizeCategory = true
-
+        
         cell.tabelLable2.font = UIFont.preferredFont(forTextStyle: .body)
         cell.tabelLable2.adjustsFontForContentSizeCategory = true
-
+        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
         return cell
     }
-    
     
     /*
      // Override to support conditional editing of the table view.
@@ -413,12 +361,11 @@ class TableViewController: UITableViewController {
             }
             
             selectedCell.isSelected = false
-           
+            
             
             guard let indexPath = tableView.indexPath(for: selectedCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            
             
             //prevent segue from happening if the image has not loaded yet (function declared below)
             shouldPerformSegue(withIdentifier: "ShowDetail", sender: TableViewController.self)
@@ -438,30 +385,24 @@ class TableViewController: UITableViewController {
             ViewController.konstverket = selectedKonstverk
             ViewController.konstverkTexter = konstverketTexter
             
-            
-            
-            
         } else {
             
         }
         
-        
     }
     
-            //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
-            //Segue will happen if this function returns true
-            override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-    
-                if cellArray.count < konstName.count  {
-                    theCell.isSelected = false
-                    print("------------------------________!segue will not happen!_______-----------------------")
-                    return false
-    
-                    //            } else if  imagess?.konstBild.count != konstName.count {
-                    //                return false
-                } else { return true }
-    
-            }
+    //function to prevent segues from happening if a condition is not fullfilled (add conditions by adding on to the if-statement below, separating the conditions with ||)
+    //Segue will happen if this function returns true
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if cellArray.count < konstName.count  {
+            theCell.isSelected = false
+            print("------------------------________!segue will not happen!_______-----------------------")
+            return false
+            
+        } else { return true }
+        
+    }
     
 }//end of class
 

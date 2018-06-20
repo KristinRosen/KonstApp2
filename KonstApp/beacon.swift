@@ -33,7 +33,7 @@ class Beacon {
         self.minor = minor
         self.major = major
         self.distance = distance
-    
+        
     }
     
 }//end of class
