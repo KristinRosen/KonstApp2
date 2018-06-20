@@ -124,6 +124,7 @@ class ViewController: UIViewController {
     
     //Change text + select corresponding buttons when tapping buttons (for all possible cases)
     
+    //Button 1 is tapped
     @IBAction func showText1(_ sender: UIButton) {
         displayString = konstverket!.about
         textView.text = displayString
@@ -136,6 +137,8 @@ class ViewController: UIViewController {
         button3.backgroundColor = .white
         
     }
+    
+    //Button 2
     @IBAction func showText2(_ sender: UIButton) {
         displayString = temaText
         textView.text = displayString
@@ -147,6 +150,8 @@ class ViewController: UIViewController {
         button2.backgroundColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:0.8)
         button3.backgroundColor = .white
     }
+    
+    //Button 3
     @IBAction func showText3(_ sender: UIButton) {
         displayString = IBMtext
         textView.text = displayString
@@ -162,7 +167,7 @@ class ViewController: UIViewController {
     
     
     // Change text + select corresponding button when swiping
-    //...to the right
+    //...from the right
     @IBAction func nextText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = temaText
@@ -204,7 +209,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //...to the left
+    //...from the left
     @IBAction func previousText(_ sender: UISwipeGestureRecognizer) {
         if displayString == konstverket!.about {
             displayString = IBMtext
@@ -249,6 +254,7 @@ class ViewController: UIViewController {
 }
 
 //Swipe animation
+//from right
 extension UIView {
     public func rightToLeftAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
         // Create a CATransition object
@@ -272,7 +278,7 @@ extension UIView {
     }
     
 }
-
+//from left
 extension UIView {
     public func leftToRightAnimation(duration: TimeInterval = 0.5, completionDelegate: AnyObject? = nil) {
         // Create a CATransition object
@@ -297,6 +303,7 @@ extension UIView {
     
 }
 
+//Enable adding borders to buttons
 extension UIButton {
     
     public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
