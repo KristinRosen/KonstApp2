@@ -98,7 +98,6 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("T-J-E-N-A DETTA ÄR TABLEVIEEEEEEEEEEEEEEWNNN-!_!_!_!_!_!_!_!_")
         
         //configure table view
         func configureTableView() {
@@ -260,14 +259,12 @@ class TableViewController: UITableViewController {
             cell.tabelLable.text = placeholderText1[indexPath.row]
             cell.tabelLable2.text = placeholderText2[indexPath.row]
             cell.tableImageView.image = placeholderBilder[indexPath.row] as UIImage
-            print("Inte laddat än")
             tableView.estimatedRowHeight = 100
             tableView.rowHeight = UITableViewAutomaticDimension
             
             cell.activityIndicator.color = UIColor.white
             cell.activityIndicator.hidesWhenStopped = true
             cell.activityIndicator.startAnimating()
-            
             
             return cell
         }
@@ -299,7 +296,6 @@ class TableViewController: UITableViewController {
         
         return cell
     }
-
     
     
     // MARK: Navigation

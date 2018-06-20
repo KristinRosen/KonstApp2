@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchBg" width="472" height="630"/>
+        <image name="launchBg" width="708" height="945"/>
     </resources>
 </document>
