@@ -104,6 +104,7 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     //Konstverk class object used to pass "konstverk" object to the next view
     var beaconKonstverk = Konstverk(title: "", artistName: "", photo: nil, about: "", beaconMinor: "", beaconMajor: "")
     
+    //beacon manager
     var beaconManager: KTKBeaconManager!
     
     //major value of closest beacon
@@ -133,18 +134,15 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     //array of all downloaded image urls
     var bildUrl2 = [URL]()
     
+    //Dictionary where the images will be added with their url as key
     var bildDictionary = [URL: UIImage]()
     
-    var keyList:[URL] {
-        get{
-            return [URL](self.bildDictionary.keys)
-        }
-    }
-    
+    //All the images in the right order
     var cellArray = [UIImage]()
     
-    var myRowKey: URL!
+    //Image fetched from bildDictionary
     var myRowData = UIImage()
+    
     
     var beaconImage = [UIImage]()
     var beaconUrl  = String()
@@ -152,7 +150,6 @@ class konstvandringViewController: UIViewController, CLLocationManagerDelegate {
     var beaconName = String()
     var beaconArtist = String()
     var beaconBEACON = String()
-    //var beaconBild = String()
     var beaconBEACONBEACON = String()
     
     var beaconBilden = UIImage()
